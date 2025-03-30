@@ -53,7 +53,7 @@ spec:
       - --traefik-disable-legacy
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "service"]
+    sources: ["crd", "service", "ingress"]
     txtOwnerId: default
     txtPrefix: k8s.
     domainFilters: ["${SECRET_DOMAIN}"]
