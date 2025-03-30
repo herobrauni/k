@@ -17,7 +17,6 @@ spec:
     remediation:
       retries: 3
   values:
-
     controllers:
       zurg:
         annotations:
@@ -28,19 +27,19 @@ spec:
               repository: ghcr.io/debridmediamanager/zurg
               tag: 2025.03.24.0030-nightly
 
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /ping
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
+            # probes:
+            #   liveness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /ping
+            #         port: *port
+            #       initialDelaySeconds: 0
+            #       periodSeconds: 10
+            #       timeoutSeconds: 1
+            #       failureThreshold: 3
+            #   readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -72,4 +71,4 @@ spec:
         type: ClusterIP
         ports:
           http:
-            port: &port 9999
+            port: 9999
