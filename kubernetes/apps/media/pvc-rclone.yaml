@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-rclone
+  namespace: media
+  annotations:
+    csi-rclone.dev/secretName: csi-rclone-secret
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: csi-rclone-secret-annotation
