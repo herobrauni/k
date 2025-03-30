@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  CF_API_TOKEN: NnhMUzBrWjVmMVJ6RFRyMm5MZXlOLWpaTnlXR3IxLVp4cHlMU1RubQ==
+kind: Secret
+metadata:
+  name: dns-cloudflare-secret
+  namespace: network
