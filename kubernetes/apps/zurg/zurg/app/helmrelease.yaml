@@ -42,7 +42,6 @@ spec:
             #   readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
-              capabilities: { drop: ["ALL"] }
 
     defaultPodOptions:
       imagePullSecrets:
