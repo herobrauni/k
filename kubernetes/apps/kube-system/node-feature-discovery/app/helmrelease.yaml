@@ -14,6 +14,8 @@ kind: HelmRelease
 metadata:
   name: node-feature-discovery
 spec:
+  driftDetection:
+    mode: enabled
   interval: 30m
   chart:
     spec:
