@@ -21,7 +21,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: renku
-        namespace: flux-system
   install:
     remediation:
       retries: 3
