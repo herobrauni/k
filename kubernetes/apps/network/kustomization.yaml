@@ -7,5 +7,5 @@ components:
   - ../../components/common
   - ../../components/repos/app-template
 resources:
-  - ./external/ks.yaml
+  # - ./external/ks.yaml
   - ./internal/ks.yaml
