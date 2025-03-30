@@ -33,6 +33,9 @@ metadata:
   name: &app longhorn-recurringjobs
   namespace: &namespace longhorn-system
 spec:
+  dependsOn:
+    - name: longhorn
+      namespace: longhorn-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
