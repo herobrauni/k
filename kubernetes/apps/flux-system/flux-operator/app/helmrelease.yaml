@@ -21,6 +21,8 @@ kind: HelmRelease
 metadata:
   name: flux-operator
 spec:
+  driftDetection:
+    mode: enabled
   interval: 1h
   chartRef:
     kind: OCIRepository

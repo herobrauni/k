@@ -24,6 +24,8 @@ kind: HelmRelease
 metadata:
   name: intel-device-plugin-operator
 spec:
+  driftDetection:
+    mode: enabled
   interval: 1h
   chartRef:
     kind: OCIRepository
