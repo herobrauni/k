@@ -43,3 +43,5 @@ spec:
     manager:
       devices:
         gpu: true
+  dependsOn:
+    - name: node-feature-discovery
