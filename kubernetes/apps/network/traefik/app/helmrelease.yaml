@@ -32,3 +32,14 @@ spec:
       retries: 3
   values:
     fullnameOverride: traefik
+
+    # Add service annotations for external-dns
+    service:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
+
+    # Define middleware for HTTP to HTTPS redirection
+    additionalArguments:
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
