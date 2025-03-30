@@ -10,5 +10,5 @@ resources:
   - ./metrics-server/ks.yaml
   - ./reloader/ks.yaml
   - ./descheduler/ks.yaml
-  - ./intel-device-plugin-operator/ks.yaml
   - ./node-feature-discovery/ks.yaml
+  # - ./intel-device-plugin-operator/ks.yaml
