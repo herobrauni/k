@@ -27,21 +27,22 @@ spec:
               repository: ghcr.io/debridmediamanager/zurg
               tag: 2025.03.24.0030-nightly
 
-            # probes:
-            #   liveness: &probes
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       httpGet:
-            #         path: /ping
-            #         port: *port
-            #       initialDelaySeconds: 0
-            #       periodSeconds: 10
-            #       timeoutSeconds: 1
-            #       failureThreshold: 3
-            #   readiness: *probes
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /http/version.txt
+                    port: &port 9999
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
 
     defaultPodOptions:
       imagePullSecrets:
@@ -56,11 +57,10 @@ spec:
           - path: /app/config.yml
             subPath: zurg.conf
 
-    # -- Configures service settings for the chart.
     service:
       app:
         controller: zurg
         type: ClusterIP
         ports:
           http:
-            port: 9999
+            port: *port
