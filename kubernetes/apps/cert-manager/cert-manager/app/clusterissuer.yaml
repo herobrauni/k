@@ -6,7 +6,10 @@ metadata:
   name: letsencrypt-production
 spec:
   acme:
-    server: https://acme-v02.api.letsencrypt.org/directory
+    # Production
+    # server: https://acme-v02.api.letsencrypt.org/directory
+    # Staging
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-production
     solvers:
