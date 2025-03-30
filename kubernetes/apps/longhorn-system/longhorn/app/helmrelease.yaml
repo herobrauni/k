@@ -42,7 +42,7 @@ spec:
       defaultClassReplicaCount: 3
       defaultDataLocality: disabled # best-effort otherwise
       defaultReplicaAutoBalance: least-effort # "disabled", "least-effort" or "best-effort" otherwise
-      reclaimPolicy: Retain
+      reclaimPolicy: Delete
       migratable: false
 
     defaultSettings:
