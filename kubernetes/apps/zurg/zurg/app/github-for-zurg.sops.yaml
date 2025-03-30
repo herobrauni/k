@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+    .dockerconfigjson: ENC[AES256_GCM,data:EX2gjW7jRtMkzUpteTouol7PlFm0ZSwZCs3Q4qGHVR09sb7dkVlnw274cjnZbPy5Jo5bh3iKs4+usoPbm1IZCl59zKrlJy6cIel7Rk61XWCuS/KQDPT8SuvV20lEB8dGx0D3vBV+4gwJn3EPWD/7/dDBFx3q/ykR8yllRgjA6JW1cu9h3xK74aztb1yFeBgB6lhlm4uEpzGYKKdL2JTKPnjxXlgyVBiylcoIcTxOp43pMLg3lS4tfQjE9//JKIX+C+1lpQKPevUBFPBWyZVx1OHKkslWVDyGiKHqx1vQHktXQsoL+k/MRcCtifz1CsmHXwEJcENNJ057LaUcZMOm+NNW85xbYJ84QCowjh0jpScVHaPzSON//bUHVPGrbw1vqoSMoN4YzQY=,iv:Z52P9Shwxusn6xZ23YaAhqAmQx0He7xpPeHlWYrC0lw=,tag:hAV2LwudydAQE5XbnFRSEQ==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: ghcr-login-secret
+    namespace: zurg
+type: kubernetes.io/dockerconfigjson
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age127k9xyyfucv49hz4lgqyxhv3egulzyuvjaq9z099027jynczvslqvkn9cg
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBET2ZqbUhjbXIyTnU1RHpD
+            NW12ZEJBQnlnUkFMcy8yS2lZS3F0OWdiVkVRCmRxREJrQ2R6ZzlvYVM2WS9zUUVk
+            RUg2c3RTdzgzOW9ZZzJpWmhvYVZ4a28KLS0tIGp1MmlyVmpwWjZDLzUreUpXN2Rm
+            RmR3cGU1NmlTbHdQS3RvWk1IZFFXdmsKVLJAvXEdG8h5K/zUZOUsRRDOlpV5yt0B
+            eRBD343U0RUvXsUcr89CjhOw82b6Dgfbi9ldYy0SKp7/HpBjXExJ9g==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-03-27T20:47:58Z"
+    mac: ENC[AES256_GCM,data:54KxgsqPjgYnUmZLg8IK2o1Hl9q6lF0jSzfrhbE3t9NJb1z0TbAIcFt8CvyGrAtG9/NPSztlJ93u04oSs9nEeH045TxyHwx4eHggaC/RZOrkBKs8UgwHiEL0y+xuReWD6mSj5cud30SQJkS3D8G1YhE/SLRXnAl5kS4mTDbqyL0=,iv:zwt07ZMm7lUj1Be4ZeTyLe2DBLmdAxXBUHctWhE1Ga0=,tag:ZJj6avCnClMI1GIim1SqYQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.9.4
