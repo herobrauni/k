@@ -48,12 +48,6 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-    service:
-      app:
-        controller: sonarr
-        ports:
-          http:
-            port: *port
     persistence:
       symlinks:
         existingClaim: pvc-symlinks
