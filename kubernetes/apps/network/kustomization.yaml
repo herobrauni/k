@@ -9,3 +9,4 @@ resources:
   - ./cloudflare-dns/ks.yaml
   - ./traefik/ks.yaml
   - ./echo/ks.yaml
+  - ./tailscale-operator/ks.yaml
