@@ -6,3 +6,4 @@ resources:
   - ./helmrelease.yaml
   - ./zurg-config.sops.yaml
   - ./github-for-zurg.sops.yaml
+  - ./ts-ingress.yaml
