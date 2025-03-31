@@ -8,6 +8,7 @@ components:
 resources:
   - ./pvc-symlinks.yaml
   - ./sonarr/ks.yaml
+  - ./radarr/ks.yaml
   - ./csi-rclone-secret.sops.yaml
   - ./pvc-rclone.yaml
   - ./debug-media/ks.yaml
