@@ -4,13 +4,13 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app tailscale-operator
-  namespace: &namespace network
+  namespace: &namespace tailscale
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   interval: 1h
-  path: ./kubernetes/apps/network/tailscale-operator/app
+  path: ./kubernetes/apps/tailscale-operator/tailscale-operator/app
   prune: true
   retryInterval: 2m
   sourceRef:
