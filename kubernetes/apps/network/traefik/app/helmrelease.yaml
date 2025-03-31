@@ -33,16 +33,33 @@ spec:
     remediation:
       retries: 3
   values:
-    fullnameOverride: traefik
-    websecure:
-      port: 443
-    # Add service annotations for external-dns
-    service:
-      annotations:
-        external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
+    ports:
+      traefik:
+        expose:
+          default: true
 
-    # Define middleware for HTTP to HTTPS redirection
-    additionalArguments:
-      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+      # Entrypoints
+      web:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
+        advertisedPort: 80
+
+      websecure:
+        asDefault: true
+
+    fullnameOverride: traefik
+    # websecure:
+    #   port: 443
+    # # Add service annotations for external-dns
+    # service:
+    #   annotations:
+    #     external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
+
+    # # Define middleware for HTTP to HTTPS redirection
+    # additionalArguments:
+    #   - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+    #   - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+    #   - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
