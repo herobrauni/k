@@ -36,3 +36,6 @@ spec:
     oauthSecretVolume:
       secret:
         secretName: oauth-client
+    installCRDs: true
+    ingressClass:
+      enabled: true
