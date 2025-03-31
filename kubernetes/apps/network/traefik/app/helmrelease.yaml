@@ -34,7 +34,8 @@ spec:
       retries: 3
   values:
     fullnameOverride: traefik
-
+    websecure:
+      port: 443
     # Add service annotations for external-dns
     service:
       annotations:
@@ -42,6 +43,6 @@ spec:
 
     # Define middleware for HTTP to HTTPS redirection
     additionalArguments:
-      - "--entrypoints.web.http.redirections.entryPoint.to=:443"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
