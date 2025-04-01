@@ -51,7 +51,7 @@ spec:
             key: *name
     extraArgs:
       - --cloudflare-dns-records-per-page=1000
-      # - --cloudflare-proxied
+      - --cloudflare-proxied
       - --publish-host-ip
       - --traefik-disable-legacy
     triggerLoopOnEvent: true
