@@ -7,11 +7,10 @@ metadata:
     recurring-job.longhorn.io/backup-daily: enabled
     recurring-job.longhorn.io/snapshot-hourly: enabled
   name: sonarr-config
-  namespace: media
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
   resources:
     requests:
       storage: 1Gi
+  storageClassName: longhorn
