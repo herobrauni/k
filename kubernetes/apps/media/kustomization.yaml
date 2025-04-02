@@ -13,3 +13,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./radarr/ks.yaml
   - ./plex/ks.yaml
+  - ./rdtclient/ks.yaml
