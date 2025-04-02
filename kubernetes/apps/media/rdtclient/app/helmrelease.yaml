@@ -31,6 +31,10 @@ spec:
             env:
               TZ: "Europe/Berlin"
               PUID: 911
+            securityContext:
+              capabilities: { drop: ["ALL"] }
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
             # resources:
             #   requests:
             #     cpu: 100m
