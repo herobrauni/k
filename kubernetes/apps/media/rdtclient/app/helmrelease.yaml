@@ -28,11 +28,6 @@ spec:
             image:
               repository: rogerfar/rdtclient
               tag: 2.0.102
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
-
             # resources:
             #   requests:
             #     cpu: 100m
