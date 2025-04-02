@@ -33,7 +33,7 @@ spec:
               PLEX_ADVERTISE_URL: https://plex.${SECRET_DOMAIN}:443
             probes:
               liveness: &probes
-                enabled: true
+                enabled: false
                 custom: true
                 spec:
                   httpGet:
