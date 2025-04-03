@@ -222,7 +222,7 @@
       "hostType": "docker",
       "matchHost": "ghcr.io",
       "username": "herobrauni",
-      "password": "herobraunitoken"
+      "password": "{{ secrets.herobraunitoken }}"
     }
   ],
   customManagers: [
