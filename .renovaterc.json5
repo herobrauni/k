@@ -221,8 +221,8 @@
     {
       "hostType": "docker",
       "matchHost": "ghcr.io",
-      "username": "${{ github.actor }}",
-      "password": "${{ secrets.GITHUB_TOKEN }}"
+      "username": "herobrauni",
+      "password": "herobraunitoken"
     }
   ],
   customManagers: [
