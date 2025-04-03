@@ -1,0 +1,44 @@
+# .github/workflows/flux-diff.yaml
+name: "Flux Diff"
+
+on:
+  pull_request:
+    branches: ["main"]
+    paths: ["cluster/kubernetes/**"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  pull-requests: write
+
+jobs:
+  flux-diff:
+    name: Flux Diff
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        resource:
+          - helmrelease
+          - kustomization
+    steps:
+      - name: Setup Flux CLI
+        uses: fluxcd/flux2/action@v2.4.0
+      - uses: allenporter/flux-local/action/diff@6.0.0
+        id: diff
+        with:
+          live-branch: main
+          path: cluster/kubernetes/flux/main
+          resource: ${{ matrix.resource }}
+      - name: PR Comments
+        uses: mshick/add-pr-comment@v2
+        if: ${{ steps.diff.outputs.diff != '' }}
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message-id: ${{ github.event.pull_request.number }}/${{ matrix.resource }}
+          message-failure: Unable to post kustomization diff
+          message: |
+            ```diff
+            ${{ steps.diff.outputs.diff }}
+            ```
