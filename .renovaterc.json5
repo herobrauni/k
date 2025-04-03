@@ -221,7 +221,7 @@
     {
       "matchHost": "ghcr.io",
       "hostType": "docker",
-      "token": "zurg2"
+      "token": "{{ secrets.zurg2 }}"
     }
   ],
   customManagers: [
