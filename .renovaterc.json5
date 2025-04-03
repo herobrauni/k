@@ -223,8 +223,16 @@
       "matchHost": "ghcr.io",
       "username": "herobrauni",
       "password": "{{ secrets.herobraunitoken }}"
+    },
+    {
+      "hostType": "docker",
+      "matchHost": "ghcr.io/debridmediamanager",
+      "username": "herobrauni",
+      "password": "{{ secrets.herobraunitoken }}"
     }
   ],
+  "logLevel": "debug",
+  "dockerImagePrefix": "ghcr.io/",
   customManagers: [
     {
       description: "Process annotated dependencies",
