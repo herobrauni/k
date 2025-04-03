@@ -219,9 +219,10 @@
   ],
   "hostRules": [
     {
-      "matchHost": "ghcr.io",
       "hostType": "docker",
-      "token": "{{ secrets.zurg2 }}"
+      "matchHost": "ghcr.io",
+      "username": "herobrauni",
+      "password": "{{ secrets.herobraunitoken }}"
     }
   ],
   customManagers: [
