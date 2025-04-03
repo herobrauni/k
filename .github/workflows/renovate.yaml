@@ -9,8 +9,7 @@
       push: # <- run if we update the configuration
         branches: ["main"]
         paths:
-          - .github/renovate.json
-          - .github/renovate/**.json
+          - .github/renovate.json5
 
     permissions: # <- set permissions for the default github token
       packages: read
