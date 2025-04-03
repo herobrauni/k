@@ -231,8 +231,6 @@
       "password": "{{ secrets.herobraunitoken }}"
     }
   ],
-  "logLevel": "debug",
-  "dockerImagePrefix": "ghcr.io/",
   customManagers: [
     {
       description: "Process annotated dependencies",
