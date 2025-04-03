@@ -24,7 +24,7 @@
       RENOVATE_AUTODISCOVER_FILTER: "${{ github.repository }}" # <- limit to this repo only
       RENOVATE_PLATFORM: github # <- pretty obvious
       RENOVATE_PLATFORM_COMMIT: true # <- This will allow the bot to sign the commits (using the private key we just created)
-      RENOVATE_BOT_NAME: 'bb-17' # <- my bot name, change this for your bot
+      RENOVATE_BOT_NAME: 'herobrauni-renovate' # <- my bot name, change this for your bot
       RENOVATE_HOST_RULES: | # private registries/repos <- needed to pass the github token to renovate
         [{"hostType": "docker", "matchHost": "ghcr.io", "username": "${{ github.actor }}", "password": "${{ secrets.GITHUB_TOKEN }}"}]
 
