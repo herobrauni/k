@@ -62,3 +62,5 @@ spec:
     namespace: flux-system
   targetNamespace: *namespace
   timeout: 15m
+  dependsOn:
+    - name: external-secrets
