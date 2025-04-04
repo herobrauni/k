@@ -51,7 +51,7 @@ spec:
       replicaAutoBalance: least-effort
       storageOverProvisioningPercentage: 100
       storageMinimalAvailablePercentage: 25
-      defaultReplicaCount: 3
+      defaultReplicaCount: 2
       rwxVolumeFastFailover: true
       backupCompressionMethod: lz4
       backupConcurrentLimit: 2
