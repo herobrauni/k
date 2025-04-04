@@ -5,6 +5,8 @@ kind: HelmRelease
 metadata:
   name: plex-off-deck
 spec:
+  driftDetection:
+    mode: enabled
   interval: 1h
   chartRef:
     kind: OCIRepository
