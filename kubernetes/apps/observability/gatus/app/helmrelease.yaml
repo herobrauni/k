@@ -3,11 +3,9 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app sonarr
+  name: &app gatus
 spec:
   interval: 1h
-  driftDetection:
-    mode: enabled
   chartRef:
     kind: OCIRepository
     name: app-template
@@ -20,34 +18,44 @@ spec:
       retries: 3
   values:
     controllers:
-      sonarr:
+      gatus:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init-config:
+            image:
+              repository: ghcr.io/kiwigrid/k8s-sidecar
+              tag: 1.30.3@sha256:49dcce269568b1645b0050f296da787c99119647965229919a136614123f0627
+            env:
+              FOLDER: /config
+              LABEL: gatus.io/enabled
+              NAMESPACE: ALL
+              RESOURCE: both
+              UNIQUE_FILENAMES: true
+              METHOD: WATCH
+            restartPolicy: Always
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 128Mi
         containers:
           app:
             image:
-              repository: ghcr.io/home-operations/sonarr
-              tag: 4.0.14.2938@sha256:acd5416ab9c36d017687820a32f09d09a4e25a5754aa5ebeae2e7c63d7609c13
+              repository: ghcr.io/twin/gatus
+              tag: v5.17.0@sha256:a8c53f9e9f1a3876cd00e44a42c80fc984e118d5ba0bdbaf08980cb627d61512
             env:
-              SONARR__APP__INSTANCENAME: Sonarr
-              SONARR__APP__THEME: dark
-              SONARR__AUTH__METHOD: Forms
-              SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
-              SONARR__LOG__DBENABLED: "False"
-              SONARR__LOG__LEVEL: info
-              SONARR__SERVER__PORT: &port 80
-              SONARR__UPDATE__BRANCH: develop
               TZ: Europe/Berlin
-            envFrom:
-              - secretRef:
-                  name: sonarr-secret
+              GATUS_CONFIG_PATH: /config
+              GATUS_DELAY_START_SECONDS: 5
+              WEB_PORT: &port 80
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /ping
+                    path: /health
                     port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
@@ -62,7 +70,7 @@ spec:
               requests:
                 cpu: 100m
               limits:
-                memory: 4Gi
+                memory: 256Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -72,10 +80,15 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: sonarr
+        controller: gatus
         ports:
           http:
             port: *port
+    serviceMonitor:
+      app:
+        serviceName: gatus
+        endpoints:
+          - port: http
     ingress:
       app:
         enabled: true
@@ -95,32 +108,16 @@ spec:
           - hosts:
               - *host
             secretName: "{{ .Release.Name }}-tls"
+    serviceAccount:
+      create: true
+      name: gatus
     persistence:
       config:
-        existingClaim: sonarr
-      config-cache:
-        existingClaim: sonarr-cache
-        globalMounts:
-          - path: /config/MediaCover
-      tmp:
-        type: emptyDir
-      symlinks:
-        existingClaim: pvc-symlinks
-        globalMounts:
-          - path: /aio/symlinks
-      rclone:
-        existingClaim: pvc-rclone
-        globalMounts:
-          - path: /aio/remote/realdebrid
-            readOnly: true
-      scripts:
+        existingClaim: gatus
+      config-file:
         type: configMap
-        name: sonarr-configmap
-        defaultMode: 0775
+        name: gatus-configmap
         globalMounts:
-          - path: /scripts/codec-tagger.sh
-            subPath: codec-tagger.sh
-            readOnly: true
-          - path: /scripts/tba-refresher.sh
-            subPath: tba-refresher.sh
+          - path: /config/config.yaml
+            subPath: config.yaml
             readOnly: true
