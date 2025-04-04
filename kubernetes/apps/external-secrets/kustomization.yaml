@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: external-secrets
 components:
   - ../../components/common
-resources:
-  - ./external-secrets/ks.yaml
+# resources:
+#   - ./external-secrets/ks.yaml
