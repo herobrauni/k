@@ -8,6 +8,6 @@ endpoints:
       hide-url: true
     dns:
       query-name: "${GATUS_SUBDOMAIN:=${APP}}.480p.com"
-      query-type: A
+      query-type: CNAME
     conditions:
       - "len([BODY]) == 0"
