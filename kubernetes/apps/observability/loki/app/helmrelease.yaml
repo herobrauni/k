@@ -24,6 +24,8 @@ kind: HelmRelease
 metadata:
   name: loki
 spec:
+  driftDetection:
+    mode: enabled
   interval: 1h
   chartRef:
     kind: OCIRepository
