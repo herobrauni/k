@@ -29,13 +29,13 @@ spec:
             env:
               SONARR__APP__INSTANCENAME: Sonarr
               SONARR__APP__THEME: dark
-              SONARR__AUTH__METHOD: External
+              SONARR__AUTH__METHOD: Forms
               SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
               SONARR__LOG__DBENABLED: "False"
               SONARR__LOG__LEVEL: info
               SONARR__SERVER__PORT: &port 80
               SONARR__UPDATE__BRANCH: develop
-              TZ: America/New_York
+              TZ: Europe/Berlin
             envFrom:
               - secretRef:
                   name: sonarr-secret
@@ -76,7 +76,7 @@ spec:
             port: *port
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.devbu.io"]
+        hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
         parentRefs:
           - name: internal
             namespace: kube-system
