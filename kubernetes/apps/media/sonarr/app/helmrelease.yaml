@@ -98,7 +98,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: sonarr-config
+        existingClaim: sonarr
       config-cache:
         existingClaim: sonarr-cache
         globalMounts:
