@@ -28,7 +28,7 @@ spec:
     name: flux-system
     namespace: flux-system
   targetNamespace: *namespace
-  timeout: 15m
+  timeout: 5m
 ---
 # ---
 # # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
@@ -60,6 +60,6 @@ spec:
 #     name: flux-system
 #     namespace: flux-system
 #   targetNamespace: *namespace
-#   timeout: 15m
+#   timeout: 5m
 #   dependsOn:
 #     - name: external-secrets
