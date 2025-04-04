@@ -6,6 +6,8 @@ metadata:
   name: &app sonarr
 spec:
   interval: 1h
+  driftDetection:
+    enabled: true
   chartRef:
     kind: OCIRepository
     name: app-template
