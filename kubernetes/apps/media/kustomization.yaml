@@ -10,7 +10,7 @@ resources:
   - ./csi-rclone-secret.sops.yaml
   - ./pvc-rclone.yaml
   # - ./debug-media/ks.yaml
-  # - ./sonarr/ks.yaml
+  - ./sonarr/ks.yaml
   # - ./radarr/ks.yaml
   # - ./plex/ks.yaml
   # - ./rdtclient/ks.yaml
