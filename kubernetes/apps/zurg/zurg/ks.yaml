@@ -6,10 +6,6 @@ metadata:
   name: &app zurg
   namespace: &namespace zurg
 spec:
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

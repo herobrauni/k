@@ -6,10 +6,6 @@ metadata:
   name: &app debug-media
   namespace: &namespace media
 spec:
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
