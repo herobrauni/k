@@ -9,6 +9,7 @@ PATTERNS=(
     "ceph-block:longhorn"
     "rook-ceph-cluster:longhorn"
     "rook-ceph:longhorn-system"
+    "onepassword:bitwarden-secretsmanager"
 )
 
 # Get the root directory of the git repository

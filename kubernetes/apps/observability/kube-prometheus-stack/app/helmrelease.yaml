@@ -66,14 +66,21 @@ spec:
     kubeProxy:
       enabled: false
     prometheus:
-      route:
-        main:
-          enabled: true
-          hostnames: ["prometheus.480p.com"]
-          parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: https
+    ingress:
+      app:
+        enabled: true
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: *port
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
