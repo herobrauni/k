@@ -68,7 +68,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: rdtclient-config
+        existingClaim: rdtclient
         globalMounts:
           - path: /data
       tmp:
