@@ -24,7 +24,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          app:
+          sonarr:
             image:
               repository: ghcr.io/home-operations/sonarr
               tag: 4.0.14.2938@sha256:acd5416ab9c36d017687820a32f09d09a4e25a5754aa5ebeae2e7c63d7609c13
@@ -71,13 +71,13 @@ spec:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
     service:
-      app:
+      sonarr:
         controller: sonarr
         ports:
           http:
             port: *port
     ingress:
-      app:
+      sonarr:
         enabled: true
         className: traefik
         annotations:
@@ -89,7 +89,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  identifier: app
+                  identifier: sonarr
                   port: *port
         tls:
           - hosts:
