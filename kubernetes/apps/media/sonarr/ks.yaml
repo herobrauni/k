@@ -9,6 +9,12 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    # - ../../../../components/gatus/guarded
+    - ../../../../components/volsync
+  dependsOn:
+    - name: longhorn
+      namespace: longhorn-system
   interval: 1h
   path: ./kubernetes/apps/media/sonarr/app
   postBuild:
@@ -24,6 +30,3 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
   wait: false
-  dependsOn:
-    - name: longhorn
-      namespace: longhorn-system

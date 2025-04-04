@@ -6,7 +6,7 @@ resources:
   - ./helmrelease.yaml
   - ./sonarr-secret.sops.yaml
   - ./pvc-cache.yaml
-  - ./pvc-config.yaml
+  # - ./pvc-config.yaml
 # configMapGenerator:
 #   - name: sonarr-configmap
 #     files:
