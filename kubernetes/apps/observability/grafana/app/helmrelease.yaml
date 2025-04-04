@@ -245,14 +245,21 @@ spec:
       - vonage-status-panel
     serviceMonitor:
       enabled: true
-    route:
-      main:
+      ingress:
         enabled: true
-        hostnames: ["{{ .Release.Name }}.480p.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+        ingressClassName: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - "{{ .Release.Name }}.480p.com"
+        paths:
+          - /
+        pathType: Prefix
+        tls:
+          - secretName: "{{ .Release.Name }}-tls"
+            hosts:
+              - "{{ .Release.Name }}.480p.com"
     persistence:
       enabled: false
     testFramework:
