@@ -9,7 +9,7 @@ spec:
   paused: false
   sourcePVC: "${APP}"
   trigger:
-    schedule: "*/3 * * * *"
+    schedule: "0 * * * *"
   restic:
     repository: "${APP}-volsync-secret"
     copyMethod: "${VOLSYNC_COPYMETHOD:-Snapshot}"
