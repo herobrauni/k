@@ -85,6 +85,10 @@ spec:
                 service:
                   identifier: app
                   port: *port
+        tls:
+          - hosts:
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
     persistence:
       config-file:
         type: configMap
