@@ -95,7 +95,7 @@ spec:
         enableFeatures:
           - memory-snapshot-on-shutdown
         retention: 14d
-        retentionSize: 15Gi
+        retentionSize: 15GB
         resources:
           requests:
             cpu: 100m
