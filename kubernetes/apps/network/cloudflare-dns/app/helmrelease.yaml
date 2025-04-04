@@ -59,7 +59,7 @@ spec:
     sources: ["crd", "service", "ingress"]
     txtOwnerId: default
     txtPrefix: k8s.
-    domainFilters: ["${SECRET_DOMAIN}"]
+    domainFilters: ["480p.com"]
     serviceMonitor:
       enabled: true
     podAnnotations:

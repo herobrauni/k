@@ -9,5 +9,5 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "${SECRET_DOMAIN}"
-  dnsNames: ["${SECRET_DOMAIN}", "*.${SECRET_DOMAIN}"]
+  commonName: "480p.com"
+  dnsNames: ["480p.com", "*.480p.com"]
