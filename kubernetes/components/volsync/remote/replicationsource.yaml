@@ -9,7 +9,7 @@ spec:
   paused: false
   sourcePVC: "${APP}"
   trigger:
-    schedule: "0 * * * *"
+    schedule: "3,9,15,21,27,33,39,45,51,57 * * * *"
   restic:
     copyMethod: "${VOLSYNC_COPYMETHOD:-Snapshot}"
     pruneIntervalDays: 14
