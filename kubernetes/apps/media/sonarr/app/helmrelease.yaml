@@ -92,25 +92,28 @@ spec:
         existingClaim: sonarr-cache
         globalMounts:
           - path: /config/MediaCover
-      scripts:
-        type: configMap
-        name: sonarr-configmap
-        defaultMode: 0775
-        globalMounts:
-          - path: /scripts/codec-tagger.sh
-            subPath: codec-tagger.sh
-            readOnly: true
-          - path: /scripts/pushover-notifier.sh
-            subPath: pushover-notifier.sh
-            readOnly: true
-          - path: /scripts/tba-refresher.sh
-            subPath: tba-refresher.sh
-            readOnly: true
-      media:
-        type: nfs
-        server: expanse.internal
-        path: /mnt/eros/Media
-        globalMounts:
-          - path: /media
       tmp:
         type: emptyDir
+      symlinks:
+        existingClaim: pvc-symlinks
+        globalMounts:
+          - path: /aio/symlinks
+      rclone:
+        existingClaim: pvc-rclone
+        globalMounts:
+          - path: /aio/remote/realdebrid
+            readOnly: true
+      # scripts:
+      #   type: configMap
+      #   name: sonarr-configmap
+      #   defaultMode: 0775
+      #   globalMounts:
+      #     - path: /scripts/codec-tagger.sh
+      #       subPath: codec-tagger.sh
+      #       readOnly: true
+      #     - path: /scripts/pushover-notifier.sh
+      #       subPath: pushover-notifier.sh
+      #       readOnly: true
+      #     - path: /scripts/tba-refresher.sh
+      #       subPath: tba-refresher.sh
+      #       readOnly: true
