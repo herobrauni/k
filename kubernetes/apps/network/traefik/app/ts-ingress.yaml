@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: zurg
+  name: traefik
 spec:
   rules:
     - host: *host
@@ -17,4 +17,4 @@ spec:
   ingressClassName: tailscale
   tls:
     - hosts:
-        - zurg
+        - traefik
