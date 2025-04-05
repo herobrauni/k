@@ -78,7 +78,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "480p.com"
           cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.middlewares: network-forwardauth@kubernetescrd
+          traefik.ingress.kubernetes.io/router.middlewares: network-oauth-auth-redirect@kubernetescrd
         hosts:
           - host: &host "{{ .Release.Name }}.480p.com"
             paths:
