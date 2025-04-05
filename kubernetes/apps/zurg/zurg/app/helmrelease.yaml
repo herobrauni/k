@@ -64,7 +64,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: echo-tls
+            secretName: "{{ .Release.Name }}-tls"
 
     defaultPodOptions:
       imagePullSecrets:
