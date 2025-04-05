@@ -64,7 +64,7 @@ spec:
       removeSnapshotsDuringFilesystemTrim: true
       disableRevisionCounter: true
       guaranteedInstanceManagerCPU: 12
-      restoreVolumeRecurringJobs: true
+      restoreVolumeRecurringJobs: false
 
     # -- Setting that allows you to update the default backupstore.
     defaultBackupStore:
