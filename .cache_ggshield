@@ -1,0 +1,1 @@
+{"last_found_secrets": [{"name": "Generic Password - commit://staged/authentik/charts/postgresql/templates/secrets.yaml", "match": "7630852e9a6a0aecb849c91d14d426ca88187886fdf466189d67145856bdac3e"}, {"name": "Generic Password - commit://staged/authentik/ci/ct-blueprints-values.yaml", "match": "d3508ec1972d57b705b13115c8d931f2e3266c29898d59e6418064ff7b9a7f35"}]}
