@@ -35,7 +35,7 @@ spec:
                 custom: true
                 spec:
                   httpGet:
-                    path: /http/version.txt
+                    path: /version.txt
                     port: &port 9999
                   initialDelaySeconds: 0
                   periodSeconds: 10
