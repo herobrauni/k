@@ -39,17 +39,20 @@ spec:
         type: RollingUpdate
       envFrom:
         - secretRef:
-            name: authentik-secret
+            name: authentik-postgresql
     authentik:
       redis:
         host: dragonfly.dragonfly.svc.cluster.local
         port: 6379
         db: 1
+      envFrom:
+        - secretRef:
+            name: authentik-postgresql
     postgresql:
       enabled: true
       envFrom:
         - secretRef:
-            name: authentik-secret
+            name: authentik-postgresql
       primary:
         persistence:
           existingClaim: authentik
