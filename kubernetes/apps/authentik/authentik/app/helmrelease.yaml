@@ -45,6 +45,9 @@ spec:
         host: dragonfly.dragonfly.svc.cluster.local
         port: 6379
         db: 1
+      envFrom:
+        - secretRef:
+            name: authentik-secret
     postgresql:
       enabled: true
       envFrom:
