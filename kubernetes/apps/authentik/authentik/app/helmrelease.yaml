@@ -54,18 +54,18 @@ spec:
       replicas: 3
       ingress:
         enabled: true
-        className: traefik
+        ingressClassName: traefik
         annotations:
           external-dns.alpha.kubernetes.io/target: "480p.com"
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: &host "{{ .Release.Name }}.480p.com"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: *port
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
         tls:
           - hosts:
               - *host
