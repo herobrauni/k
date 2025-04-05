@@ -60,8 +60,7 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - "{{ .Release.Name }}.480p.com"
-        paths:
-          - path: /
+        paths: [ "/" ]
         pathType: Prefix
         tls:
           - hosts:
