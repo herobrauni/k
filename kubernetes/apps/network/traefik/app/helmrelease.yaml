@@ -33,11 +33,20 @@ spec:
     remediation:
       retries: 3
   values:
+    providers:
+      kubernetesCRD:
+        enabled: true
+        allowExternalNameServices: true
+        allowCrossNamespace: true
+    kubernetesIngress:
+      enabled: true
+      allowExternalNameServices: true
+      allowCrossNamespace: true
+      ingressClass: traefik
     ports:
       traefik:
         expose:
           default: true
-
       # Entrypoints
       web:
         redirections:
@@ -48,8 +57,9 @@ spec:
         advertisedPort: 80
 
       websecure:
-        asDefault: true
-
+        tls:
+          enabled: true
+          options: "default"
     fullnameOverride: traefik
     service:
       annotations:
