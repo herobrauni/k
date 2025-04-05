@@ -39,7 +39,7 @@ spec:
         type: RollingUpdate
       envFrom:
         - secretRef:
-            name: *secret
+            name: authentik-secret
     authentik:
       redis:
         host: dragonfly.dragonfly.svc.cluster.local
@@ -49,7 +49,7 @@ spec:
       enabled: true
       envFrom:
         - secretRef:
-            name: *secret
+            name: authentik-secret
     server:
       replicas: 3
       ingress:
