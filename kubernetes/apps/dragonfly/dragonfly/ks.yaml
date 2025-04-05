@@ -11,7 +11,6 @@ spec:
       app.kubernetes.io/name: dragonfly
   components:
     - ../../../../components/gatus/external
-    - ../../../../components/volsync
   dependsOn:
     - name: longhorn
       namespace: longhorn-system
