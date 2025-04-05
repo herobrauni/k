@@ -9,13 +9,18 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: *app
-      namespace: *namespace
+  components:
+    - ../../../../components/gatus/guarded
+    - ../../../../components/volsync
+  dependsOn:
+    - name: longhorn
+      namespace: longhorn-system
   interval: 1h
   path: ./kubernetes/apps/authentik/authentik/app
+  postBuild:
+    substitute:
+      APP: *app
+      VOLSYNC_CAPACITY: 2Gi
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -24,10 +29,4 @@ spec:
     namespace: flux-system
   targetNamespace: *namespace
   timeout: 5m
-  components:
-    - ../../../../components/gatus/guarded
-    - ../../../../components/volsync
-  postBuild:
-    substitute:
-      APP: *app
-      VOLSYNC_CAPACITY: 1Gi
+  wait: false
