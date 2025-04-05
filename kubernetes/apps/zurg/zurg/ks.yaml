@@ -9,11 +9,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: *app
-      namespace: *namespace
   interval: 1h
   path: ./kubernetes/apps/zurg/zurg/app
   prune: true
@@ -24,3 +19,13 @@ spec:
     namespace: flux-system
   targetNamespace: *namespace
   timeout: 5m
+  components:
+    - ../../../../components/volsync
+  postBuild:
+    substitute:
+      APP: *app
+      VOLSYNC_CAPACITY: 2Gi
+  dependsOn:
+    - name: longhorn
+      namespace: longhorn-system
+  wait: false

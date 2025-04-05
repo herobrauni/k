@@ -78,7 +78,10 @@ spec:
         globalMounts:
           - path: /app/config.yml
             subPath: zurg.conf
-
+      data:
+        existingClaim: zurg
+        globalMounts:
+          - path: /app/data
     service:
       app:
         controller: zurg
