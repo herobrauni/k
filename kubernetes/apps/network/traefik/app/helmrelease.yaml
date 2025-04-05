@@ -55,3 +55,10 @@ spec:
       annotations:
         external-dns.alpha.kubernetes.io/hostname: "480p.com"
 
+    globalArguments:
+      - "--global.checknewversion=false"
+      - "--global.sendanonymoususage=false"
+      - "--api.insecure=true"
+      - "--serverstransport.insecureskipverify=true"
+      - "--metrics.prometheus=true"
+      - "--metrics.prometheus.entryPoint=metrics"
