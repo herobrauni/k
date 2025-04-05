@@ -33,6 +33,9 @@ spec:
       retries: 3
   values:
     global:
+      volumes:
+        - name: authentik-pvc
+          existingVolumeClaim: authentik
       podAnnotations:
         reloader.stakater.com/auto: 'true'
       deploymentStrategy:
@@ -46,6 +49,9 @@ spec:
         port: 6379
         db: 1
     postgresql:
+      volumeMounts:
+        - name: authentik-pvc
+          mountPath: /var/lib/postgresql/data
       enabled: true
       envFrom:
         - secretRef:
