@@ -60,7 +60,7 @@ spec:
                 pathType: Prefix
                 service:
                   identifier: app
-                  port: http
+                  port: 9999
         tls:
           - hosts:
               - *host
@@ -85,4 +85,4 @@ spec:
         type: ClusterIP
         ports:
           http:
-            port: *port
+            port: 9999
