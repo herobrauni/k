@@ -3,8 +3,8 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app dragonfly
-  namespace: &namespace dragonfly
+  name: dragonfly
+  namespace: dragonfly
 spec:
   commonMetadata:
     labels:
@@ -19,7 +19,7 @@ spec:
   path: ./kubernetes/apps/dragonfly/dragonfly/app
   postBuild:
     substitute:
-      APP: *app
+      APP: dragonfly
       GATUS_PATH: /ready
   prune: true
   retryInterval: 2m
@@ -27,6 +27,28 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
+  targetNamespace: dragonfly
+  timeout: 5m
+  wait: false
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: dragonfly-cluster
+  namespace: dragonfly
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: dragonfly-cluster
+  interval: 1h
+  path: ./kubernetes/apps/dragonfly/dragonfly/cluster
+  prune: true
+  retryInterval: 2m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: dragonfly
   timeout: 5m
   wait: false
