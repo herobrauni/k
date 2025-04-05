@@ -57,7 +57,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: longhorn
+              storageClassName: longhorn-rc3
               resources:
                 requests:
                   storage: 1Gi
@@ -95,7 +95,7 @@ spec:
         enableFeatures:
           - memory-snapshot-on-shutdown
         retention: 14d
-        retentionSize: 15GB
+        retentionSize: 25GB
         resources:
           requests:
             cpu: 100m
@@ -104,10 +104,10 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: longhorn
+              storageClassName: longhorn-rc2
               resources:
                 requests:
-                  storage: 15Gi
+                  storage: 25Gi
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       prometheus:
