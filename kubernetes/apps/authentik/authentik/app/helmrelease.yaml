@@ -59,10 +59,10 @@ spec:
           external-dns.alpha.kubernetes.io/target: "480p.com"
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - "{{ .Release.Name }}.480p.com"
+          - "auth.480p.com"
         paths: [ "/" ]
         pathType: Prefix
         tls:
           - hosts:
-              - "{{ .Release.Name }}.480p.com"
-            secretName: "{{ .Release.Name }}-tls"
+              - "auth.480p.com"
+            secretName: "auth-tls"
