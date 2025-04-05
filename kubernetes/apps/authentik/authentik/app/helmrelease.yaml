@@ -1,0 +1,72 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: authentik
+spec:
+  interval: 5m
+  url: https://charts.goauthentik.io/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authentik
+spec:
+  driftDetection:
+    mode: enabled
+  interval: 30m
+  chart:
+    spec:
+      chart: authentik
+      version: 2025.2.3
+      sourceRef:
+        kind: HelmRepository
+        name: authentik
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    global:
+      podAnnotations:
+        secret.reloader.stakater.com/reload: &secret authentik-secret
+      deploymentStrategy:
+        type: RollingUpdate
+      envFrom:
+        - secretRef:
+            name: *secret
+    authentik:
+      redis:
+        host: dragonfly.dragonfly.svc.cluster.local
+        port: 6379
+        db: 1
+    postgresql:
+      enabled: true
+      envFrom:
+        - secretRef:
+            name: *secret
+    server:
+      replicas: 3
+      ingress:
+        enabled: true
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - hosts:
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
