@@ -30,6 +30,8 @@ spec:
               tag: v7.8.1@sha256:d62e2d81c6f5048f652f67c302083be1272c181b971fad80e5a30ebe2b8b75d8
             env:
               OAUTH2_PROXY_PROVIDER: github
+              OAUTH2_PROXY_GITHUB_USER: herobrauni
+              OAUTH2_PROXY_GITHUB_REPO: herobrauni/k
               OAUTH2_PROXY_COOKIE_DOMAINS: 480p.com
               OAUTH2_PROXY_COOKIE_SECURE: "true"
               OAUTH2_PROXY_EMAIL_DOMAINS: "*"
