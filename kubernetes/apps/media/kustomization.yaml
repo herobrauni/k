@@ -15,3 +15,4 @@ resources:
   - ./plex/ks.yaml
   - ./rdtclient/ks.yaml
   - ./prowlarr/ks.yaml
+  - ./bazarr/ks.yaml
