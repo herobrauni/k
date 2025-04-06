@@ -82,7 +82,7 @@ spec:
       replicas: 1
       persistence:
         enabled: true
-        storageClass: longhorn-rc2
+        storageClass: longhorn-rc1
         size: 15Gi
     gateway:
       replicas: 0
