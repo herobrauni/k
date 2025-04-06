@@ -11,9 +11,6 @@ spec:
       app.kubernetes.io/name: dragonfly
   components:
     - ../../../../components/gatus/external
-  dependsOn:
-    - name: longhorn
-      namespace: longhorn-system
   interval: 1h
   path: ./kubernetes/apps/dragonfly/dragonfly/app
   postBuild:
