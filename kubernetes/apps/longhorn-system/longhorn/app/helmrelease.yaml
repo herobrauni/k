@@ -34,16 +34,17 @@ spec:
       retries: 3
   values:
     longhornUI:
-      replicas: 1
+      replicas: 2
 
     persistence:
       defaultClass: true
       defaultFsType: ext4
-      defaultClassReplicaCount: 3
-      defaultDataLocality: disabled # best-effort otherwise
-      defaultReplicaAutoBalance: least-effort # "disabled", "least-effort" or "best-effort" otherwise
+      defaultClassReplicaCount: 2
+      defaultDataLocality: best-effort # best-effort otherwise
+      defaultReplicaAutoBalance: best-effort # "disabled", "least-effort" or "best-effort" otherwise
       reclaimPolicy: Delete
-      migratable: false
+      migratable: true
+      allowVolumeExpansion: true
 
     defaultSettings:
       defaultDataPath: /var/lib/longhorn

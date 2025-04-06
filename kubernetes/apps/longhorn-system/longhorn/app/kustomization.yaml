@@ -6,4 +6,4 @@ resources:
   - ./helmrelease.yaml
   - ./s3-secret.sops.yaml
   - ./ts-ingress.yaml
-  # - ./storageclasses.yaml
+  - ./storageclasses.yaml
