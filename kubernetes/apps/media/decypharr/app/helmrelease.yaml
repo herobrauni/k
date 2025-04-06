@@ -67,11 +67,11 @@ spec:
         ports:
           http:
             port: 8282
-persistence:
-  app:
-    existingClaim: decypharr
-  config-json:
-    type: secret
-    name: decypharr-secret
-    globalMounts:
-      - path: /app/config.json
+    persistence:
+      app:
+        existingClaim: decypharr
+      config-json:
+        type: secret
+        name: decypharr-secret
+        globalMounts:
+          - path: /app/config.json
