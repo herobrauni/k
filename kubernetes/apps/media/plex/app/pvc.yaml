@@ -4,9 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: plex-cache
 spec:
-  accessModes:
-    - ReadWriteOnce
+  accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 10Gi
-  storageClassName: longhorn-rc1
+  storageClassName: longhorn-rc2
