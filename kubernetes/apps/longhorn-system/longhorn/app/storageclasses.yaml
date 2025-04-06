@@ -64,6 +64,6 @@ parameters:
   numberOfReplicas: "1"
   staleReplicaTimeout: "30"
   fsType: "ext4"
-  dataLocality: "strict-local"
+  dataLocality: "best-effort"
   replicaAutoBalance: "least-effort"
   recurringJobSelector: '[{"name":"volsync-group", "isGroup":true}]'
