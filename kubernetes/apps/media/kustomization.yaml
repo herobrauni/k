@@ -19,4 +19,4 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./tautulli/ks.yaml
-  - ./decypharr/ks.yaml
+  # - ./decypharr/ks.yaml
