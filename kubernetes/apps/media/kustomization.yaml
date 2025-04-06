@@ -18,3 +18,4 @@ resources:
   - ./bazarr/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./tautulli/ks.yaml
