@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: media
 components:
   - ../../components/common
-  # resources:
+resources:
   #   - ./pvc-symlinks.yaml
   #   - ./csi-rclone-secret.sops.yaml
   #   - ./pvc-rclone.yaml
