@@ -14,7 +14,7 @@ resources:
   # - ./radarr/ks.yaml
   # - ./plex/ks.yaml
   # - ./rdtclient/ks.yaml
-  # - ./prowlarr/ks.yaml
+  - ./prowlarr/ks.yaml
   # - ./bazarr/ks.yaml
   # - ./jellyseerr/ks.yaml
   # - ./recyclarr/ks.yaml
