@@ -13,5 +13,5 @@ resources:
   #   - ./sonarr/ks.yaml
   # - ./radarr/ks.yaml
   # - ./plex/ks.yaml
-  # - ./rdtclient/ks.yaml
+  - ./rdtclient/ks.yaml
   - ./symlinks/ks.yaml
