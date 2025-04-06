@@ -13,8 +13,9 @@ parameters:
   numberOfReplicas: "1"
   staleReplicaTimeout: "30"
   fsType: "ext4"
-  dataLocality: "strict-local"
+  dataLocality: "best-effort"
   replicaAutoBalance: "least-effort"
+  recurringJobSelector: '[{"name":"longhorn-rc1", "isGroup":true}]'
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -30,8 +31,10 @@ parameters:
   numberOfReplicas: "2"
   staleReplicaTimeout: "30"
   fsType: "ext4"
-  dataLocality: "disabled"
+  dataLocality: "best-effort"
   replicaAutoBalance: "least-effort"
+  recurringJobSelector: '[{"name":"longhorn-rc2", "isGroup":true}]'
+
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -47,8 +50,9 @@ parameters:
   numberOfReplicas: "3"
   staleReplicaTimeout: "30"
   fsType: "ext4"
-  dataLocality: "disabled"
+  dataLocality: "best-effort"
   replicaAutoBalance: "least-effort"
+  recurringJobSelector: '[{"name":"longhorn-rc3", "isGroup":true}]'
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
