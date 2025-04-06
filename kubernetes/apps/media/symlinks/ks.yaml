@@ -15,7 +15,7 @@ spec:
     - name: longhorn
       namespace: longhorn-system
   interval: 1h
-  # path: ./kubernetes/apps/media/symlinks/app
+  path: ./kubernetes/apps/media/symlinks/app
   postBuild:
     substitute:
       APP: *app
