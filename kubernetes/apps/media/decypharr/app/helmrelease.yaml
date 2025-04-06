@@ -38,7 +38,26 @@ spec:
               readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 4Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: decypharr
+        ports:
+          http:
+            port: 8282
     ingress:
       app:
         enabled: true
@@ -59,14 +78,6 @@ spec:
           - hosts:
               - *host
             secretName: "{{ .Release.Name }}-tls"
-
-    service:
-      app:
-        controller: decypharr
-        type: ClusterIP
-        ports:
-          http:
-            port: 8282
     persistence:
       app:
         existingClaim: decypharr
