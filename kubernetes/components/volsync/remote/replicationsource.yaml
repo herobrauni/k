@@ -5,8 +5,8 @@ kind: ReplicationSource
 metadata:
   name: "${APP}"
 spec:
-  # INFO: activate this before restoring on a new cluster so the backup isn‘t created before the restore
-  paused: false
+  # INFO: activate this before restoring on a new cluster so the backup isn't created before the restore
+  paused: true
   sourcePVC: "${APP}"
   trigger:
     schedule: "0 * * * *"
