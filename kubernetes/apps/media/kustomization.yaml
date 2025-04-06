@@ -14,4 +14,4 @@ components:
   # - ./radarr/ks.yaml
   # - ./plex/ks.yaml
   # - ./rdtclient/ks.yaml
-  # - ./symlinks/ks.yaml
+  - ./symlinks/ks.yaml
