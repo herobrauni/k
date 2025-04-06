@@ -5,10 +5,10 @@ kind: Kustomization
 namespace: media
 components:
   - ../../components/common
-# resources:
-# - ./symlinks/ks.yaml
-# - ./csi-rclone-secret.sops.yaml
-# - ./pvc-rclone.yaml
+resources:
+  - ./symlinks/ks.yaml
+  - ./csi-rclone-secret.sops.yaml
+  - ./pvc-rclone.yaml
 # - ./debug-media/ks.yaml
 # - ./sonarr/ks.yaml
 # - ./radarr/ks.yaml
