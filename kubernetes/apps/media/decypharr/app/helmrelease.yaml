@@ -1,0 +1,77 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app decypharr
+spec:
+  driftDetection:
+    mode: enabled
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      decypharr:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: cy01/blackhole
+              tag: experimental@sha256:66ee3ddc240697b6e7d4d8c8d45dae044c5a7aa47d2947197717cd64af20994f
+            envFrom:
+              - secretRef:
+                  name: decypharr-secret
+
+            probes:
+              liveness: &probes
+                enabled: true
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities: { drop: ["ALL"] }
+    ingress:
+      app:
+        enabled: true
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: 8282
+        tls:
+          - hosts:
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
+
+    service:
+      app:
+        controller: decypharr
+        type: ClusterIP
+        ports:
+          http:
+            port: 8282
+persistence:
+  app:
+    existingClaim: decypharr
+  config-json:
+    type: secret
+    name: decypharr-secret
+    globalMounts:
+      - path: /app/config.json
