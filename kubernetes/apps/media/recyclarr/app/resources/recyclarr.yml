@@ -6,7 +6,15 @@ sonarr:
     api_key: !env_var SONARR_API_KEY
     delete_old_custom_formats: true
     replace_existing_custom_formats: true
-
+    # Media Naming Configuration
+    media_naming:
+      series: default
+      season: default
+      episodes:
+        rename: true
+        standard: default
+        daily: default
+        anime: default
     include:
       # Comment out any of the following includes to disable them
       - template: sonarr-quality-definition-series
@@ -43,6 +51,15 @@ sonarr:
     api_key: !env_var SONARR_API_KEY
     delete_old_custom_formats: true
     replace_existing_custom_formats: true
+    # Media Naming Configuration
+    media_naming:
+      series: default
+      season: default
+      episodes:
+        rename: true
+        standard: default
+        daily: default
+        anime: default
 
     include:
       # Comment out any of the following includes to disable them
@@ -102,6 +119,12 @@ radarr:
     api_key: !env_var RADARR_API_KEY
     delete_old_custom_formats: true
     replace_existing_custom_formats: true
+    # Media Naming Configuration
+    media_naming:
+      folder: default
+      movie:
+        rename: true
+        standard: default
     # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
     include:
       # Comment out any of the following includes to disable them
@@ -152,7 +175,12 @@ radarr:
     api_key: !env_var RADARR_API_KEY
     delete_old_custom_formats: true
     replace_existing_custom_formats: true
-
+    # Media Naming Configuration
+    media_naming:
+      folder: default
+      movie:
+        rename: true
+        standard: default
     include:
       # Comment out any of the following includes to disable them
       - template: radarr-quality-definition-movie
