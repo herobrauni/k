@@ -9,8 +9,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: dragonfly
-  components:
-    - ../../../../components/gatus/external
   interval: 1h
   path: ./kubernetes/apps/dragonfly/dragonfly/app
   postBuild:
