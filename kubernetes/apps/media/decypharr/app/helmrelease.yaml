@@ -88,3 +88,7 @@ spec:
         globalMounts:
           - path: /app/config.json
             subPath: config.json
+      symlinks:
+        existingClaim: symlinks
+        globalMounts:
+          - path: /aio/symlinks
