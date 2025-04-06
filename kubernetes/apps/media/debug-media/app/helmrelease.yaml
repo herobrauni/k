@@ -50,7 +50,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     persistence:
       symlinks:
-        existingClaim: pvc-symlinks
+        existingClaim: symlinks
         globalMounts:
           - path: /aio/symlinks
       rclone:

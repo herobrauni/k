@@ -7,9 +7,9 @@ components:
   - ../../components/common
 resources:
   #   - ./pvc-symlinks.yaml
-  #   - ./csi-rclone-secret.sops.yaml
-  #   - ./pvc-rclone.yaml
-  #   - ./debug-media/ks.yaml
+  - ./csi-rclone-secret.sops.yaml
+  - ./pvc-rclone.yaml
+  - ./debug-media/ks.yaml
   #   - ./sonarr/ks.yaml
   # - ./radarr/ks.yaml
   # - ./plex/ks.yaml
