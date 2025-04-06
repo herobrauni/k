@@ -16,3 +16,4 @@ resources:
   - ./rdtclient/ks.yaml
   - ./prowlarr/ks.yaml
   - ./bazarr/ks.yaml
+  - ./jellyseerr/ks.yaml
