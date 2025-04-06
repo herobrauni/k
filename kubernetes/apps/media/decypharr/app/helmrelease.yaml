@@ -70,8 +70,10 @@ spec:
     persistence:
       app:
         existingClaim: decypharr
-      config-json:
+      config:
+        enabled: true
         type: secret
         name: decypharr-secret
         globalMounts:
           - path: /app/config.json
+            subPath: config.json
