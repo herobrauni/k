@@ -53,7 +53,7 @@ spec:
         existingClaim: symlinks
         globalMounts:
           - path: /aio/symlinks
-      rclone:
-        existingClaim: pvc-rclone
-        globalMounts:
-          - path: /aio/remote/realdebrid
+      # rclone:
+      #   existingClaim: pvc-rclone
+      #   globalMounts:
+      #     - path: /aio/remote/realdebrid
