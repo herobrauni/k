@@ -57,11 +57,11 @@ spec:
         nodeAffinity:
           # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
           preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              preference:
-                matchExpressions:
-                  - key: realdebrid
-                    operator: Exists
+          - weight: 100
+            preference:
+              matchExpressions:
+              - key: realdebrid
+                operator: Exists
     service:
       app:
         controller: decypharr
@@ -111,3 +111,4 @@ spec:
         existingClaim: pvc-rclone
         globalMounts:
           - path: /aio/remote/realdebrid
+            readOnly: true
