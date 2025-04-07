@@ -55,6 +55,12 @@ spec:
           existingClaim: authentik
     server:
       replicas: 2
+      resources:
+        requests:
+          cpu: 50m
+          memory: 512Mi
+        limits:
+          memory: 1Gi
       ingress:
         enabled: true
         ingressClassName: traefik
