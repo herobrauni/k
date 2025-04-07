@@ -14,7 +14,7 @@ spec:
   postBuild:
     substitute:
       APP: dragonfly
-      GATUS_PATH: /ready
+      # GATUS_PATH: /ready
   prune: true
   retryInterval: 2m
   sourceRef:
