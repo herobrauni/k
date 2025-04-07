@@ -43,9 +43,9 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 512Mi
+                memory: 1Gi
               limits:
-                memory: 2Gi
+                memory: 4Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -57,11 +57,11 @@ spec:
         nodeAffinity:
           # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            preference:
-              matchExpressions:
-              - key: realdebrid
-                operator: Exists
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: realdebrid
+                    operator: Exists
     service:
       app:
         controller: decypharr
@@ -98,11 +98,6 @@ spec:
         globalMounts:
           - path: /app/config.json
             subPath: config.json
-      cache:
-        enabled: true
-        type: emptyDir
-        globalMounts:
-          - path: /app/cache
       symlinks:
         existingClaim: symlinks
         globalMounts:
