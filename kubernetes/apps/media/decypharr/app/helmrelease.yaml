@@ -102,10 +102,10 @@ spec:
               - *host
             secretName: "{{ .Release.Name }}-tls"
     persistence:
-      cache:
+      app:
         existingClaim: decypharr
         globalMounts:
-          - path: /app/cache
+          - path: /app
       config:
         enabled: true
         type: secret
