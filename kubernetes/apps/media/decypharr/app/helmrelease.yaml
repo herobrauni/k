@@ -72,25 +72,20 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-      # affinity:
-      #   nodeAffinity:
-      #     # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #         - matchExpressions:
-      #             - key: realdebrid
-      #               operator: Exists
+      affinity:
+        nodeAffinity:
+          # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: realdebrid
+                    operator: Exists
     service:
       app:
         controller: decypharr
         ports:
           http:
             port: 8282
-      warp:
-        controller: decypharr
-        ports:
-          http:
-            port: 9091
     ingress:
       app:
         enabled: true
