@@ -48,7 +48,7 @@ spec:
             command: ["sleep"]
             args: ["infinity"]
             securityContext:
-              runasroot: true
+              runAsNonRoot: false
             resources:
               requests:
                 cpu: 100m
