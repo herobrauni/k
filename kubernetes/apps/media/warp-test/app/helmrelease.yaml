@@ -44,6 +44,12 @@ spec:
             args: ["infinity"]
             securityContext:
               runasroot: true
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 512Mi
     service:
       app:
         controller: warp-test
