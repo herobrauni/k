@@ -24,4 +24,4 @@ resources:
   - ./decypharr/ks.yaml
   # - ./warp-test/ks.yaml
   - ./warp/ks.yaml
-  - ./autosync/ks.yaml
+  # - ./autosync/ks.yaml
