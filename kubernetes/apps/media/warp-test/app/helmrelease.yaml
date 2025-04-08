@@ -44,3 +44,9 @@ spec:
             args: ["infinity"]
             securityContext:
               runasroot: true
+    service:
+      app:
+        controller: decypharr
+        ports:
+          http:
+            port: 9091
