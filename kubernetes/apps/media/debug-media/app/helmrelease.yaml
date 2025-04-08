@@ -27,7 +27,7 @@ spec:
         containers:
           app:
             image:
-              repository: alpine
+              repository: neilpang/wgcf-docker
               tag: latest
 
             command: ["sleep"]
@@ -42,48 +42,3 @@ spec:
                 memory: 512Mi
               limits:
                 memory: 512Mi
-
-    defaultPodOptions:
-      affinity:
-        # Prefer to run on the same node as decypharr, but can run elsewhere if needed
-        podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app.kubernetes.io/instance
-                      operator: In
-                      values:
-                        - decypharr
-                    - key: app.kubernetes.io/component
-                      operator: In
-                      values:
-                        - decypharr
-                topologyKey: "kubernetes.io/hostname"
-        # Also keep the node preference for realdebrid labeled nodes
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              preference:
-                matchExpressions:
-                  - key: realdebrid
-                    operator: Exists
-
-    #   securityContext:
-    #     runAsNonRoot: true
-    #     runAsUser: 1000
-    #     runAsGroup: 1000
-    #     fsGroup: 1000
-    #     fsGroupChangePolicy: OnRootMismatch
-    persistence:
-      symlinks:
-        existingClaim: symlinks
-        globalMounts:
-          - path: /aio/symlinks
-      rclone:
-        existingClaim: pvc-rclone
-        globalMounts:
-          - path: /aio/remote/realdebrid
-      app:
-        existingClaim: decypharr
