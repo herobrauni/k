@@ -27,7 +27,7 @@ spec:
           app:
             image:
               repository: ghcr.io/pukabyte/autosync
-              tag: v0.0.39@ sha256:1609bbff6ed6a700fc71b4ee267de4ce144310b218dbb79f09d9b53cfeabd1a9
+              tag: v0.0.39@sha256:1609bbff6ed6a700fc71b4ee267de4ce144310b218dbb79f09d9b53cfeabd1a9
             probes:
               liveness: &probes
                 enabled: true
