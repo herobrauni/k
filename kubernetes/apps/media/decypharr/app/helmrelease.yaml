@@ -40,16 +40,7 @@ spec:
               requests:
                 cpu: 100m
                 memory: 2Gi
-          warp:
-            image:
-              repository: ghcr.io/mon-ius/docker-warp-socks
-              tag: latest@sha256:a5ee6de13207175addf24498ae7a095cb4b5183170bdc324afec9d1cdece8814
-            resources:
-              requests:
-                cpu: 100m
-                memory: 512Mi
-              limits:
-                memory: 512Mi
+
           debug:
             image:
               repository: alpine
@@ -58,13 +49,13 @@ spec:
             args: ["infinity"]
             securityContext:
               runasroot: true
-
             resources:
               requests:
                 cpu: 100m
                 memory: 512Mi
               limits:
                 memory: 512Mi
+
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -72,14 +63,14 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-      affinity:
-        nodeAffinity:
-          # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: realdebrid
-                    operator: Exists
+      # affinity:
+      #   nodeAffinity:
+      #     # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #         - matchExpressions:
+      #             - key: realdebrid
+      #               operator: Exists
     service:
       app:
         controller: decypharr
