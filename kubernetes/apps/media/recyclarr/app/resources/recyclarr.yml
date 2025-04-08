@@ -8,7 +8,7 @@ sonarr:
     replace_existing_custom_formats: true
     # Media Naming Configuration
     media_naming:
-      series: default
+      series: plex-tvdb
       season: default
       episodes:
         rename: true
@@ -53,7 +53,7 @@ sonarr:
     replace_existing_custom_formats: true
     # Media Naming Configuration
     media_naming:
-      series: default
+      series: plex-tvdb
       season: default
       episodes:
         rename: true
@@ -121,10 +121,10 @@ radarr:
     replace_existing_custom_formats: true
     # Media Naming Configuration
     media_naming:
-      folder: default
+      folder: plex-tmdb
       movie:
         rename: true
-        standard: default
+        standard: plex-tmdb
     # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
     include:
       # Comment out any of the following includes to disable them
@@ -177,10 +177,10 @@ radarr:
     replace_existing_custom_formats: true
     # Media Naming Configuration
     media_naming:
-      folder: default
+      folder: plex-tmdb
       movie:
         rename: true
-        standard: default
+        standard: plex-tmdb
     include:
       # Comment out any of the following includes to disable them
       - template: radarr-quality-definition-movie
