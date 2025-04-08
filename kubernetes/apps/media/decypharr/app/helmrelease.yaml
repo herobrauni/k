@@ -26,7 +26,7 @@ spec:
         containers:
           app:
             image:
-              repository: cy01/blackwgcf
+              repository: cy01/blackhole
               tag: experimental@sha256:1e9566e0e62b02b4dafadc2dde3bc4329f8da2cc14e8912c7f99cd10f248caec
             probes:
               liveness: &probes
