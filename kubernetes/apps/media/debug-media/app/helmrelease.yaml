@@ -44,20 +44,22 @@ spec:
 
     defaultPodOptions:
       affinity:
-        # Ensure this pod runs on the same node as decypharr
+        # Prefer to run on the same node as decypharr, but can run elsewhere if needed
         podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/instance
-                    operator: In
-                    values:
-                      - decypharr
-                  - key: app.kubernetes.io/component
-                    operator: In
-                    values:
-                      - decypharr
-              topologyKey: "kubernetes.io/hostname"
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/instance
+                      operator: In
+                      values:
+                        - decypharr
+                    - key: app.kubernetes.io/component
+                      operator: In
+                      values:
+                        - decypharr
+                topologyKey: "kubernetes.io/hostname"
         # Also keep the node preference for realdebrid labeled nodes
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
