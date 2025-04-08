@@ -25,3 +25,4 @@ resources:
   # - ./warp-test/ks.yaml
   - ./warp/ks.yaml
   - ./autosync/ks.yaml
+  - ./huntarr/ks.yaml
