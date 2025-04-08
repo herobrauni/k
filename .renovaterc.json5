@@ -16,7 +16,7 @@
     'prIgnoreNotification',
   ],
   schedule: [
-    'every weekend',
+    'every hour',
   ],
   ignorePaths: [
     '**/*.sops.*',
