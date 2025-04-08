@@ -46,6 +46,20 @@ spec:
                 memory: 5Gi
               limits:
                 memory: 5Gi
+          debug:
+            image:
+              repository: alpine
+              tag: latest
+            command: ["sleep"]
+            args: ["infinity"]
+            securityContext:
+              runAsNonRoot: true
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 512Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
