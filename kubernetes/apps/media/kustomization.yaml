@@ -9,7 +9,7 @@ resources:
   - ./symlinks/ks.yaml
   - ./csi-rclone-secret.sops.yaml
   - ./pvc-rclone.yaml
-  - ./debug-media/ks.yaml
+  # - ./debug-media/ks.yaml
   - ./sonarr/ks.yaml
   - ./plex/ks.yaml
   - ./sonarr4k/ks.yaml
@@ -22,4 +22,4 @@ resources:
   - ./recyclarr/ks.yaml
   - ./tautulli/ks.yaml
   - ./decypharr/ks.yaml
-  - ./warp-test/ks.yaml
+  # - ./warp-test/ks.yaml
