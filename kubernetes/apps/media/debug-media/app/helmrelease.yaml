@@ -44,14 +44,13 @@ spec:
 
     defaultPodOptions:
       affinity:
-        nodeAffinity:
-          # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              preference:
-                matchExpressions:
-                  - key: realdebrid
-                    operator: Exists
+        # Ensure this pod runs on the same node as decypharr
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: decypharr
+              topologyKey: "kubernetes.io/hostname"
 
     #   securityContext:
     #     runAsNonRoot: true
