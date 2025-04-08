@@ -102,8 +102,10 @@ spec:
               - *host
             secretName: "{{ .Release.Name }}-tls"
     persistence:
-      app:
+      cache:
         existingClaim: decypharr
+        globalMounts:
+          - path: /app/cache
       config:
         enabled: true
         type: secret
@@ -120,3 +122,5 @@ spec:
         globalMounts:
           - path: /aio/remote/realdebrid
             readOnly: true
+      logs:
+        type: emptyDir
