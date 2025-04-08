@@ -5,11 +5,9 @@ kind: ReplicationSource
 metadata:
   name: "${APP}"
 spec:
-  # INFO: activate this before restoring on a new cluster so the backup isn't created before the restore
-  paused: true
   sourcePVC: "${APP}"
   trigger:
-    schedule: "0 * * * *"
+    schedule: "${VOLSYNC_SCHEDULE:-0 */3 * * *}"
   restic:
     repository: "${APP}-volsync-secret"
     copyMethod: "${VOLSYNC_COPYMETHOD:-Snapshot}"
