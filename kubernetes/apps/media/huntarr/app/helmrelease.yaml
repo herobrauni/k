@@ -77,6 +77,8 @@ spec:
     persistence:
       config:
         existingClaim: huntarr
+      tmp:
+        type: emptyDir
       # config:
       #   enabled: true
       #   type: secret
