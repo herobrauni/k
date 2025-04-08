@@ -48,9 +48,24 @@ spec:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
-                matchLabels:
-                  app.kubernetes.io/name: decypharr
+                matchExpressions:
+                  - key: app.kubernetes.io/instance
+                    operator: In
+                    values:
+                      - decypharr
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - decypharr
               topologyKey: "kubernetes.io/hostname"
+        # Also keep the node preference for realdebrid labeled nodes
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: realdebrid
+                    operator: Exists
 
     #   securityContext:
     #     runAsNonRoot: true
