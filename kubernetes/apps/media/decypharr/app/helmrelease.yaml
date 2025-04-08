@@ -27,6 +27,7 @@ spec:
           app:
             image:
               repository: cy01/blackwgcf
+              tag: experimental@sha256:66ee3ddc240697b6e7d4d8c8d45dae044c5a7aa47d2947197717cd64af20994f
             probes:
               liveness: &probes
                 enabled: true
