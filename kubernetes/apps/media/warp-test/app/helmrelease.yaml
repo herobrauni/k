@@ -46,7 +46,7 @@ spec:
               runasroot: true
     service:
       app:
-        controller: decypharr
+        controller: warp-test
         ports:
           http:
             port: 9091
