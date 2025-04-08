@@ -22,3 +22,4 @@ resources:
   - ./recyclarr/ks.yaml
   - ./tautulli/ks.yaml
   - ./decypharr/ks.yaml
+  - ./warp-test/ks.yaml
