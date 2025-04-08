@@ -41,7 +41,18 @@ spec:
                 cpu: 100m
               limits:
                 memory: 1Gi
-    # defaultPodOptions:
+
+    defaultPodOptions:
+      affinity:
+        nodeAffinity:
+          # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: realdebrid
+                    operator: Exists
+
     #   securityContext:
     #     runAsNonRoot: true
     #     runAsUser: 1000
@@ -57,3 +68,5 @@ spec:
         existingClaim: pvc-rclone
         globalMounts:
           - path: /aio/remote/realdebrid
+      app:
+        existingClaim: decypharr
