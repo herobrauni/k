@@ -216,6 +216,13 @@
         'renovate/github-release',
       ],
     },
+    {
+      "description": "Disable wrong autosync version",
+      "matchPackageNames": [
+        "ghcr.io/pukabyte/autosync"
+      ],
+      "allowedVersions": "!/^v\\0\\.1\\.4$/"
+    },
   ],
   hostRules: [
     {
