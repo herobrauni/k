@@ -27,7 +27,7 @@ spec:
           app:
             image:
               repository: huntarr/4sonarr
-              tag: 3.3.1@sha256:fd895852a6cfacdb87df7d531073d044c1a0a9c28501d1b68655041f692ccc03
+              tag: 3.3.2@sha256:cba3a83a2793477c906c2511dd6a3df27a0ecefde781163d57809471a3535347
             probes:
               liveness: &probes
                 enabled: true
