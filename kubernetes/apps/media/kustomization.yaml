@@ -6,23 +6,23 @@ namespace: media
 components:
   - ../../components/common
 resources:
-  - ./symlinks/ks.yaml
+  # - ./symlinks/ks.yaml
   - ./csi-rclone-secret.sops.yaml
-  - ./pvc-rclone.yaml
+  # - ./pvc-rclone.yaml
   # - ./debug-media/ks.yaml
-  - ./sonarr/ks.yaml
-  - ./plex/ks.yaml
-  - ./sonarr4k/ks.yaml
-  - ./radarr/ks.yaml
-  - ./radarr4k/ks.yaml
+  # - ./sonarr/ks.yaml
+  # - ./plex/ks.yaml
+  # - ./sonarr4k/ks.yaml
+  # - ./radarr/ks.yaml
+  # - ./radarr4k/ks.yaml
   # - ./rdtclient/ks.yaml
-  - ./prowlarr/ks.yaml
-  - ./bazarr/ks.yaml
-  - ./jellyseerr/ks.yaml
-  - ./recyclarr/ks.yaml
-  - ./tautulli/ks.yaml
-  - ./decypharr/ks.yaml
+  # - ./prowlarr/ks.yaml
+  # - ./bazarr/ks.yaml
+  # - ./jellyseerr/ks.yaml
+  # - ./recyclarr/ks.yaml
+  # - ./tautulli/ks.yaml
+  # - ./decypharr/ks.yaml
   # - ./warp-test/ks.yaml
-  - ./warp/ks.yaml
-  - ./autosync/ks.yaml
+  # - ./warp/ks.yaml
+  # - ./autosync/ks.yaml
   # - ./huntarr/ks.yaml
