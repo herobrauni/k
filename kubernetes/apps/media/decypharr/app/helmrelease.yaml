@@ -39,7 +39,7 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 10Gi
+                memory: 2Gi
 
           debug:
             image:
