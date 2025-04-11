@@ -217,11 +217,12 @@
       ],
     },
     {
-      "description": "Disable wrong autosync version",
       "matchPackageNames": [
-        "ghcr.io/pukabyte/autosync"
+        "autosync"
       ],
-      "allowedVersions": "!/^v\\0\\.1\\.4$/"
+      "ignoreVersions": [
+        "v0.1.4"
+      ]
     },
   ],
   hostRules: [
