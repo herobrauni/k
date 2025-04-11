@@ -1,0 +1,41 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: nfs-ganesha-server-and-external-provisioner
+spec:
+  interval: 2h
+  url: https://kubernetes-sigs.github.io/nfs-ganesha-server-and-external-provisioner/
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: tailscale-operator
+spec:
+  driftDetection:
+    mode: enabled
+  interval: 30m
+  chart:
+    spec:
+      chart: nfs-server-provisioner
+      version: v4.0.8
+      sourceRef:
+        kind: HelmRepository
+        name: nfs-ganesha-server-and-external-provisioner
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    persistence:
+      enabled: true
+      storageClass: ceph-block
+      size: 10Gi
+    storageClass:
+      defaultClass: false
