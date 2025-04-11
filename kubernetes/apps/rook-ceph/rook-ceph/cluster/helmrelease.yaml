@@ -45,6 +45,10 @@ spec:
           requests:
             cpu: "50m"
             memory: "1Gi"
+        exporter:
+          requests:
+            cpu: "10m"
+            memory: "10Mi"
 
       cephConfig:
         global:
