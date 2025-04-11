@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rook-ts
+spec:
+  defaultBackend:
+    service:
+      name: rook-ceph-mgr-dashboard
+      port:
+        number: 7000
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - rook
