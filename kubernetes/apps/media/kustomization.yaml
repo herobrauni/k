@@ -6,7 +6,7 @@ namespace: media
 components:
   - ../../components/common
 resources:
-  - ./symlinks/ks.yaml
+  # - ./symlinks/ks.yaml
   # - ./csi-rclone-secret.sops.yaml
   # - ./pvc-rclone.yaml
   # - ./debug-media/ks.yaml
@@ -17,7 +17,7 @@ resources:
   # - ./radarr/ks.yaml
   # - ./radarr4k/ks.yaml
   # - ./rdtclient/ks.yaml
-  # - ./prowlarr/ks.yaml
+  - ./prowlarr/ks.yaml
   # - ./bazarr/ks.yaml
   # - ./jellyseerr/ks.yaml
   # - ./recyclarr/ks.yaml
