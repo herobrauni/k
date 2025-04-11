@@ -12,13 +12,16 @@ spec:
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
-    - name: nfs-ganesha
-      namespace: nfs-ganesha
+    # - name: nfs-ganesha
+    #   namespace: nfs-ganesha
   interval: 1h
   path: ./kubernetes/apps/media/symlinks/app
   postBuild:
     substitute:
       APP: *app
+      VOLSYNC_CAPACITY: 5Gi
+      VOLSYNC_STORAGECLASS: ceph-filesystem
+      VOLSYNC_ACCESSMODES: ReadWriteMany
   prune: true
   retryInterval: 2m
   sourceRef:
