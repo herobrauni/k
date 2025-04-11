@@ -221,7 +221,7 @@
         "ghcr.io/pukabyte/autosync",
         "autosync"
       ],
-      "allowedVersions": "/^(?!v0\\.1\\.4$).*/"
+      "allowedVersions": "!/^v\\0\\.1\\.4$/"
     },
   ],
   hostRules: [
