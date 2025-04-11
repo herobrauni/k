@@ -26,6 +26,6 @@ spec:
       APP: *app
       VOLSYNC_CAPACITY: 2Gi
   dependsOn:
-    - name: longhorn
-      namespace: longhorn-system
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   wait: false
