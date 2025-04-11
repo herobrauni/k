@@ -34,5 +34,5 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
   wait: false
-  components:
-    - ../../../../components/volsync
+  # components:
+  # - ../../../../components/volsync
