@@ -218,6 +218,7 @@
     },
     {
       "matchPackageNames": [
+        "ghcr.io/pukabyte/autosync",
         "autosync"
       ],
       "ignoreVersions": [
