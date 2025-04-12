@@ -19,6 +19,11 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_ACCESSMODES: ReadWriteMany
+      VOLSYNC_STORAGECLASS: ceph-filesystem
+      VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
+      VOLSYNC_SNAP_ACCESSMODES: ReadOnlyMany # CephFS shallow snapshot
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -28,5 +33,5 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
   wait: false
-  # components:
-  # - ../../../../components/volsync
+  components:
+    - ../../../../components/volsync
