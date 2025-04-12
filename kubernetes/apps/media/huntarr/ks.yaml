@@ -32,3 +32,6 @@ spec:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_SCHEDULE: "37 */3 * * *"
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
