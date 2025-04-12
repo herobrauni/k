@@ -23,5 +23,5 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./autosync/ks.yaml
-  # - ./huntarr/ks.yaml
+  - ./huntarr/ks.yaml
   # - ./rdtclient/ks.yaml
