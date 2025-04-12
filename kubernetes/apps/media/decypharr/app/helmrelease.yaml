@@ -55,6 +55,11 @@ spec:
                 memory: 512Mi
               limits:
                 memory: 512Mi
+
+      warp:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
           warp:
             image:
               repository: ghcr.io/mon-ius/docker-warp-socks
@@ -88,7 +93,7 @@ spec:
           http:
             port: 8282
       warp:
-        controller: decypharr
+        controller: warp
         ports:
           http:
             port: 9091
