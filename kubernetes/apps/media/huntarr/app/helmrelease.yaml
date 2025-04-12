@@ -19,6 +19,9 @@ spec:
     remediation:
       retries: 3
   values:
+    envFrom:
+      - secretRef:
+          name: huntarr-secret
     controllers:
       huntarr:
         annotations:
