@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app huntarr-radarr4k
+  name: &app huntarr-sonarr4k
 spec:
   interval: 1h
   driftDetection:
@@ -20,17 +20,17 @@ spec:
       retries: 3
   values:
     controllers:
-      huntarr-radarr4k:
+      huntarr-sonarr4k:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             envFrom:
               - secretRef:
-                  name: huntarr-radarr4k-secret
+                  name: huntarr-sonarr4k-secret
             image:
-              repository: huntarr/4radarr
-              tag: latest@sha256:94ff228e8a2926313c2fc8188f7451831fb764ed3202dbf85323cdb407437c50
+              repository: huntarr/4sonarr
+              tag: latest@sha256:6d51990b3d516d1d8fbb6cd62cf7221c2d3b9b40d5dac8c54d6a5758738c48b7
             probes:
               liveness: &probes
                 enabled: true
@@ -51,35 +51,35 @@ spec:
     #     runAsGroup: 1000
     #     fsGroup: 1000
     #     fsGroupChangePolicy: OnRootMismatch
-    # service:
-    #   app:
-    #     controller: huntarr-radarr
-    #     ports:
-    #       http:
-    #         port: &port 8988
-    # ingress:
-    #   app:
-    #     enabled: true
-    #     className: traefik
-    #     annotations:
-    #       external-dns.alpha.kubernetes.io/target: "480p.com"
-    #       cert-manager.io/cluster-issuer: letsencrypt-production
-    #       traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
-    #     hosts:
-    #       - host: &host "{{ .Release.Name }}.480p.com"
-    #         paths:
-    #           - path: /
-    #             pathType: Prefix
-    #             service:
-    #               identifier: app
-    #               port: *port
-    #     tls:
-    #       - hosts:
-    #           - *host
-    #         secretName: "{{ .Release.Name }}-tls"
+    service:
+      app:
+        controller: huntarr-sonarr4k
+        ports:
+          http:
+            port: &port 8988
+    ingress:
+      app:
+        enabled: true
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - hosts:
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
     persistence:
       config:
-        existingClaim: huntarr-radarr4k
+        existingClaim: huntarr-sonarr4k
       tmp:
         type: emptyDir
       # config:
