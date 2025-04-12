@@ -123,7 +123,7 @@ spec:
     # ceph fs fail ceph-filesystem && ceph fs rm ceph-filesystem --yes-i-really-mean-it
     cephFileSystemVolumeSnapshotClass:
       enabled: true
-      name: ceph-filesystem-snapshot
+      name: csi-ceph-filesystem
       isDefault: false
       deletionPolicy: Delete
     # NOTE: After disabling the filesystem, the filesystem can be removed with the following commands:
