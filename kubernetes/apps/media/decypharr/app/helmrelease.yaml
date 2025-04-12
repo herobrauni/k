@@ -88,11 +88,13 @@ spec:
       #               operator: Exists
     service:
       app:
+        nameOverride: decypharr
         controller: decypharr
         ports:
           http:
             port: 8282
       warp:
+        nameOverride: warp
         controller: warp
         ports:
           http:
