@@ -56,21 +56,6 @@ spec:
               limits:
                 memory: 512Mi
 
-          # warp:
-          #   annotations:
-          #     reloader.stakater.com/auto: "true"
-          #   containers:
-          warp:
-            image:
-              repository: ghcr.io/mon-ius/docker-warp-socks
-              tag: latest@sha256:a5ee6de13207175addf24498ae7a095cb4b5183170bdc324afec9d1cdece8814
-            resources:
-              requests:
-                cpu: 100m
-                memory: 512Mi
-              limits:
-                memory: 512Mi
-
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -93,12 +78,6 @@ spec:
         ports:
           http:
             port: 8282
-      warp:
-        nameOverride: warp
-        controller: decypharr
-        ports:
-          http:
-            port: 9091
 
     ingress:
       app:

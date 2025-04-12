@@ -11,6 +11,7 @@ resources:
   - ./pvc-rclone.yaml
   - ./debug-media/ks.yaml
   - ./decypharr/ks.yaml
+  - ./warp/ks.yaml
   # - ./sonarr/ks.yaml
   # - ./plex/ks.yaml
   # - ./sonarr4k/ks.yaml
@@ -22,6 +23,5 @@ resources:
   # - ./jellyseerr/ks.yaml
   # - ./recyclarr/ks.yaml
   # - ./tautulli/ks.yaml
-  # - ./warp/ks.yaml
   # - ./autosync/ks.yaml
   # - ./huntarr/ks.yaml
