@@ -36,10 +36,10 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 100m
-                memory: 1Gi
+            # resources:
+            #   requests:
+            #     cpu: 100m
+            #     memory: 1Gi
 
           debug:
             image:
@@ -50,9 +50,9 @@ spec:
             #   securityContext:
             #     runAsNonRoot: false
             resources:
-              requests:
-                cpu: 100m
-                memory: 512Mi
+              # requests:
+              #   cpu: 100m
+              #   memory: 512Mi
               limits:
                 memory: 512Mi
 
