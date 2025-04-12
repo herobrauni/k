@@ -7,10 +7,10 @@ components:
   - ../../components/common
 resources:
   - ./symlinks/ks.yaml
-  # - ./csi-rclone-secret.sops.yaml
-  # - ./pvc-rclone.yaml
-  # - ./debug-media/ks.yaml
-  # - ./decypharr/ks.yaml
+  - ./csi-rclone-secret.sops.yaml
+  - ./pvc-rclone.yaml
+  - ./debug-media/ks.yaml
+  - ./decypharr/ks.yaml
   # - ./sonarr/ks.yaml
   # - ./plex/ks.yaml
   # - ./sonarr4k/ks.yaml
