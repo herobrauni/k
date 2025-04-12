@@ -39,7 +39,7 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 6Gi
+                memory: 2Gi
 
           debug:
             image:
@@ -63,14 +63,16 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-      # affinity:
-      #   nodeAffinity:
-      #     # Soft preference - PREFER nodes with "realdebrid" label but can run elsewhere if needed
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #         - matchExpressions:
-      #             - key: realdebrid
-      #               operator: Exists
+      affinity:
+        nodeAffinity:
+          # Target specific node "hostsailor1"
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hostsailor1
     service:
       app:
         controller: decypharr
