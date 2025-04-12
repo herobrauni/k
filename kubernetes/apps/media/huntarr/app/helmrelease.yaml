@@ -19,15 +19,15 @@ spec:
     remediation:
       retries: 3
   values:
-    envFrom:
-      - secretRef:
-          name: huntarr-secret
     controllers:
       huntarr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
+            envFrom:
+              - secretRef:
+                  name: huntarr-secret
             image:
               repository: huntarr/4sonarr
               tag: latest@sha256:6d51990b3d516d1d8fbb6cd62cf7221c2d3b9b40d5dac8c54d6a5758738c48b7
