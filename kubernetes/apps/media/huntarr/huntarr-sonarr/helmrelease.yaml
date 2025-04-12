@@ -77,15 +77,15 @@ spec:
           - hosts:
               - *host
             secretName: "{{ .Release.Name }}-tls"
-    persistence:
-      config:
-        existingClaim: huntarr-sonarr
-      tmp:
-        type: emptyDir
-      # config:
-      #   enabled: true
-      #   type: secret
-      #   name: huntarr-secret
-      #   globalMounts:
-      #     - path: /app/config.yaml
-      #       subPath: config.yaml
+    # persistence:
+    #   config:
+    #     existingClaim: huntarr-sonarr
+    #   tmp:
+    #     type: emptyDir
+    # config:
+    #   enabled: true
+    #   type: secret
+    #   name: huntarr-secret
+    #   globalMounts:
+    #     - path: /app/config.yaml
+    #       subPath: config.yaml
