@@ -73,7 +73,6 @@ spec:
       #               operator: Exists
     service:
       app:
-        nameOverride: decypharr
         controller: decypharr
         ports:
           http:

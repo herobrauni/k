@@ -23,3 +23,6 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
   wait: false
+  dependsOn:
+    - name: decypharr
+      namespace: media
