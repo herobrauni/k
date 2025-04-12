@@ -15,7 +15,7 @@ spec:
       name: *app
       namespace: *namespace
   interval: 1h
-  path: ./kubernetes/apps/media/huntarr-sonarr/app
+  path: ./kubernetes/apps/media/huntarr/huntarr-sonarr
   prune: true
   retryInterval: 2m
   sourceRef:
