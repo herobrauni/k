@@ -27,7 +27,7 @@ spec:
           app:
             envFrom:
               - secretRef:
-                  name: huntarr-secret
+                  name: huntarr-sonarr-secret
             image:
               repository: huntarr/4sonarr
               tag: latest@sha256:6d51990b3d516d1d8fbb6cd62cf7221c2d3b9b40d5dac8c54d6a5758738c48b7
