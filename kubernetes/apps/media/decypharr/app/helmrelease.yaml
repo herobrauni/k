@@ -63,16 +63,16 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-      # affinity:
-      #   nodeAffinity:
-      #     # Target specific node "hostsailor1"
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #         - matchExpressions:
-      #             - key: kubernetes.io/hostname
-      #               operator: In
-      #               values:
-      #                 - prohost1
+      affinity:
+        nodeAffinity:
+          # Target specific node "hostsailor1"
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hostsailor1
     service:
       app:
         controller: decypharr
