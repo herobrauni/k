@@ -39,3 +39,5 @@ spec:
     installCRDs: true
     ingressClass:
       enabled: true
+    apiServerProxyConfig:
+      mode: true
