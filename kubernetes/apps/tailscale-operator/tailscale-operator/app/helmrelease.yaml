@@ -40,4 +40,4 @@ spec:
     ingressClass:
       enabled: true
     apiServerProxyConfig:
-      mode: true
+      mode: "true"
