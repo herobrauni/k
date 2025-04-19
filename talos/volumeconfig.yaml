@@ -1,0 +1,14 @@
+---
+apiVersion: v1alpha1
+kind: VolumeConfig
+name: EPHEMERAL
+provisioning:
+  maxSize: 20GiB
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: ceph-data
+provisioning:
+  diskSelector:
+    match: system_disk
+  minSize: 1GB
