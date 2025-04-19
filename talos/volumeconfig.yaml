@@ -7,7 +7,7 @@ provisioning:
 # ---
 # apiVersion: v1alpha1
 # kind: UserVolumeConfig
-# name: ceph-data
+# name: rook
 # provisioning:
 #   diskSelector:
 #     match: system_disk
