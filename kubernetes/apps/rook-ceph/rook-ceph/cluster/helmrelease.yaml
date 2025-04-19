@@ -82,10 +82,10 @@ spec:
       #     requireMsgr2: true
       storage:
         useAllNodes: true
-        useAllDevices: false
-        devices:
-          - name: "sda7"
-          - name: "vda7"
+        useAllDevices: true
+        # devices:
+        # - name: "sda7"
+        # - name: "vda7"
         config:
           osdsPerDevice: "1"
     cephBlockPools:
