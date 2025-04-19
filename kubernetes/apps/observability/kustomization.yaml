@@ -6,12 +6,12 @@ namespace: observability
 components:
   - ../../components/common
 resources:
-  # - ./gatus/ks.yaml
-  # - ./grafana/ks.yaml
-  # - ./kromgo/ks.yaml
-  # - ./kube-prometheus-stack/ks.yaml
-  # - ./loki/ks.yaml
-  # - ./promtail/ks.yaml
+  - ./gatus/ks.yaml
+  - ./grafana/ks.yaml
+  - ./kromgo/ks.yaml
+  - ./kube-prometheus-stack/ks.yaml
+  - ./loki/ks.yaml
+  - ./promtail/ks.yaml
 
   # - ./blackbox-exporter/ks.yaml
 # - ./silence-operator/ks.yaml
