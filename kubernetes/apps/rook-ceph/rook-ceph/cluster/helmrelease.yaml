@@ -84,7 +84,8 @@ spec:
         useAllNodes: true
         useAllDevices: false
         devices:
-          - name: "dm-1"
+          - name: "sda7"
+          - name: "vda7"
         config:
           osdsPerDevice: "1"
     cephBlockPools:
