@@ -8,6 +8,8 @@
 - Intend to switch cluster OS to Talos.
 - VPN connectivity will switch from Tailscale to Kubespan + Cilium with native routing.
 
+- Considering using Tailscale over Kubespan due to mixed IPv4-only and IPv6-only servers in the cluster.
+
 ## Caveats and Configuration Details
 
 ### Talos Configuration for Kubespan
