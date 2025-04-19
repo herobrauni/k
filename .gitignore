@@ -21,3 +21,4 @@ talosconfig
 Thumbs.db
 tmp/
 /clusterconfig
+db.snapshot

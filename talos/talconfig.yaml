@@ -16,7 +16,7 @@ cniConfig:
 domain: cluster.local
 nodes:
   - hostname: prohost1
-    controlPlane: true
+    controlPlane: false
     ipAddress: 77.90.3.174
     installDiskSelector:
       size: <= 300GB
@@ -29,8 +29,19 @@ nodes:
         routes:
           - gateway: 77.90.3.1
           # - gateway: fe80::1
-    extraManifests:
-      - talos/volumeconfig.yaml
+
+  - hostname: hostsailor1
+    controlPlane: false
+    ipAddress: 185.183.98.121
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 185.183.98.121/27
+        dhcp: false
+        routes:
+          - gateway: 185.183.98.97
 
   - hostname: terabit1
     controlPlane: false
@@ -44,8 +55,58 @@ nodes:
         dhcp: false
         routes:
           - gateway: 165.140.203.129
-    extraManifests:
-      - talos/volumeconfig.yaml
+  - hostname: terabit2
+    controlPlane: false
+    ipAddress: 165.140.203.145
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 165.140.203.145/25
+        dhcp: false
+        routes:
+          - gateway: 165.140.203.129
+
+  - hostname: gc7
+    controlPlane: true
+    ipAddress: 92.118.190.62
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 92.118.190.62/24
+        dhcp: false
+        routes:
+          - gateway: 92.118.190.1
+
+  - hostname: gc5
+    controlPlane: true
+    ipAddress: 109.94.170.65
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 109.94.170.65/24
+        dhcp: false
+        routes:
+          - gateway: 109.94.170.1
+
+  - hostname: gc1
+    controlPlane: true
+    ipAddress: 92.118.190.11
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 92.118.190.11/24
+        dhcp: false
+        routes:
+          - gateway: 92.118.190.1
+
 patches:
   - |-
     machine:
@@ -105,6 +166,13 @@ patches:
           rules:
             - level: Metadata
 controlPlane:
+  extraManifests:
+    - talos/volumeconfig.yaml
+  # schematic:
+  #   customization:
+  #     systemExtensions:
+  #       officialExtensions:
+  #         - siderolabs/qemu-guest-agent
   patches:
     - |-
       - op: remove
@@ -124,5 +192,12 @@ controlPlane:
             enabled: true
             allowedRoles: ["os:admin"]
             allowedKubernetesNamespaces: ["actions-runner-system", "system-upgrade"]
-        nodeLabels:
 allowSchedulingOnControlPlanes: true
+worker:
+  extraManifests:
+    - talos/volumeconfig.yaml
+  # schematic:
+  #   customization:
+  #     systemExtensions:
+  #       officialExtensions:
+  #         - siderolabs/qemu-guest-agent

@@ -84,6 +84,7 @@ talosctl wipe disk sdxX
 - Check ports and firewall settings for Talos nodes to ensure proper network security and functionality.
 - [ ] Research how to update Talos while keeping Rook Ceph intact (might involve a wipe flag).
 - [ ] Research how to reset a Talos node without wiping Rook Ceph data.
+- [ ] enable qemu-guest-agent extension?
 
 ## Notes
 - Kubespan requires specific Talos network config to enable native routing and advertise Kubernetes networks.
