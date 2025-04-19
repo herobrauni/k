@@ -80,8 +80,10 @@ patches:
   - |-
     machine:
       sysctls:
-        net.core.rmem_max: 67108864
-        net.core.wmem_max: 67108864
+        fs.inotify.max_user_watches: "1048576" # Watchdog
+        fs.inotify.max_user_instances: "8192"  # Watchdog
+        net.core.rmem_max: "7500000" # Cloudflared | QUIC
+        net.core.wmem_max: "7500000" # Cloudflared | QUIC
   - |-
     machine:
       install:
@@ -107,7 +109,9 @@ controlPlane:
     - |-
       - op: remove
         path: /machine/nodeLabels/node.kubernetes.io~1exclude-from-external-load-balancers
-
+    - |-
+      - op: remove
+        path: /cluster/apiServer/admissionControl
     - |-
       cluster:
         etcd:
