@@ -6,6 +6,7 @@ namespace: kube-system
 components:
   - ../../components/common
 resources:
+  - ./cilium/ks.yaml
   - ./coredns/ks.yaml
   # - ./metrics-server/ks.yaml
   - ./reloader/ks.yaml
@@ -13,3 +14,4 @@ resources:
   # - ./node-feature-discovery/ks.yaml
   - ./snapshot-controller/ks.yaml
   # - ./intel-device-plugin-operator/ks.yaml
+  - ./spegel/ks.yaml
