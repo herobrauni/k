@@ -12,8 +12,8 @@ resources:
   - ./debug-media/ks.yaml
   - ./decypharr/ks.yaml
   - ./warp/ks.yaml
-#   - ./plex/ks.yaml
-#   - ./tautulli/ks.yaml
+  - ./plex/ks.yaml
+  - ./tautulli/ks.yaml
 #   - ./sonarr/ks.yaml
 #   - ./sonarr4k/ks.yaml
 #   - ./radarr/ks.yaml
