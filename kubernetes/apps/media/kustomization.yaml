@@ -10,8 +10,8 @@ resources:
   - ./csi-rclone-secret.sops.yaml
   - ./pvc-rclone.yaml
   - ./debug-media/ks.yaml
-#   - ./decypharr/ks.yaml
-#   - ./warp/ks.yaml
+  - ./decypharr/ks.yaml
+  - ./warp/ks.yaml
 #   - ./plex/ks.yaml
 #   - ./tautulli/ks.yaml
 #   - ./sonarr/ks.yaml
