@@ -30,7 +30,7 @@ spec:
                   name: huntarr-sonarr4k-secret
             image:
               repository: huntarr/4sonarr
-              tag: latest@sha256:2446f3bfe3a216f5214b9fc4351a8ed0934e3011ff83f6e2d40437f764a2beb1
+              tag: latest@sha256:488da89fc73485410af975125b826bcf29ad9b86a1fb7415aac0314515551403
             probes:
               liveness: &probes
                 enabled: true
