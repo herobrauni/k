@@ -53,7 +53,7 @@ spec:
       - --cloudflare-dns-records-per-page=1000
       - --publish-host-ip
       - --traefik-disable-legacy
-      # - --cloudflare-proxied
+      - --cloudflare-proxied
     triggerLoopOnEvent: true
     policy: sync
     sources: ["crd", "service", "ingress"]
