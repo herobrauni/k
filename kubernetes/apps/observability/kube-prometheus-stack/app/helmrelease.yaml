@@ -39,14 +39,14 @@ spec:
         forceConflicts: true
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      route:
-        main:
-          enabled: true
-          hostnames: ["alertmanager.480p.com"]
-          parentRefs:
-            - name: internal
-              namespace: kube-system
-              sectionName: https
+      #   route:
+      #     main:
+      #       enabled: true
+      #       hostnames: ["alertmanager.480p.com"]
+      #       parentRefs:
+      #         - name: internal
+      #           namespace: kube-system
+      #           sectionName: https
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: alertmanager
