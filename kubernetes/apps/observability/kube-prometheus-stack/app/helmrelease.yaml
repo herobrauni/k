@@ -35,7 +35,7 @@ spec:
     crds:
       enabled: true
       upgradeJob:
-        enabled: true
+        enabled: false
         forceConflicts: true
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
