@@ -1,6 +1,6 @@
 ---
 # logLevel: debug
-mtu: 1380
+# mtu: 1380
 ipam:
   mode: kubernetes
 kubeProxyReplacement: true
@@ -62,5 +62,5 @@ prometheus:
     trustCRDsExist: true
 rollOutCiliumPods: true
 localRedirectPolicy: true
-autoDirectNodeRoutes: true
-directRoutingSkipUnreachable: true
+# autoDirectNodeRoutes: true
+# directRoutingSkipUnreachable: true
