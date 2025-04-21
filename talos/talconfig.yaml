@@ -29,6 +29,8 @@ nodes:
         routes:
           - gateway: 77.90.3.1
           # - gateway: fe80::1
+    nodeAnnotations:
+      flannel.alpha.coreos.com/node-public-ip: 77.90.3.174
 
   - hostname: hostsailor1
     controlPlane: false
@@ -42,6 +44,8 @@ nodes:
         dhcp: false
         routes:
           - gateway: 185.183.98.97
+    nodeAnnotations:
+      flannel.alpha.coreos.com/node-public-ip: 185.183.98.121
 
   - hostname: terabit1
     controlPlane: false
@@ -55,6 +59,9 @@ nodes:
         dhcp: false
         routes:
           - gateway: 165.140.203.129
+    nodeAnnotations:
+      flannel.alpha.coreos.com/node-public-ip: 165.140.203.148
+
   - hostname: terabit2
     controlPlane: false
     ipAddress: 165.140.203.145
@@ -67,6 +74,8 @@ nodes:
         dhcp: false
         routes:
           - gateway: 165.140.203.129
+    nodeAnnotations:
+      flannel.alpha.coreos.com/node-public-ip: 165.140.203.145
 
   - hostname: gc7
     controlPlane: true
@@ -80,6 +89,8 @@ nodes:
         dhcp: false
         routes:
           - gateway: 92.118.190.1
+    nodeAnnotations:
+      flannel.alpha.coreos.com/node-public-ip: 92.118.190.62
 
   - hostname: gc5
     controlPlane: true
@@ -108,6 +119,8 @@ nodes:
         dhcp: false
         routes:
           - gateway: 92.118.190.1
+    nodeAnnotations:
+      flannel.alpha.coreos.com/node-public-ip: 92.118.190.11
 
 patches:
   - |-
