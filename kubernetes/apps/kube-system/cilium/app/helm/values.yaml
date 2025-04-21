@@ -35,6 +35,8 @@ securityContext:
       - SYS_ADMIN
       - SYS_RESOURCE
 ####
+k8sServiceHost: localhost
+k8sServicePort: 7445
 # bandwidthManager:
 #   enabled: true
 #   bbr: true
@@ -44,8 +46,6 @@ securityContext:
 #   rollOutPods: true
 # hubble:
 #   enabled: false
-# k8sServiceHost: localhost
-# k8sServicePort: 7445
 # operator:
 #   dashboards:
 #     enabled: true
@@ -64,6 +64,3 @@ securityContext:
 # localRedirectPolicy: true
 # autoDirectNodeRoutes: true
 # directRoutingSkipUnreachable: true
-encryption:
-  enabled: true
-  type: wireguard
