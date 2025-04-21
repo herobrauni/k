@@ -1,4 +1,6 @@
 ---
+# logLevel: debug
+mtu: 1380
 ipam:
   mode: kubernetes
 kubeProxyReplacement: true
