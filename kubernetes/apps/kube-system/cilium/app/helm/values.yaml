@@ -64,3 +64,6 @@ securityContext:
 # localRedirectPolicy: true
 # autoDirectNodeRoutes: true
 # directRoutingSkipUnreachable: true
+encryption:
+  enabled: true
+  type: wireguard
