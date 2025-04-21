@@ -93,6 +93,8 @@ nodes:
         dhcp: false
         routes:
           - gateway: 109.94.170.1
+    nodeAnnotations:
+      flannel.alpha.coreos.com/node-public-ip: 109.94.170.65
 
   - hostname: gc1
     controlPlane: true
