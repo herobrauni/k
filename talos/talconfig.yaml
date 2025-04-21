@@ -144,7 +144,7 @@ patches:
       network:
         kubespan:
           enabled: true
-          advertiseKubernetesNetworks: false
+          advertiseKubernetesNetworks: true
           allowDownPeerBypass: false
     cluster:
       discovery:
