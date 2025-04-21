@@ -123,13 +123,13 @@ patches:
         hostDNS:
           enabled: true
           resolveMemberNames: true
-          forwardKubeDNSToHost: true
+          forwardKubeDNSToHost: false
   - |-
     machine:
       network:
         kubespan:
           enabled: true
-          advertiseKubernetesNetworks: true
+          advertiseKubernetesNetworks: false
           allowDownPeerBypass: false
     cluster:
       discovery:
