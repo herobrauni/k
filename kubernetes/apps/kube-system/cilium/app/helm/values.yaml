@@ -35,31 +35,32 @@ securityContext:
       - SYS_ADMIN
       - SYS_RESOURCE
 ####
-# bandwidthManager:
-#   enabled: true
-#   bbr: true
-# dashboards:
-#   enabled: true
-# envoy:
-#   rollOutPods: true
-# hubble:
-#   enabled: false
-# k8sServiceHost: 127.0.0.1
-# k8sServicePort: 7445
-# operator:
-#   dashboards:
-#     enabled: true
-#   prometheus:
-#     enabled: true
-#     serviceMonitor:
-#       enabled: true
-#   replicas: 2
-#   rollOutPods: true
-# prometheus:
-#   enabled: true
-#   serviceMonitor:
-#     enabled: true
-#     trustCRDsExist: true
-# rollOutCiliumPods: true
-# localRedirectPolicy: false
-# autoDirectNodeRoutes: false
+bandwidthManager:
+  enabled: true
+  bbr: true
+dashboards:
+  enabled: true
+envoy:
+  rollOutPods: true
+hubble:
+  enabled: false
+k8sServiceHost: 127.0.0.1
+k8sServicePort: 7445
+operator:
+  dashboards:
+    enabled: true
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  replicas: 2
+  rollOutPods: true
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    trustCRDsExist: true
+rollOutCiliumPods: true
+localRedirectPolicy: true
+autoDirectNodeRoutes: false
+directRoutingSkipUnreachable: true
