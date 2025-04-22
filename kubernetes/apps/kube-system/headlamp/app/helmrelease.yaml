@@ -40,14 +40,14 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt-production
         traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
       hosts:
-        - host: &host "{{ .Release.Name }}.480p.com"
+        - host: "headlamp.480p.com"
           paths:
             - path: /
               type: Prefix
       tls:
         - hosts:
-            - *host
-          secretName: "{{ .Release.Name }}-tls"
+            - "headlamp.480p.com"
+          secretName: "headlamp-tls"
 
     podAnnotations:
       reloader.stakater.com/auto: "true"
