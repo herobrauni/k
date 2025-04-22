@@ -12,7 +12,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: headlamp
+  name: &app headlamp
 spec:
   driftDetection:
     mode: enabled
@@ -32,6 +32,26 @@ spec:
     remediation:
       retries: 3
   values:
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "480p.com"
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+
+      hosts:
+        - host: &host "{{ .Release.Name }}.480p.com"
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                identifier: app
+                port: *port
+      tls:
+        - hosts:
+            - *host
+          secretName: "{{ .Release.Name }}-tls"
     podAnnotations:
       reloader.stakater.com/auto: "true"
     fullnameOverride: headlamp
