@@ -44,11 +44,12 @@ spec:
         - host: &host "{{ .Release.Name }}.480p.com"
           paths:
             - path: /
-              pathType: Prefix
+              Type: Prefix
       tls:
         - hosts:
             - *host
           secretName: "{{ .Release.Name }}-tls"
+
     podAnnotations:
       reloader.stakater.com/auto: "true"
     fullnameOverride: headlamp
