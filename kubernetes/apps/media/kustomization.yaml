@@ -11,14 +11,14 @@ resources:
   - ./pvc-rclone.yaml
   - ./debug-media/ks.yaml
   - ./decypharr/ks.yaml
-#   - ./warp/ks.yaml
-#   - ./plex/ks.yaml
-#   - ./tautulli/ks.yaml
-#   - ./sonarr/ks.yaml
-#   - ./sonarr4k/ks.yaml
-#   - ./radarr/ks.yaml
-#   - ./radarr4k/ks.yaml
-#   - ./prowlarr/ks.yaml
+  - ./warp/ks.yaml
+  - ./plex/ks.yaml
+  - ./tautulli/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./sonarr4k/ks.yaml
+  - ./radarr/ks.yaml
+  - ./radarr4k/ks.yaml
+  - ./prowlarr/ks.yaml
 #   - ./bazarr/ks.yaml
 #   - ./jellyseerr/ks.yaml
 #   - ./recyclarr/ks.yaml
