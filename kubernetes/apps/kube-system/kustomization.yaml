@@ -12,6 +12,8 @@ resources:
   - ./descheduler/ks.yaml
   - ./node-feature-discovery/ks.yaml
   - ./snapshot-controller/ks.yaml
+  - ./headlamp/ks.yaml
+
   # - ./cilium/ks.yaml
   # - ./flannel/ks.yaml
   # - ./intel-device-plugin-operator/ks.yaml
