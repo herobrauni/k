@@ -6,13 +6,13 @@ namespace: kube-system
 components:
   - ../../components/common
 resources:
-  # - ./cilium/ks.yaml
-  # - ./flannel/ks.yaml
   - ./coredns/ks.yaml
   - ./metrics-server/ks.yaml
-  # - ./reloader/ks.yaml
+  - ./reloader/ks.yaml
   - ./descheduler/ks.yaml
-  # - ./node-feature-discovery/ks.yaml
+  - ./node-feature-discovery/ks.yaml
   - ./snapshot-controller/ks.yaml
+  # - ./cilium/ks.yaml
+  # - ./flannel/ks.yaml
   # - ./intel-device-plugin-operator/ks.yaml
-  - ./spegel/ks.yaml
+  # - ./spegel/ks.yaml
