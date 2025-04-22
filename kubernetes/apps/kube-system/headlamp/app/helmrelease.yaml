@@ -53,6 +53,9 @@ spec:
     persistentVolumeClaim:
       enabled: true
       size: 1Gi
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: ceph-block
     volumeMounts:
       - mountPath: /build/plugins
         name: headlamp-plugins
