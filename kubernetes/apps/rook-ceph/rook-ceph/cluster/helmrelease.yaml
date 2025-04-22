@@ -82,9 +82,9 @@ spec:
       #     requireMsgr2: true
       storage:
         useAllNodes: true
-        useAllDevices: false
-        devices:
-          - name: "dm-1"
+        useAllDevices: true
+        # devices:
+        #   - name: "dm-1"
         config:
           osdsPerDevice: "1"
     cephBlockPools:
