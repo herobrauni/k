@@ -6,7 +6,7 @@ namespace: kube-system
 components:
   - ../../components/common
 resources:
-  - ./cilium/ks.yaml
+  # - ./cilium/ks.yaml
   # - ./flannel/ks.yaml
   - ./coredns/ks.yaml
   - ./metrics-server/ks.yaml
