@@ -34,6 +34,7 @@ spec:
   values:
     ingress:
       enabled: true
+      ingressClassName: traefik
       annotations:
         external-dns.alpha.kubernetes.io/target: "480p.com"
         cert-manager.io/cluster-issuer: letsencrypt-production
