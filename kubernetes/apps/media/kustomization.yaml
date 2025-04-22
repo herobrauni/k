@@ -14,10 +14,10 @@ resources:
   - ./warp/ks.yaml
   - ./plex/ks.yaml
   - ./tautulli/ks.yaml
-  - ./sonarr/ks.yaml
-  - ./sonarr4k/ks.yaml
-  - ./radarr/ks.yaml
-  - ./radarr4k/ks.yaml
+  # - ./sonarr/ks.yaml
+  # - ./sonarr4k/ks.yaml
+  # - ./radarr/ks.yaml
+  # - ./radarr4k/ks.yaml
   - ./prowlarr/ks.yaml
 #   - ./bazarr/ks.yaml
 #   - ./jellyseerr/ks.yaml
