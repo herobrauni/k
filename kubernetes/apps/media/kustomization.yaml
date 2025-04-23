@@ -19,8 +19,8 @@ resources:
   - ./radarr/ks.yaml
   - ./radarr4k/ks.yaml
   - ./prowlarr/ks.yaml
-#   - ./bazarr/ks.yaml
-#   - ./jellyseerr/ks.yaml
+  #   - ./bazarr/ks.yaml
+  - ./jellyseerr/ks.yaml
 #   - ./recyclarr/ks.yaml
 #   - ./autosync/ks.yaml
 #   - ./huntarr/ks.yaml
