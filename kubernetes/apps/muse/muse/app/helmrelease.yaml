@@ -28,7 +28,7 @@ spec:
           app:
             envFrom:
               - secretRef:
-                  name: muse
+                  name: muse-secret
             image:
               repository: ghcr.io/museofficial/muse
               tag: latest@sha256:c79e1471a5106d913b2206cf60deec8546dd486b594893f9e065840f53c8eb8b
