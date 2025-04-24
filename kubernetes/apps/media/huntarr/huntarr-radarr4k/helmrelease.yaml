@@ -30,7 +30,7 @@ spec:
                   name: huntarr-radarr4k-secret
             image:
               repository: huntarr/4radarr
-              tag: latest@sha256:94ff228e8a2926313c2fc8188f7451831fb764ed3202dbf85323cdb407437c50
+              tag: latest@sha256:e7deb966a85dff7399a9602545041196f8148bf96bb691146fd650adc1c75d2b
             probes:
               liveness: &probes
                 enabled: true
