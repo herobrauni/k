@@ -90,3 +90,5 @@ spec:
     persistence:
       config:
         existingClaim: huntarr
+      tmp:
+        type: emptyDir
