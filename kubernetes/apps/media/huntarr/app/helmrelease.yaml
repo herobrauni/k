@@ -26,12 +26,12 @@ spec:
         containers:
           app:
             image:
-              repository: santiagosayshey/profilarr
-              tag: latest@sha256:16ea5790e612889e02e297094ae0b0d605c5770511a7564d6a43e663cafebf26
+              repository: huntarr/huntarr
+              tag: latest@sha256:13ad1a988f2dcf207e5b82088ee068ef2e4f43c2aa59db26a0aa945186ace4dc
             env:
               TZ: Europe/Berlin
               LOG_LEVEL: "info"
-              PORT: &port 9705
+              PORT: &port 80
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
