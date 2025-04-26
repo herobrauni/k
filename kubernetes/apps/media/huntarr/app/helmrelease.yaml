@@ -26,8 +26,8 @@ spec:
         containers:
           app:
             image:
-              repository: huntarr/huntarr
-              tag: latest@sha256:13ad1a988f2dcf207e5b82088ee068ef2e4f43c2aa59db26a0aa945186ace4dc
+              repository: santiagosayshey/profilarr
+              tag: latest@sha256:16ea5790e612889e02e297094ae0b0d605c5770511a7564d6a43e663cafebf26
             env:
               TZ: Europe/Berlin
               LOG_LEVEL: "info"
