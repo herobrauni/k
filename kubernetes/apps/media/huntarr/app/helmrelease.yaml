@@ -79,3 +79,5 @@ spec:
         existingClaim: huntarr
       tmp:
         type: emptyDir
+      app:
+        existingClaim: huntarr
