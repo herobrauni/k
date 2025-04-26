@@ -24,6 +24,24 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
+          git:
+            image:
+              repository: alpine
+              tag: latest
+
+            command: ["sleep"]
+            args: ["infinity"]
+            # securityContext:
+            #   allowPrivilegeEscalation: false
+            #   readOnlyRootFilesystem: true
+            #   capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 512Mi
+
           app:
             image:
               repository: ghcr.io/home-operations/prowlarr
