@@ -31,7 +31,7 @@ spec:
             env:
               TZ: Europe/Berlin
               LOG_LEVEL: "info"
-              PORT: &port 80
+              PORT: &port 9705
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
