@@ -31,10 +31,10 @@ spec:
 
             command: ["sleep"]
             args: ["infinity"]
-            # securityContext:
-            #   allowPrivilegeEscalation: false
-            #   readOnlyRootFilesystem: true
-            #   capabilities: { drop: ["ALL"] }
+            securityContext:
+              allowPrivilegeEscalation: true
+              readOnlyRootFilesystem: true
+              runAsUser: 0
             resources:
               requests:
                 cpu: 100m
