@@ -35,6 +35,8 @@ spec:
               allowPrivilegeEscalation: true
               readOnlyRootFilesystem: true
               runAsUser: 0
+              runAsNonRoot: false
+
             resources:
               requests:
                 cpu: 100m
