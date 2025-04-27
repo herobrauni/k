@@ -35,7 +35,8 @@
               "title": "cluster-restructuring"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -182,10 +183,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "aad21333d0861bb3",
+  "active": "36c53388d069ecfa",
   "lastOpenFiles": [
-    "cluster-restructuring.md",
     "cluster-bootstrap.md",
+    "cluster-restructuring.md",
     "debian-k3s-to-talos-migration.md",
     "cilium-host-node-cidr-daemonset.yaml"
   ]
