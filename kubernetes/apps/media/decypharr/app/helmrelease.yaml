@@ -118,7 +118,6 @@ spec:
         globalMounts:
           - path: /app/config.json
             subPath: config.json
-            readOnly: false
       symlinks:
         existingClaim: symlinks
         globalMounts:
