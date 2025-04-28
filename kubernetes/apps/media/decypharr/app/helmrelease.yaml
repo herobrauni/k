@@ -23,6 +23,15 @@ spec:
       decypharr:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          config-init:
+            image:
+              repository: busybox
+              tag: latest
+            command:
+              - sh
+              - -c
+              - cp /tmp/config/config.json /app/config.json && chmod 644 /app/config.json
         containers:
           app:
             image:
@@ -116,8 +125,7 @@ spec:
         type: secret
         name: decypharr-secret
         globalMounts:
-          - path: /app/config.json
-            subPath: config.json
+          - path: /tmp/config
       symlinks:
         existingClaim: symlinks
         globalMounts:
