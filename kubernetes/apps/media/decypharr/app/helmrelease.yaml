@@ -78,7 +78,7 @@ spec:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - hostsailor1
+                      - gc5
     service:
       app:
         controller: decypharr
