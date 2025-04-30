@@ -30,6 +30,11 @@ spec:
           - name: severity
             value: critical
             matchType: =
+      - receiver: pushover
+        matchers:
+          - name: severity
+            value: critical
+            matchType: =
   inhibitRules:
     - equal: ["alertname", "namespace"]
       sourceMatch:
