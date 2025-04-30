@@ -47,15 +47,15 @@ spec:
         - urlSecret:
             name: &secret alertmanager-secret
             key: ALERTMANAGER_HEALTHCHECKS_URL
-    # - name: telegram
-    #   telegramConfigs:
-    #     - chatID: 1944726
-    #       botToken:
-    #         name: *secret
-    #         key: TELEGRAM_BOT_TOKEN
-    #       message: |-
-    #         '{{ template "telegram.default.message" .}}'
-    #       sendResolved: true
+    - name: telegram
+      telegramConfigs:
+        - chatID: 1944726
+          botToken:
+            name: *secret
+            key: TELEGRAM_BOT_TOKEN
+          message: |-
+            '{{ template "telegram.default.message" .}}'
+          sendResolved: true
     - name: pushover
       pushoverConfigs:
         - html: true
