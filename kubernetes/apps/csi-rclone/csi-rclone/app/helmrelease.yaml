@@ -19,7 +19,7 @@ spec:
   chart:
     spec:
       chart: csi-rclone
-      version: v0.3.7
+      version: 0.4.0
       sourceRef:
         kind: HelmRepository
         name: renku
