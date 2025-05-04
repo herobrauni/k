@@ -82,7 +82,7 @@ spec:
     nodeLogs:
       enabled: false
     podLogs:
-      enabled: true
+      enabled: false
     applicationObservability:
       enabled: true
       receivers:
@@ -119,7 +119,7 @@ spec:
     alloy-singleton:
       enabled: true
     alloy-logs:
-      enabled: true
+      enabled: false
     alloy-receiver:
       enabled: true
       alloy:
