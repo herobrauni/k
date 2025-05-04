@@ -51,7 +51,7 @@ spec:
     clusterEvents:
       enabled: true
     nodeLogs:
-      enabled: true
+      enabled: false
     integrations:
       alloy:
         instances:
