@@ -34,8 +34,8 @@ spec:
         auth:
           type: basic
         secret:
-          namespace: observability
           name: alloy-secret
+          namespace: observability
     clusterMetrics:
       enabled: true
     integrations:
