@@ -35,7 +35,7 @@ spec:
           type: basic
         secret:
           create: false
-          name: alloy-secret
+          name: alloy-metrics-secret
           namespace: observability
       - name: grafana-cloud-logs
         type: loki
@@ -44,7 +44,7 @@ spec:
           type: basic
         secret:
           create: false
-          name: alloy-secret
+          name: alloy-logs-secret
           namespace: observability
     clusterMetrics:
       enabled: true
