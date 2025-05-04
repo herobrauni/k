@@ -37,7 +37,18 @@ spec:
           create: false
           name: alloy-secret
           namespace: observability
+      - name: grafana-cloud-logs
+        type: prometheus
+        url: https://logs-prod-012.grafana.net/loki/api/v1/push
+        auth:
+          type: basic
+        secret:
+          create: false
+          name: alloy-secret
+          namespace: observability
     clusterMetrics:
+      enabled: true
+    clusterEvents:
       enabled: true
     integrations:
       alloy:
@@ -46,5 +57,8 @@ spec:
             labelSelectors:
               app.kubernetes.io/name:
                 - alloy-metrics
+                - alloy-singleton
     alloy-metrics:
+      enabled: true
+    alloy-singleton:
       enabled: true
