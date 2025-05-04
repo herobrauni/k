@@ -73,18 +73,6 @@ spec:
           namespace: observability
     clusterMetrics:
       enabled: true
-      opencost:
-        enabled: true
-        metricsSource: grafana-cloud-metrics
-        opencost:
-          exporter:
-            defaultClusterId: k
-          prometheus:
-            existingSecretName: grafana-cloud-metrics-grafana-k8s-monitoring
-            external:
-              url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom
-      kepler:
-        enabled: true
     annotationAutodiscovery:
       enabled: true
     prometheusOperatorObjects:
@@ -115,100 +103,23 @@ spec:
       enabled: true
     profiling:
       enabled: true
+    integrations:
+      alloy:
+        instances:
+          - name: alloy
+            labelSelectors:
+              app.kubernetes.io/name:
+                - alloy-metrics
+                - alloy-singleton
+                - alloy-logs
+                - alloy-receiver
+                - alloy-profiles
     alloy-metrics:
       enabled: true
-      alloy:
-        extraEnv:
-          - name: GCLOUD_RW_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: alloy-metrics-remote-cfg-grafana-k8s-monitoring
-                key: password
-          - name: CLUSTER_NAME
-            value: k
-          - name: NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: GCLOUD_FM_COLLECTOR_ID
-            value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-$(POD_NAME)
-      remoteConfig:
-        enabled: true
-        url: https://fleet-management-prod-011.grafana.net
-        auth:
-          type: basic
-        secret:
-          create: false
-          name: alloy-secret
-          namespace: observability
     alloy-singleton:
       enabled: true
-      alloy:
-        extraEnv:
-          - name: GCLOUD_RW_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: alloy-singleton-remote-cfg-grafana-k8s-monitoring
-                key: password
-          - name: CLUSTER_NAME
-            value: k
-          - name: NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: GCLOUD_FM_COLLECTOR_ID
-            value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-$(POD_NAME)
-      remoteConfig:
-        enabled: true
-        url: https://fleet-management-prod-011.grafana.net
-        auth:
-          type: basic
-        secret:
-          create: false
-          name: alloy-secret
-          namespace: observability
     alloy-logs:
       enabled: true
-      alloy:
-        extraEnv:
-          - name: GCLOUD_RW_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: alloy-logs-remote-cfg-grafana-k8s-monitoring
-                key: password
-          - name: CLUSTER_NAME
-            value: k
-          - name: NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: NODE_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: spec.nodeName
-          - name: GCLOUD_FM_COLLECTOR_ID
-            value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-alloy-logs-$(NODE_NAME)
-      remoteConfig:
-        enabled: true
-        url: https://fleet-management-prod-011.grafana.net
-        auth:
-          type: basic
-        secret:
-          create: false
-          name: alloy-secret
-          namespace: observability
     alloy-receiver:
       enabled: true
       alloy:
@@ -225,68 +136,5 @@ spec:
             port: 9411
             targetPort: 9411
             protocol: TCP
-        extraEnv:
-          - name: GCLOUD_RW_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: alloy-receiver-remote-cfg-grafana-k8s-monitoring
-                key: password
-          - name: CLUSTER_NAME
-            value: k
-          - name: NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: NODE_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: spec.nodeName
-          - name: GCLOUD_FM_COLLECTOR_ID
-            value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-alloy-receiver-$(NODE_NAME)
-      remoteConfig:
-        enabled: true
-        url: https://fleet-management-prod-011.grafana.net
-        auth:
-          type: basic
-        secret:
-          create: false
-          name: alloy-secret
-          namespace: observability
     alloy-profiles:
       enabled: true
-      alloy:
-        extraEnv:
-          - name: GCLOUD_RW_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: alloy-profiles-remote-cfg-grafana-k8s-monitoring
-                key: password
-          - name: CLUSTER_NAME
-            value: k
-          - name: NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-          - name: POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: NODE_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: spec.nodeName
-          - name: GCLOUD_FM_COLLECTOR_ID
-            value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-alloy-profiles-$(NODE_NAME)
-      remoteConfig:
-        enabled: true
-        url: https://fleet-management-prod-011.grafana.net
-        auth:
-          type: basic
-        secret:
-          create: false
-          name: alloy-secret
-          namespace: observability
