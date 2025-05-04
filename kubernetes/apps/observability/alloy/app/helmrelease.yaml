@@ -33,7 +33,6 @@ spec:
         url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom/push
         auth:
           type: basic
-          username: "2416165"
         secret:
           create: false
           name: alloy-secret
@@ -43,7 +42,6 @@ spec:
         url: https://logs-prod-012.grafana.net/loki/api/v1/push
         auth:
           type: basic
-          username: "1203759"
         secret:
           create: false
           name: alloy-secret
