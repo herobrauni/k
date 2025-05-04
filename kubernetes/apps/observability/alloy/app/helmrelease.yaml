@@ -33,6 +33,7 @@ spec:
         url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom/push
         auth:
           type: basic
+          username: "2416165"
         secret:
           create: false
           name: alloy-secret
