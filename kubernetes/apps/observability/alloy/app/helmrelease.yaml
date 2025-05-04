@@ -34,74 +34,9 @@ spec:
         auth:
           type: basic
         secret:
-          create: false
-          name: alloy-secret
           namespace: observability
-      - name: grafana-cloud-logs
-        type: loki
-        url: https://logs-prod-012.grafana.net/loki/api/v1/push
-        auth:
-          type: basic
-        secret:
-          create: false
           name: alloy-secret
-          namespace: observability
-      - name: grafana-cloud-traces
-        type: otlp
-        url: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
-        protocol: grpc
-        auth:
-          type: basic
-        secret:
-          create: false
-          name: alloy-secret
-          namespace: observability
-        metrics:
-          enabled: false
-        logs:
-          enabled: false
-        traces:
-          enabled: true
-      - name: grafana-cloud-profiles
-        type: pyroscope
-        url: https://profiles-prod-002.grafana.net:443
-        auth:
-          type: basic
-        secret:
-          create: false
-          name: alloy-secret
-          namespace: observability
     clusterMetrics:
-      enabled: true
-    annotationAutodiscovery:
-      enabled: true
-    prometheusOperatorObjects:
-      enabled: true
-    clusterEvents:
-      enabled: true
-    nodeLogs:
-      enabled: false
-    podLogs:
-      enabled: false
-    applicationObservability:
-      enabled: true
-      receivers:
-        otlp:
-          grpc:
-            enabled: true
-            port: 4317
-          http:
-            enabled: true
-            port: 4318
-        zipkin:
-          enabled: true
-          port: 9411
-      connectors:
-        grafanaCloudMetrics:
-          enabled: true
-    autoInstrumentation:
-      enabled: true
-    profiling:
       enabled: true
     integrations:
       alloy:
@@ -110,31 +45,5 @@ spec:
             labelSelectors:
               app.kubernetes.io/name:
                 - alloy-metrics
-                - alloy-singleton
-                - alloy-logs
-                - alloy-receiver
-                - alloy-profiles
     alloy-metrics:
-      enabled: true
-    alloy-singleton:
-      enabled: true
-    alloy-logs:
-      enabled: false
-    alloy-receiver:
-      enabled: true
-      alloy:
-        extraPorts:
-          - name: otlp-grpc
-            port: 4317
-            targetPort: 4317
-            protocol: TCP
-          - name: otlp-http
-            port: 4318
-            targetPort: 4318
-            protocol: TCP
-          - name: zipkin
-            port: 9411
-            targetPort: 9411
-            protocol: TCP
-    alloy-profiles:
       enabled: true
