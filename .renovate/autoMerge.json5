@@ -7,7 +7,7 @@
       automerge: true,
       automergeType: "pr",
       matchUpdateTypes: ["digest"],
-      matchPackageNames: ["/home-operations/"],
+      matchPackageNames: ["/home-operations/", "/docker-warp-socks/"],
       ignoreTests: false,
     },
     {
@@ -16,7 +16,7 @@
       automerge: true,
       automergeType: "pr",
       matchUpdateTypes: ["minor", "patch"],
-      matchPackageNames: ["/kube-prometheus-stack/"],
+      matchPackageNames: ["/kube-prometheus-stack/", "/grafana/", "/external-secrets/"],
       ignoreTests: false,
     },
     {
@@ -44,7 +44,7 @@
       automerge: true,
       automergeType: "branch",
       matchUpdateTypes: ["minor", "patch"],
-      matchPackageNames: ["/external-dns/", "/gateway-api/", "/prometheus-operator/"],
+      matchPackageNames: ["/external-dns/", "/gateway-api/", "/prometheus-operator/", "/tailscale-operator/"],
       ignoreTests: true,
     },
   ],
