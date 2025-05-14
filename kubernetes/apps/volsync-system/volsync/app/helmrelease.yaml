@@ -40,7 +40,7 @@ spec:
   values:
     image:
       repository: quay.io/backube/volsync
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
       tag: latest
     rclone:
