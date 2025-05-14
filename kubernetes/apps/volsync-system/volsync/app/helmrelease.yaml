@@ -38,6 +38,10 @@ spec:
     remediation:
       retries: 3
   values:
+    image:
+      repository: sofiaurora/volsync
+      pullPolicy: Always
+      tag: 0.12.0@sha256:19a6740447a41d09691df15bef9f325fdc264e4555dd85e73b5fb3eaa74d3a23
     manageCRDs: true
     replicaCount: 2
     metrics:
