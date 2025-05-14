@@ -10,20 +10,20 @@ resources:
   - ./csi-rclone-secret.sops.yaml
   - ./pvc-rclone.yaml
   - ./debug-media/ks.yaml
-  # - ./decypharr/ks.yaml
-  # - ./warp/ks.yaml
-  # - ./plex/ks.yaml
-  # - ./tautulli/ks.yaml
-  # - ./sonarr/ks.yaml
-  # - ./sonarr4k/ks.yaml
-  # - ./radarr/ks.yaml
-  # - ./radarr4k/ks.yaml
-  # - ./prowlarr/ks.yaml
-  # - ./jellyseerr/ks.yaml
-  # - ./recyclarr/ks.yaml
-  # - ./autosync/ks.yaml
-  # - ./huntarr/ks.yaml
-  # - ./huntarr4k/ks.yaml
-  # - ./profilarr/ks.yaml
+  - ./decypharr/ks.yaml
+  - ./warp/ks.yaml
+  - ./plex/ks.yaml
+  - ./tautulli/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./sonarr4k/ks.yaml
+  - ./radarr/ks.yaml
+  - ./radarr4k/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./jellyseerr/ks.yaml
+  - ./recyclarr/ks.yaml
+  - ./autosync/ks.yaml
+  - ./huntarr/ks.yaml
+  - ./huntarr4k/ks.yaml
+  - ./profilarr/ks.yaml
   # - ./rdtclient/ks.yaml
   #   - ./bazarr/ks.yaml
