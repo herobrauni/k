@@ -39,9 +39,22 @@ spec:
       retries: 3
   values:
     image:
-      repository: sofiaurora/volsync
-      pullPolicy: Always
-      tag: 0.12.0@sha256:19a6740447a41d09691df15bef9f325fdc264e4555dd85e73b5fb3eaa74d3a23
+      repository: quay.io/backube/volsync
+      pullPolicy: IfNotPresent
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: latest
+    rclone:
+      repository: quay.io/backube/volsync
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: latest
+    restic:
+      repository: quay.io/backube/volsync
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: latest
+    rsync:
+      repository: quay.io/backube/volsync
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: latest
     manageCRDs: true
     replicaCount: 2
     metrics:
