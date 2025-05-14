@@ -114,14 +114,14 @@ spec:
         globalMounts:
           - path: /aio/remote/realdebrid
             readOnly: true
-      scripts:
-        type: configMap
-        name: sonarr-configmap
-        defaultMode: 0775
-        globalMounts:
-          - path: /scripts/codec-tagger.sh
-            subPath: codec-tagger.sh
-            readOnly: true
-          - path: /scripts/tba-refresher.sh
-            subPath: tba-refresher.sh
-            readOnly: true
+      # scripts:
+      #   type: configMap
+      #   name: sonarr-configmap
+      #   defaultMode: 0775
+      #   globalMounts:
+      #     - path: /scripts/codec-tagger.sh
+      #       subPath: codec-tagger.sh
+      #       readOnly: true
+      #     - path: /scripts/tba-refresher.sh
+      #       subPath: tba-refresher.sh
+      #       readOnly: true
