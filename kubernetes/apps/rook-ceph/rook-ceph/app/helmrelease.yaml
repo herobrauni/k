@@ -61,7 +61,7 @@ spec:
       csiCephFSPluginVolume:
         - name: lib-modules
           hostPath:
-            path: /run/booted-system/kernel-modules/lib/modules/
+            path: /run/current-system/kernel-modules/lib/modules/
         - name: host-nix
           hostPath:
             path: /nix
