@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: debug
 components:
   - ../../components/common
-# resources:
-#   - ./debug/ks.yaml
+resources:
+  - ./debug/ks.yaml
