@@ -5,11 +5,11 @@ kind: Kustomization
 namespace: observability
 components:
   - ../../components/common
-resources:
-  # - ./alloy/ks.yaml
-  - ./gatus/ks.yaml
+# resources:
+# - ./alloy/ks.yaml
+# - ./gatus/ks.yaml
 #  - ./grafana/ks.yaml
-  - ./kromgo/ks.yaml
+# - ./kromgo/ks.yaml
 #  - ./kube-prometheus-stack/ks.yaml
 #  - ./loki/ks.yaml
 #  - ./promtail/ks.yaml
