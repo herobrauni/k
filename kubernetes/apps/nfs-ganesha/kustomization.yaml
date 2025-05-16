@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: nfs-ganesha
 components:
   - ../../components/common
-# resources:
-#   - ./nfs-ganesha/ks.yaml
+resources:
+  - ./nfs-ganesha/ks.yaml
