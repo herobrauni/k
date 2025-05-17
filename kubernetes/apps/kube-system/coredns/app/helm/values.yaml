@@ -24,6 +24,7 @@ servers:
       - name: log
         configBlock: |-
           class error
+          class denial
       - name: prometheus
         parameters: 0.0.0.0:9153
       - name: kubernetes
@@ -32,7 +33,7 @@ servers:
           pods insecure
           fallthrough in-addr.arpa ip6.arpa
       - name: forward
-        parameters: . 1.1.1.1 100.100.100.100
+        parameters: . 1.1.1.1 8.8.8.8
       - name: cache
         parameters: 30
       - name: loop
