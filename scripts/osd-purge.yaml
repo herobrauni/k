@@ -44,7 +44,7 @@ spec:
             - "--force-osd-removal"
             - "false"
             - "--osd-ids"
-            - "6"
+            - "3"
           env:
             - name: POD_NAMESPACE
               valueFrom:
