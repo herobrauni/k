@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "cluster-restructuring.md",
+                "file": "cluster-bootstrap.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "cluster-restructuring"
+              "title": "cluster-bootstrap"
             }
           }
         ],
@@ -185,9 +185,9 @@
   },
   "active": "36c53388d069ecfa",
   "lastOpenFiles": [
-    "cluster-bootstrap.md",
     "cluster-restructuring.md",
     "debian-k3s-to-talos-migration.md",
+    "cluster-bootstrap.md",
     "cilium-host-node-cidr-daemonset.yaml"
   ]
 }
