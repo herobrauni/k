@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: muse
 components:
   - ../../components/common
-# resources:
-#   - ./muse/ks.yaml
+resources:
+  - ./muse/ks.yaml
