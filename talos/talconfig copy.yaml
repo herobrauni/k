@@ -78,8 +78,8 @@ patches:
         nodeIP:
           validSubnets:
             - 100.64.0.0/10
-        # extraArgs:
-        #     rotate-server-certificates: true
+        extraArgs:
+            rotate-server-certificates: true
       time:
         servers:
           - time.cloudflare.com
@@ -119,10 +119,6 @@ patches:
 controlPlane:
   extraManifests:
     - ./volumeconfig.yaml
-    - ./firewall/cp-network-rules.yaml
-    - ./firewall/cilium-health.yaml
-    - ./firewall/metrics-network-rules.yaml
-    - ./firewall/hubble-peer-rules.yaml
   schematic:
     customization:
       systemExtensions:
@@ -131,32 +127,32 @@ controlPlane:
           - siderolabs/qemu-guest-agent
   patches:
     - |-
-      cluster:
-        etcd:
-          advertisedSubnets:
-            - 100.64.0.0/10
+      etcd:
+        advertisedSubnets:
+          - 100.64.0.0/10
     - |-
       - op: remove
         path: /machine/nodeLabels/node.kubernetes.io~1exclude-from-external-load-balancers
+    - |-
+      - op: remove
+        path: /cluster/apiServer/admissionControl
+    - |-
+      cluster:
+        etcd:
+          extraArgs:
+            listen-metrics-urls: http://0.0.0.0:2381
     - |-
       machine:
         features:
           kubernetesTalosAPIAccess:
             enabled: true
-            allowedRoles: ["os:admin", "os:reader"]
-            allowedKubernetesNamespaces: [ "kube-system", "actions-runner-system", "system-upgrade"]
-  extensionServices:
-    - name: tailscale
-      environment:
-        - TS_AUTHKEY=${TAILSCALE_AUTHKEY}
-        - TS_ACCEPT_DNS=false
-        - TS_DISABLE_PORTMAPPER=1
-        - TS_AUTH_ONCE=true
-        - TS_EXTRA_ARGS=--accept-routes --snat-subnet-routes=false
+            allowedRoles: ["os:admin"]
+            allowedKubernetesNamespaces: ["actions-runner-system", "system-upgrade"]
 worker:
   extraManifests:
     - ./volumeconfig.yaml
-    - ./firewall/worker-network-rules.yaml
-    - ./firewall/cilium-health.yaml
-    - ./firewall/metrics-network-rules.yaml
-    - ./firewall/hubble-peer-rules.yaml
+  schematic:
+    customization:
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/qemu-guest-agent

@@ -1,0 +1,13 @@
+---
+apiVersion: v1alpha1
+kind: NetworkRuleConfig
+name: mayastor-io-engine
+portSelector:
+  ports:
+    - 8420
+    - 4421
+    - 10124
+  protocol: tcp
+ingress:
+  - subnet: "100.99.99.0/24"
+  - subnet: "10.42.0.0/16"

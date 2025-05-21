@@ -1,0 +1,20 @@
+---
+apiVersion: v1alpha1
+kind: NetworkRuleConfig
+name: metallb-tcp
+portSelector:
+  ports:
+    - 7946
+  protocol: tcp
+ingress:
+  - subnet: "100.99.99.0/24"
+---
+apiVersion: v1alpha1
+kind: NetworkRuleConfig
+name: metallb-udp
+portSelector:
+  ports:
+    - 7946
+  protocol: udp
+ingress:
+  - subnet: "100.99.99.0/24"

@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: network
 components:
   - ../../components/common
-resources:
-  - ./cloudflare-dns/ks.yaml
-  - ./traefik/ks.yaml
-  - ./echo/ks.yaml
+# resources:
+#   - ./cloudflare-dns/ks.yaml
+#   - ./traefik/ks.yaml
+#   - ./echo/ks.yaml

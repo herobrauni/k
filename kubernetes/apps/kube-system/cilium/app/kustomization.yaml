@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   # - ./networks.yaml
-  - ./cilium-host-node-cidr-daemonset.yaml
+  # - ./cilium-host-node-cidr-daemonset.yaml
 configMapGenerator:
   - name: cilium-values
     files:

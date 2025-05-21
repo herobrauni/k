@@ -1,0 +1,11 @@
+---
+apiVersion: v1alpha1
+kind: NetworkRuleConfig
+name: hubble
+portSelector:
+  ports:
+    - 4244
+  protocol: tcp
+ingress:
+  - subnet: "100.99.99.0/24"
+  - subnet: "10.42.0.0/16"

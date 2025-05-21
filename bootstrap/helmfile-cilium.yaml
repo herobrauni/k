@@ -25,13 +25,13 @@ releases:
           - -c
           - until kubectl get crd ciliuml2announcementpolicies.cilium.io ciliumloadbalancerippools.cilium.io &>/dev/null; do sleep 10; done
         showlogs: true
-      - # Apply cilium network configuration
-        events: ["postsync"]
-        command: kubectl
-        args:
-          - apply
-          - --namespace=kube-system
-          - --server-side
-          - --field-manager=kustomize-controller
-          - --filename=/home/brauni/Repos/k/kubernetes/apps/kube-system/cilium/app/cilium-host-node-cidr-daemonset.yaml
-        showlogs: true
+      # - # Apply cilium network configuration
+      #   events: ["postsync"]
+      #   command: kubectl
+      #   args:
+      #     - apply
+      #     - --namespace=kube-system
+      #     - --server-side
+      #     - --field-manager=kustomize-controller
+      #     - --filename=/home/brauni/Repos/k/kubernetes/apps/kube-system/cilium/app/cilium-host-node-cidr-daemonset.yaml
+      #   showlogs: true
