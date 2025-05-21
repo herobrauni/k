@@ -68,7 +68,7 @@ patches:
     machine:
       network:
         nameservers:
-          - fd7a:115c:a1e0::53 # tailscale dns
+          - 100.100.100.100 # tailscale dns
           - 2606:4700:4700::1111 # cloudflare 1111
           - 1.1.1.1
 
@@ -119,16 +119,12 @@ patches:
 controlPlane:
   extraManifests:
     - ./volumeconfig.yaml
-    - ./firewall/cp-network-rules.yaml
-    - ./firewall/cilium-health.yaml
-    - ./firewall/metrics-network-rules.yaml
-    - ./firewall/hubble-peer-rules.yaml
+    - ./firewall/all-cp.yaml
   schematic:
     customization:
       systemExtensions:
         officialExtensions:
           - siderolabs/tailscale
-          - siderolabs/qemu-guest-agent
   patches:
     - |-
       cluster:
