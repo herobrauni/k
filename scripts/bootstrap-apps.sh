@@ -92,12 +92,13 @@ function apply_crds() {
     log debug "Applying CRDs"
 
     local -r crds=(
-        # renovate: datasource=github-releases depName=prometheus-operator/prometheus-operator
-        https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.82.1/stripped-down-crds.yaml
         # renovate: datasource=github-releases depName=kubernetes-sigs/external-dns
-        https://raw.githubusercontent.com/kubernetes-sigs/external-dns/refs/tags/v0.16.1/docs/sources/crd/crd-manifest.yaml
+        https://raw.githubusercontent.com/kubernetes-sigs/external-dns/refs/tags/v0.17.0/config/crd/standard/dnsendpoint.yaml
+        # renovate: datasource=github-releases depName=kubernetes-sigs/gateway-api
+        https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
+        # renovate: datasource=github-releases depName=prometheus-operator/prometheus-operator
+        https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.82.2/stripped-down-crds.yaml
     )
-
     for crd in "${crds[@]}"; do
         if kubectl diff --filename "${crd}" &>/dev/null; then
             log info "CRDs are up-to-date" "crd=${crd}"
@@ -133,9 +134,9 @@ function main() {
 
     # Apply resources and Helm releases
     wait_for_nodes
+    apply_crds
     apply_namespaces
     apply_sops_secrets
-    apply_crds
     apply_helm_releases
 
     log info "Congrats! The cluster is bootstrapped and Flux is syncing the Git repository"

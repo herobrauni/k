@@ -1,0 +1,8 @@
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: rook
+provisioning:
+  diskSelector:
+    match: system_disk
+  minSize: 1GB
