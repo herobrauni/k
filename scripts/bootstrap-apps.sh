@@ -81,6 +81,10 @@ function apply_sops_secrets() {
             log error "Failed to apply secret resource" "resource=$(basename "${secret}" ".sops.yaml")"
         fi
     done
+    # Create/update the Cloudflare TunnelID secret in the 'network' namespace
+    log debug "Creating/updating Cloudflare TunnelID secret"
+    "${ROOT_DIR}/scripts/extract-tunnelid.sh"
+    log info "Cloudflare TunnelID secret created/updated"
 }
 
 # CRDs to be applied before the helmfile charts are installed
