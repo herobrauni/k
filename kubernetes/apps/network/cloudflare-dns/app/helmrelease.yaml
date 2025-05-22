@@ -12,11 +12,6 @@ spec:
   ref:
     tag: 1.16.1
   url: oci://ghcr.io/home-operations/charts-mirror/external-dns
-  verify:
-    provider: cosign
-    matchOIDCIdentity:
-      - issuer: "^https://token.actions.githubusercontent.com$"
-        subject: "^https://github.com/home-operations/charts-mirror.*$"
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -24,19 +19,15 @@ kind: HelmRelease
 metadata:
   name: &app cloudflare-dns
 spec:
-  driftDetection:
-    mode: enabled
   interval: 1h
   chartRef:
     kind: OCIRepository
     name: cloudflare-dns
   install:
-    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
       retries: -1
   upgrade:
     cleanupOnFail: true
-    disableSchemaValidation: true # Ref: https://github.com/kubernetes-sigs/external-dns/issues/5206
     remediation:
       retries: 3
   values:
@@ -47,16 +38,23 @@ spec:
       - name: &name CF_API_TOKEN
         valueFrom:
           secretKeyRef:
-            name: &secret dns-cloudflare-secret
+            name: &secret cloudflare-dns-secret
+            key: *name
+      - name: &name CF_ZONE_ID
+        valueFrom:
+          secretKeyRef:
+            name: *secret
             key: *name
     extraArgs:
       - --cloudflare-dns-records-per-page=1000
-      - --publish-host-ip
-      - --traefik-disable-legacy
       - --cloudflare-proxied
+      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+      - --crd-source-kind=DNSEndpoint
+      - --gateway-name=external
+      - --zone-id-filter=$(CF_ZONE_ID)
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "service", "ingress"]
+    sources: ["crd", "gateway-httproute"]
     txtOwnerId: default
     txtPrefix: k8s.
     domainFilters: ["480p.com"]
