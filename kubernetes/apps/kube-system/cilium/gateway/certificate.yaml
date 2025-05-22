@@ -3,11 +3,11 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: devbu-io
+  name: 480p-com
 spec:
-  secretName: devbu-io-tls
+  secretName: 480p-com-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: devbu.io
-  dnsNames: ["devbu.io", "*.devbu.io"]
+  commonName: 480p.com
+  dnsNames: ["480p.com", "*.480p.com"]
