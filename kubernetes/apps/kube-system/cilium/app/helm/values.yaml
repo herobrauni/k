@@ -1,3 +1,7 @@
+# https://github.com/onedr0p/home-ops
+gatewayAPI:
+  enabled: true
+# https://github.com/michaelbeaumont/k8rn
 ipam:
   mode: kubernetes
 routingMode: native
