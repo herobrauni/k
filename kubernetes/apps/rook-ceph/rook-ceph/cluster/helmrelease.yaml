@@ -65,6 +65,7 @@ spec:
         enabled: true
         urlPrefix: /
         ssl: false
+        port: 8080
         prometheusEndpoint: http://prometheus-operated.observability.svc.cluster.local:9090
       mgr:
         modules:
