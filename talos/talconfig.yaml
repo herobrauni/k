@@ -63,6 +63,38 @@ nodes:
       - gc7.brill-bebop.ts.net
       - gc7
 
+  - hostname: terabit1
+    controlPlane: false
+    ipAddress: 165.140.203.148
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 165.140.203.148/25
+        dhcp: false
+        routes:
+          - gateway: 165.140.203.129
+    certSANs:
+      - terabit1.brill-bebop.ts.net
+      - terabit1
+
+  - hostname: terabit2
+    controlPlane: false
+    ipAddress: 165.140.203.145
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 165.140.203.145/25
+        dhcp: false
+        routes:
+          - gateway: 165.140.203.129
+    certSANs:
+      - terabit2.brill-bebop.ts.net
+      - terabit2
+
 patches:
   - |-
     machine:
@@ -157,7 +189,17 @@ controlPlane:
 worker:
   extraManifests:
     - ./volumeconfig.yaml
-    - ./firewall/worker-network-rules.yaml
-    - ./firewall/cilium-health.yaml
-    - ./firewall/metrics-network-rules.yaml
-    - ./firewall/hubble-peer-rules.yaml
+    - ./firewall/all-cp.yaml
+  schematic:
+    customization:
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/tailscale
+  extensionServices:
+    - name: tailscale
+      environment:
+        - TS_AUTHKEY=${TAILSCALE_AUTHKEY}
+        - TS_ACCEPT_DNS=false
+        - TS_DISABLE_PORTMAPPER=1
+        - TS_AUTH_ONCE=true
+        - TS_EXTRA_ARGS=--accept-routes --snat-subnet-routes=false

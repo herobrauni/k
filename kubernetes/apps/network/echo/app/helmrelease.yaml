@@ -1,12 +1,10 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app echo
+  name: echo
 spec:
-  driftDetection:
-    mode: enabled
   interval: 1h
   chartRef:
     kind: OCIRepository
@@ -71,23 +69,14 @@ spec:
         serviceName: echo
         endpoints:
           - port: http
-    ingress:
+    route:
       app:
-        enabled: true
-        className: traefik
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "480p.com"
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
-        hosts:
-          - host: &host "{{ .Release.Name }}.480p.com"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - *host
-            secretName: echo-tls
+        hostnames: ["{{ .Release.Name }}.480p.com"]
+        parentRefs:
+          - name: external
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port

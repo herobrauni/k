@@ -24,7 +24,11 @@
         "list_namespaces",
         "list_nodes",
         "list_pods",
-        "list_services"
+        "list_services",
+        "kubectl_list",
+        "kubectl_get",
+        "kubectl_logs",
+        "kubectl_describe"
       ]
     }
   }
