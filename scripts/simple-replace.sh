@@ -5,6 +5,7 @@
 # Define search and replace patterns
 PATTERNS=(
     "devbu.io:480p.com"
+    "devbu-io:480p-com"
     "America/New_York:Europe/Berlin"
     "ceph-block:longhorn"
     "rook-ceph-cluster:longhorn"
