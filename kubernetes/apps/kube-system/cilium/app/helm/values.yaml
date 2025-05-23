@@ -1,13 +1,13 @@
 # https://github.com/onedr0p/home-ops
-gatewayAPI:
-  enabled: true
-  enableAlpn: true
-  xffNumTrustedHops: 1
-envoy:
-  rollOutPods: true
-  prometheus:
-    serviceMonitor:
-      enabled: true
+# gatewayAPI:
+#   enabled: true
+#   enableAlpn: true
+#   xffNumTrustedHops: 1
+# envoy:
+#   rollOutPods: true
+#   prometheus:
+#     serviceMonitor:
+#       enabled: true
 # autoDirectNodeRoutes: true
 # endpointRoutes:
 #   enabled: true
