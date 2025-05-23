@@ -61,7 +61,7 @@ spec:
           enabled: true
           options: "default"
     fullnameOverride: traefik
-    
+
     globalArguments:
       - "--global.checknewversion=false"
       - "--global.sendanonymoususage=false"

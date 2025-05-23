@@ -4,7 +4,7 @@ originRequest:
 
 ingress:
   - hostname: 480p.com
-    service: &svc https://cilium-gateway-external.kube-system.svc.cluster.local
+    service: &svc http://cilium-gateway-external.kube-system.svc.cluster.local
   - hostname: "*.480p.com"
     service: *svc
   - service: http_status:404
