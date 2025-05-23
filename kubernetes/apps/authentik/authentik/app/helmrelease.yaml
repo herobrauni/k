@@ -63,13 +63,14 @@ spec:
         limits:
           memory: 1Gi
       route:
-        enabled: true
-        hostnames: ["{{ .Release.Name }}.480p.com"]
-        parentRefs:
-          - name: external
-            namespace: kube-system
-            sectionName: https
-        # matches:
-        #   - path:
-        #       type: PathPrefix
-        #       value: "{{ .Values.authentik.web.path }}"
+        main:
+          enabled: true
+          hostnames: ["{{ .Release.Name }}.480p.com"]
+          parentRefs:
+            - name: external
+              namespace: kube-system
+              sectionName: https
+          matches:
+            - path:
+                type: PathPrefix
+                value: "{{ .Values.authentik.web.path }}"
