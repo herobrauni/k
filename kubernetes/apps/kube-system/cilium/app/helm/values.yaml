@@ -21,8 +21,8 @@ ipv4NativeRoutingCIDR: "10.42.0.0/16"
 ipv6:
   enabled: false # TODO when mayastor
 kubeProxyReplacement: true
-# envoy:
-#   baseID: 4244
+envoy:
+  baseID: 4244
 hubble:
   relay:
     enabled: true
