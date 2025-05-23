@@ -3,14 +3,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app flannel
+  name: &app csi-driver-nfs
   namespace: &namespace kube-system
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   interval: 1h
-  path: ./kubernetes/apps/kube-system/flannel/app
+  path: ./kubernetes/apps/kube-system/csi-driver-nfs/app
   prune: true
   retryInterval: 2m
   sourceRef:

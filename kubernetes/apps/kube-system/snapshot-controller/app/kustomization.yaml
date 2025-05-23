@@ -2,20 +2,5 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
-  # CRDs
-  # # renovate: datasource=github-releases depName=kubernetes-csi/external-snapshotter
-  - https://github.com/kubernetes-csi/external-snapshotter/raw/v8.2.1/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
-  - https://github.com/kubernetes-csi/external-snapshotter/raw/v8.2.1/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
-  - https://github.com/kubernetes-csi/external-snapshotter/raw/v8.2.1/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
-
-  # # Controller
-  # # renovate: datasource=github-releases depName=kubernetes-csi/external-snapshotter
-  # - https://github.com/kubernetes-csi/external-snapshotter/raw/v8.2.1/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
-  # - https://github.com/kubernetes-csi/external-snapshotter/raw/v8.2.1/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
-
-  # VolumeSnapshotClass
-  # - ./volumesnapshotclass.yaml
-
   - ./helmrelease.yaml
