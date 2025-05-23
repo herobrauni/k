@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app dragonfly-operator
+  name: dragonfly-operator
 spec:
   driftDetection:
     mode: enabled
@@ -21,6 +21,8 @@ spec:
   values:
     controllers:
       dragonfly-operator:
+        serviceAccount:
+          identifier: sa-dragonfly-operator
         strategy: RollingUpdate
         containers:
           app:
@@ -88,8 +90,7 @@ spec:
             port: 8080
 
     serviceAccount:
-      create: true
-      name: *app
+      sa-dragonfly-operator: {}
 
     serviceMonitor:
       app:
