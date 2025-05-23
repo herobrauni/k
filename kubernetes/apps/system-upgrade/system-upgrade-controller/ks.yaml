@@ -37,9 +37,9 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/plans
   postBuild:
-    substitute:
-      # renovate: datasource=github-releases depName=k3s-io/k3s
-      KUBE_VERSION: v1.33.0+k3s1
+    substituteFrom:
+      - kind: ConfigMap
+        name: versions
   prune: true
   retryInterval: 2m
   sourceRef:
