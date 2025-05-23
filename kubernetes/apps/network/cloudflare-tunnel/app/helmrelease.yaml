@@ -17,9 +17,10 @@ spec:
     remediation:
       retries: 3
   values:
+    type: DaemonSet
     controllers:
       cloudflare-tunnel:
-        replicas: 2
+        # replicas: 2
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
