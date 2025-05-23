@@ -8,6 +8,11 @@ envoy:
   prometheus:
     serviceMonitor:
       enabled: true
+autoDirectNodeRoutes: true
+endpointRoutes:
+  enabled: true
+localRedirectPolicy: true
+
 # https://github.com/michaelbeaumont/k8rn
 ipam:
   mode: kubernetes
