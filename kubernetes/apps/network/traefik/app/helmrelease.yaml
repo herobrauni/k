@@ -61,10 +61,7 @@ spec:
           enabled: true
           options: "default"
     fullnameOverride: traefik
-    service:
-      annotations:
-        external-dns.alpha.kubernetes.io/hostname: "480p.com"
-
+    
     globalArguments:
       - "--global.checknewversion=false"
       - "--global.sendanonymoususage=false"
