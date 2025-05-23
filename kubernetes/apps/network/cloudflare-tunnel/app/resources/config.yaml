@@ -1,10 +1,10 @@
 ---
 originRequest:
-  originServerName: external.480p.com
+  originServerName: traefik.480p.com
 
 ingress:
   - hostname: 480p.com
-    service: &svc http://cilium-gateway-external.kube-system.svc.cluster.local
+    service: &svc http://traefik.network.svc.cluster.local
   - hostname: "*.480p.com"
     service: *svc
   - service: http_status:404
