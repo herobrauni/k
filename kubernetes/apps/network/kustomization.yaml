@@ -9,4 +9,3 @@ resources:
   - ./cloudflare-tunnel/ks.yaml
   - ./cloudflare-dns/ks.yaml
   - ./echo/ks.yaml
-  # - ./traefik/ks.yaml
