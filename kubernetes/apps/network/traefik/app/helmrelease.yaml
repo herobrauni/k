@@ -55,6 +55,9 @@ spec:
             scheme: https
             permanent: true
         advertisedPort: 80
+    service:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: "480p.com"
 
       websecure:
         tls:
