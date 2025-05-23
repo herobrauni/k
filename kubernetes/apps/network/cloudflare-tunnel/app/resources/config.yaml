@@ -4,7 +4,7 @@ originRequest:
 
 ingress:
   - hostname: 480p.com
-    service: &svc http://traefik.network.svc.cluster.local
+    service: &svc https://traefik.network.svc.cluster.local
   - hostname: "*.480p.com"
     service: *svc
   - service: http_status:404
