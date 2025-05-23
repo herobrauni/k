@@ -69,7 +69,7 @@ spec:
           - name: external
             namespace: kube-system
             sectionName: https
-        matches:
-          - path:
-              type: PathPrefix
-              value: "{{ .Values.authentik.web.path }}"
+        # matches:
+        #   - path:
+        #       type: PathPrefix
+        #       value: "{{ .Values.authentik.web.path }}"
