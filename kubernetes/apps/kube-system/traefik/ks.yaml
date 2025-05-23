@@ -62,7 +62,7 @@ spec:
     - name: traefik
       namespace: kube-system
   interval: 1h
-  path: ./kubernetes/apps/kube-system/traefik-gateway/gateway
+  path: ./kubernetes/apps/kube-system/traefik/gateway
   prune: true
   sourceRef:
     kind: GitRepository
