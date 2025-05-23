@@ -22,7 +22,7 @@ spec:
     controllers:
       dragonfly-operator:
         serviceAccount:
-          identifier: sa-dragonfly-operator
+          identifier: dragonfly-operator
         strategy: RollingUpdate
         containers:
           app:
@@ -90,7 +90,7 @@ spec:
             port: 8080
 
     serviceAccount:
-      sa-dragonfly-operator: {}
+      dragonfly-operator: {}
 
     serviceMonitor:
       app:

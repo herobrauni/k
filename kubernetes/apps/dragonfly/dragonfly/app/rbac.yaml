@@ -36,5 +36,5 @@ roleRef:
   name: dragonfly-operator
 subjects:
   - kind: ServiceAccount
-    name: sa-dragonfly-operator
+    name: dragonfly-operator
     namespace: dragonfly
