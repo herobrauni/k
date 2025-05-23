@@ -34,6 +34,7 @@ spec:
       retries: 3
   values:
     providers:
+      kubernetesGateway: {}
       kubernetesCRD:
         enabled: true
         allowExternalNameServices: true
