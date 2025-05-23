@@ -99,8 +99,8 @@ patches:
   - |-
     machine:
       sysctls:
-        net.core.rmem_max: "7500000"
-        net.core.wmem_max: "7500000"
+        net.core.rmem_max: 67108864
+        net.core.wmem_max: 67108864
   - |-
     machine:
       network:
@@ -139,19 +139,12 @@ patches:
       proxy:
         disabled: true
       apiServer:
-        admissionControl:
-          - name: PodSecurity
-            configuration:
-              apiVersion: pod-security.admission.config.k8s.io/v1alpha1
-              defaults:
-                audit: restricted
-                audit-version: latest
-                enforce: privileged
-                enforce-version: latest
-                warn: restricted
-                warn-version: latest
-              # don't add any exemptions
-              kind: PodSecurityConfiguration
+        disablePodSecurityPolicy: true
+        auditPolicy:
+          apiVersion: audit.k8s.io/v1
+          kind: Policy
+          rules:
+            - level: Metadata
 
 controlPlane:
   extraManifests:
