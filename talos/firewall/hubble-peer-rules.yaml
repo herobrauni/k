@@ -5,6 +5,7 @@ name: hubble
 portSelector:
   ports:
     - 4244
+    - 4245
   protocol: tcp
 ingress:
   - subnet: "100.99.99.0/24"
