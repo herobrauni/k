@@ -33,6 +33,9 @@ spec:
     remediation:
       retries: 3
   values:
+    gatewayClass:
+      enabled: true
+      name: traefik-gateway-class
     providers:
       kubernetesGateway:
         # -- Enable Traefik Gateway provider for Gateway API

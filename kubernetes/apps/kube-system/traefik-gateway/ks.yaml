@@ -12,6 +12,8 @@ spec:
   dependsOn:
     - name: cert-manager
       namespace: cert-manager
+    - name: traefik
+      namespace: network
   interval: 1h
   path: ./kubernetes/apps/kube-system/traefik-gateway/gateway
   prune: true
