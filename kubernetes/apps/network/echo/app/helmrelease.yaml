@@ -74,7 +74,7 @@ spec:
         hostnames: ["{{ .Release.Name }}.480p.com"]
         parentRefs:
           - name: traefik-gateway
-            namespace: network
+            namespace: default
         rules:
           - backendRefs:
               - identifier: app
