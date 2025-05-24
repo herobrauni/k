@@ -71,6 +71,8 @@ spec:
           - port: http
     route:
       app:
+        annotations:
+          traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
         hostnames: ["{{ .Release.Name }}.480p.com"]
         parentRefs:
           - name: external
