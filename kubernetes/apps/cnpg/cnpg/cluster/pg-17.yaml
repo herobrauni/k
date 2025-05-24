@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg17
+spec:
+  instances: 2
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5
+
+  storage:
+    size: 2Gi
