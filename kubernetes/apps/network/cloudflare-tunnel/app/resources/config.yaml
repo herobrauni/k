@@ -1,7 +1,7 @@
 ---
-originRequest:
-  originServerName: 480p.com
-
+# originRequest:
+#   originServerName: 480p.com
+noTLSVerify: true
 ingress:
   - hostname: 480p.com
     service: &svc https://traefik.network.svc.cluster.local
