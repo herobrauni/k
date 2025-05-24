@@ -46,11 +46,13 @@ spec:
         host: dragonfly.dragonfly.svc.cluster.local
         port: 6379
         db: 1
-    postgresql:
-      enabled: true
-      envFrom:
-        - secretRef:
-            name: authentik-postgresql
+      postgresql:
+        host: pg17-rw.cnpg.svc.cluster.local
+        port: 5432
+        read_replicas:
+          "0":
+            host: pg17-r.cnpg.svc.cluster.local
+            port: 5432
       primary:
         persistence:
           existingClaim: authentik
