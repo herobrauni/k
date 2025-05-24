@@ -70,9 +70,9 @@ spec:
           options: "default"
           certResolver: letsencrypt-production
           domains:
-            - main: 480p.com
+            - main: "480p.com"
               sans:
-                - *.480p.com
+                - "*.480p.com"
         advertisedPort: 443
 
     service:
