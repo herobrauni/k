@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: cnpg
 components:
   - ../../components/common
-# resources:
-#   - ./cnpg/ks.yaml
+resources:
+  - ./cnpg/ks.yaml
