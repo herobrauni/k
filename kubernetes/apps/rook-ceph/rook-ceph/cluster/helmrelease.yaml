@@ -76,10 +76,10 @@ spec:
             enabled: true
           - name: rook
             enabled: true
-      # network:
-      #   provider: host
-      #   connections:
-      #     requireMsgr2: true
+      network:
+        provider: host
+        connections:
+          requireMsgr2: true
       storage:
         useAllNodes: true
         useAllDevices: true
