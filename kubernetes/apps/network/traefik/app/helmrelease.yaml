@@ -69,6 +69,7 @@ spec:
       type: ClusterIP
       annotations:
         external-dns.alpha.kubernetes.io/hostname: "480p.com"
+        cert-manager.io/cluster-issuer: letsencrypt-production
 
       websecure:
         tls:
