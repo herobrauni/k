@@ -62,15 +62,15 @@ spec:
           memory: 512Mi
         limits:
           memory: 1Gi
-      route:
-        main:
-          enabled: true
-          hostnames: ["{{ .Release.Name }}.480p.com"]
-          parentRefs:
-            - name: external
-              namespace: kube-system
-              sectionName: https
-          matches:
-            - path:
-                type: PathPrefix
-                value: "{{ .Values.authentik.web.path }}"
+      # route:
+      #   main:
+      #     enabled: true
+      #     hostnames: ["{{ .Release.Name }}.480p.com"]
+      #     parentRefs:
+      #       - name: external
+      #         namespace: kube-system
+      #         sectionName: https
+      #     matches:
+      #       - path:
+      #           type: PathPrefix
+      #           value: "{{ .Values.authentik.web.path }}"
