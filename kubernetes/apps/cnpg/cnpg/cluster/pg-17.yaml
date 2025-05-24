@@ -8,3 +8,13 @@ spec:
 
   storage:
     size: 2Gi
+    storageClass: ceph-block
+  resources:
+    requests:
+      memory: 800Mi
+      cpu: 200m
+    limits:
+      memory: 2Gi
+  superuserSecret:
+    name: cnpg
+  enableSuperuserAccess: true
