@@ -47,22 +47,11 @@ spec:
         port: 6379
         db: 1
       postgresql:
-        host: pg17-rw.cnpg.svc.cluster.local
-        port: 5432
-        read_replicas:
-          "0":
-            host: pg17-r.cnpg.svc.cluster.local
-            port: 5432
+        host: authentik-postgres-v17-rw.authentik.svc.cluster.local
       primary:
         persistence:
           existingClaim: authentik
     server:
-      initContainers:
-        - name: init-db
-          image: ghcr.io/home-operations/postgres-init:17.5@sha256:894a38169bf4135fb1e85a1112c64fc24a267d1191887cbf6fb8c0a17893770d
-          envFrom:
-            - secretRef:
-                name: &secret authentik-postgresql
       replicas: 2
       resources:
         requests:
