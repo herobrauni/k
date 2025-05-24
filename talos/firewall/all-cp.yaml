@@ -110,3 +110,15 @@ portSelector:
 ingress:
   - subnet: "100.99.99.0/24"
   - subnet: "10.42.0.0/16"
+---
+apiVersion: v1alpha1
+kind: NetworkRuleConfig
+name: ceph
+portSelector:
+  ports:
+    - 3300
+    - 6800-7300
+  protocol: tcp
+ingress:
+  - subnet: "100.99.99.0/24"
+  - subnet: "10.42.0.0/16"

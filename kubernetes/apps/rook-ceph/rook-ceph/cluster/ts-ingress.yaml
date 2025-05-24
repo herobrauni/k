@@ -7,7 +7,7 @@ spec:
     service:
       name: rook-ceph-mgr-dashboard
       port:
-        number: 8080
+        number: 7000
   ingressClassName: tailscale
   tls:
     - hosts:
