@@ -54,7 +54,7 @@ spec:
       - --zone-id-filter=$(CF_ZONE_ID)
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "gateway-httproute"]
+    sources: ["crd", "gateway-httproute", "ingress"]
     txtOwnerId: default
     txtPrefix: k8s.
     domainFilters: ["480p.com"]
