@@ -69,16 +69,37 @@ spec:
         serviceName: echo
         endpoints:
           - port: http
-    route:
+    # route:
+    #   app:
+    #     annotations:
+    #       traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+    #     hostnames: ["{{ .Release.Name }}.480p.com"]
+    #     parentRefs:
+    #       - name: external
+    #         namespace: kube-system
+    #         sectionName: https
+    #     rules:
+    #       - backendRefs:
+    #           - identifier: app
+    #             port: *port
+    ingress:
       app:
+        enabled: true
+        className: traefik
         annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
           traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
-        hostnames: ["{{ .Release.Name }}.480p.com"]
-        parentRefs:
-          - name: external
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
+
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - hosts:
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
