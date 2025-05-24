@@ -64,18 +64,20 @@ spec:
             scheme: https
             permanent: true
         advertisedPort: 80
+      websecure:
+        tls:
+          enabled: true
+          options: "default"
+          domains: ["480p.com", "*.480p.com"]
+          certResolver: letsencrypt-production
+        advertisedPort: 443
+
     service:
       enabled: true
       type: ClusterIP
       annotations:
         external-dns.alpha.kubernetes.io/hostname: "480p.com"
         cert-manager.io/cluster-issuer: letsencrypt-production
-
-      websecure:
-        tls:
-          enabled: true
-          options: "default"
-    fullnameOverride: traefik
 
     globalArguments:
       - "--global.checknewversion=false"
