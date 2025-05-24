@@ -39,7 +39,7 @@ spec:
     providers:
       kubernetesGateway:
         # -- Enable Traefik Gateway provider for Gateway API
-        enabled: true
+        enabled: false
         # -- Toggles support for the Experimental Channel resources (Gateway API release channels documentation).
         # This option currently enables support for TCPRoute and TLSRoute.
         experimentalChannel: true
