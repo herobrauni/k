@@ -40,7 +40,7 @@ spec:
       enableLiveness: true
       serviceMonitor:
         enabled: true
-      enableCSIHostNetwork: false
+      enableCSIHostNetwork: true
     enableDiscoveryDaemon: true
     image:
       repository: ghcr.io/rook/ceph
