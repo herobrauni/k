@@ -32,3 +32,16 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  values:
+    crds:
+      create: true
+    monitoring:
+      podMonitorEnabled: false
+      grafanaDashboard:
+        create: false
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+      limits:
+        memory: 150Mi
