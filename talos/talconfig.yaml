@@ -146,6 +146,13 @@ patches:
           rules:
             - level: Metadata
 
+  - |-
+    machine:
+      kernel:
+        modules:
+          - name: ceph
+          - name: nbd
+          - name: rbd
 controlPlane:
   extraManifests:
     - ./volumeconfig.yaml
