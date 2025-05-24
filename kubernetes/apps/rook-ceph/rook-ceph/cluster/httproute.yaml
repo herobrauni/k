@@ -7,7 +7,7 @@ metadata:
 spec:
   hostnames: ["rook.480p.com"]
   parentRefs:
-    - name: internal
+    - name: external
       namespace: kube-system
       sectionName: https
   rules:
