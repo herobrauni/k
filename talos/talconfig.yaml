@@ -95,6 +95,23 @@ nodes:
       - terabit2.brill-bebop.ts.net
       - terabit2
 
+  - hostname: oracle5
+    controlPlane: false
+    ipAddress: 158.101.165.67
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: enp0s6
+        addresses:
+          - 158.101.165.67/32
+          - 10.0.0.104/24
+        dhcp: false
+        routes:
+          - gateway: 10.0.0.1
+    certSANs:
+      - oracle5.brill-bebop.ts.net
+      - oracle5
+
 patches:
   - |-
     machine:
