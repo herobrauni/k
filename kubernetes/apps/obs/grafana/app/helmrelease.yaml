@@ -1,0 +1,101 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: grafana
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 9.2.0
+  url: oci://ghcr.io/grafana/helm-charts/grafana
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana
+spec:
+  driftDetection:
+    mode: enabled
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: grafana
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    deploymentStrategy:
+      type: Recreate
+    admin:
+      existingSecret: grafana-admin-secret
+    env:
+      GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
+      GF_EXPLORE_ENABLED: true
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
+      GF_SECURITY_ANGULAR_SUPPORT_ENABLED: true
+      GF_SERVER_ROOT_URL: https://grafana.480p.com
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: victoriametrics
+            type: prometheus
+            orgId: 1
+            url: http://vmsingle-victoria-metrics-single-server.default.svc.cluster.local:8428
+            access: proxy
+            isDefault: true
+            updateIntervalSeconds: 10
+            editable: true
+
+    dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: "default"
+          orgId: 1
+          folder: ""
+          type: file
+          disableDeletion: true
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/default
+
+    dashboards:
+      default:
+        victoriametrics:
+          gnetId: 10229
+          revision: 22
+          datasource: victoriametrics
+        kubernetes:
+          gnetId: 14205
+          revision: 1
+          datasource: victoriametrics
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "480p.com"
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+      hosts:
+        - "{{ .Release.Name }}.480p.com"
+      paths:
+        - /
+      pathType: Prefix
+      tls:
+        - secretName: "{{ .Release.Name }}-tls"
+          hosts:
+            - "{{ .Release.Name }}.480p.com"
+    persistence:
+      enabled: false
+    testFramework:
+      enabled: false
