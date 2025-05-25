@@ -16,7 +16,7 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/observability/victoriametrics/app
+  path: ./kubernetes/apps/obs/victoriametrics/app
   postBuild:
     substitute:
       APP: *app
