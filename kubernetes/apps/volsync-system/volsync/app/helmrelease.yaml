@@ -19,6 +19,8 @@ kind: HelmRelease
 metadata:
   name: volsync
 spec:
+  driftDetection:
+    mode: enabled
   interval: 1h
   chartRef:
     kind: OCIRepository
@@ -31,6 +33,23 @@ spec:
     remediation:
       retries: 3
   values:
+    image:
+      repository: quay.io/backube/volsync
+      pullPolicy: Always
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: latest
+    rclone:
+      repository: quay.io/backube/volsync
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: latest
+    restic:
+      repository: quay.io/backube/volsync
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: latest
+    rsync:
+      repository: quay.io/backube/volsync
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: latest
     manageCRDs: true
     replicaCount: 2
     metrics:
