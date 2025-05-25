@@ -79,6 +79,26 @@ spec:
           gnetId: 14205
           revision: 1
           datasource: victoriametrics
+        node-information:
+          gnetId: 22403
+          revision: 12
+          datasource: victoriametrics
+        ceph-cluster:
+          # renovate: depName="Ceph Cluster"
+          gnetId: 2842
+          revision: 18
+          datasource: victoriametrics
+        ceph-osd:
+          # renovate: depName="Ceph - OSD (Single)"
+          gnetId: 5336
+          revision: 9
+          datasource: victoriametrics
+        ceph-pools:
+          # renovate: depName="Ceph - Pools"
+          gnetId: 5342
+          revision: 9
+          datasource: victoriametrics
+
     ingress:
       enabled: true
       ingressClassName: traefik

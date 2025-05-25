@@ -22,7 +22,7 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./autosync/ks.yaml
   - ./profilarr/ks.yaml
-  # - ./huntarr/ks.yaml
+  - ./huntarr/ks.yaml
   # - ./huntarr4k/ks.yaml
 
   # - ./recyclarr/ks.yaml
