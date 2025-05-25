@@ -50,35 +50,35 @@ spec:
           - name: victoriametrics
             type: prometheus
             orgId: 1
-            url: http://vmsingle-victoria-metrics-single-server.default.svc.cluster.local:8428
+            url: http://victoriametrics-victoria-metrics-single-server.obs.svc.cluster.local:8428
             access: proxy
             isDefault: true
             updateIntervalSeconds: 10
             editable: true
 
     dashboardProviders:
-    dashboardproviders.yaml:
-      apiVersion: 1
-      providers:
-        - name: "default"
-          orgId: 1
-          folder: ""
-          type: file
-          disableDeletion: true
-          editable: true
-          options:
-            path: /var/lib/grafana/dashboards/default
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+          - name: "default"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: true
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
 
-    dashboards:
-      default:
-        victoriametrics:
-          gnetId: 10229
-          revision: 22
-          datasource: victoriametrics
-        kubernetes:
-          gnetId: 14205
-          revision: 1
-          datasource: victoriametrics
+      dashboards:
+        default:
+          victoriametrics:
+            gnetId: 10229
+            revision: 22
+            datasource: victoriametrics
+          kubernetes:
+            gnetId: 14205
+            revision: 1
+            datasource: victoriametrics
     ingress:
       enabled: true
       ingressClassName: traefik
