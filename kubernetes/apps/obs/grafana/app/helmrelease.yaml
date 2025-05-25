@@ -69,16 +69,16 @@ spec:
             options:
               path: /var/lib/grafana/dashboards/default
 
-      dashboards:
-        default:
-          victoriametrics:
-            gnetId: 10229
-            revision: 22
-            datasource: victoriametrics
-          kubernetes:
-            gnetId: 14205
-            revision: 1
-            datasource: victoriametrics
+    dashboards:
+      default:
+        victoriametrics:
+          gnetId: 10229
+          revision: 22
+          datasource: victoriametrics
+        kubernetes:
+          gnetId: 14205
+          revision: 1
+          datasource: victoriametrics
     ingress:
       enabled: true
       ingressClassName: traefik
