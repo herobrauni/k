@@ -129,7 +129,7 @@ spec:
         - name: "victoriametrics.480p.com"
           path:
             - /
-          port: 8428
+          port: http
       pathType: Prefix
       tls:
         - secretName: "victoriametrics-tls"
