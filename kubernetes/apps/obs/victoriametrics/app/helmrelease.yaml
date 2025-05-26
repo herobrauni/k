@@ -122,3 +122,4 @@ spec:
       servicePort: 8428
       type: ClusterIP
       targetPort: http
+      ClusterIP: ""
