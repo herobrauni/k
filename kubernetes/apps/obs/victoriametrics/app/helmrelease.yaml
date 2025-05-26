@@ -118,3 +118,7 @@ spec:
                   regex: '^/system\.slice/(.+)\.service$'
                   target_label: systemd_service_name
                   replacement: "${1}"
+    service:
+      servicePort: 8428
+      type: ClusterIP
+      targetPort: http
