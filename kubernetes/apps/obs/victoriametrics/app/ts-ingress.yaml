@@ -7,7 +7,7 @@ spec:
     service:
       name: victoriametrics-victoria-metrics-single-server
       port:
-        number: 8482
+        number: 8428
   ingressClassName: tailscale
   tls:
     - hosts:
