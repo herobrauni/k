@@ -112,6 +112,54 @@ nodes:
       - oracle5.brill-bebop.ts.net
       - oracle5
 
+  - hostname: prohost1
+    controlPlane: false
+    ipAddress: 77.90.3.174
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens18
+        addresses:
+          - 77.90.3.174/24
+        dhcp: false
+        routes:
+          - gateway: 77.90.3.1
+    certSANs:
+      - prohost1.brill-bebop.ts.net
+      - prohost1
+
+  - hostname: hostsailor1
+    controlPlane: false
+    ipAddress: 185.183.98.121
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 185.183.98.121/27
+        dhcp: false
+        routes:
+          - gateway: 185.183.98.97
+    certSANs:
+      - hostsailor1.brill-bebop.ts.net
+      - hostsailor1
+
+  - hostname: kuroit4
+    controlPlane: false
+    ipAddress: 45.67.85.118
+    installDiskSelector:
+      size: <= 300GB
+    networkInterfaces:
+      - interface: ens3
+        addresses:
+          - 45.67.85.118/24
+        dhcp: false
+        routes:
+          - gateway: 45.67.85.1
+    certSANs:
+      - kuroit4.brill-bebop.ts.net
+      - kuroit4
+
 patches:
   - |-
     machine:

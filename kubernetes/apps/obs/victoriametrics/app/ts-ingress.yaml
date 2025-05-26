@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: victoriametrics-ts
+spec:
+  defaultBackend:
+    service:
+      name: victoriametrics-victoria-metrics-single-server
+      port:
+        number: 8482
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - victoriametrics
