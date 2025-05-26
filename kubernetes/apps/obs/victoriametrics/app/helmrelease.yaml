@@ -118,20 +118,20 @@ spec:
                   regex: '^/system\.slice/(.+)\.service$'
                   target_label: systemd_service_name
                   replacement: "${1}"
-    ingress:
-      enabled: true
-      ingressClassName: traefik
-      annotations:
-        external-dns.alpha.kubernetes.io/target: "480p.com"
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
-      hosts:
-        - name: "victoriametrics.480p.com"
-          path:
-            - /
-          port: http
-      pathType: Prefix
-      tls:
-        - secretName: "victoriametrics-tls"
-          hosts:
-            - "victoriametrics.480p.com"
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+        hosts:
+          - name: "victoriametrics.480p.com"
+            path:
+              - /
+            port: http
+        pathType: Prefix
+        tls:
+          - secretName: "victoriametrics-tls"
+            hosts:
+              - "victoriametrics.480p.com"
