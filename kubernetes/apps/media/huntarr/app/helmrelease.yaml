@@ -27,7 +27,7 @@ spec:
           app:
             image:
               repository: huntarr/huntarr
-              tag: latest@sha256:7c701d7903147ba3208acde957ec7e89356bc411895f2574fb955f48fb96e06b
+              tag: latest@sha256:4d53db3ba005fe88f5d72c3daec64ba9ed69b820794cc550db7e8603fc9af654
             env:
               TZ: Europe/Berlin
               LOG_LEVEL: "info"
