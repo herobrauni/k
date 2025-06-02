@@ -79,7 +79,9 @@ spec:
     coreDns:
       enabled: false
     kubeEtcd:
-      enabled: false
+      service:
+        selector:
+          component: kube-apiserver # etcd runs on control plane nodes
     kubeScheduler:
       enabled: false
     kubeProxy:
