@@ -36,11 +36,83 @@ spec:
   values:
     nameOverride: vmstack
 
-    defaultDashboards:
-      enabled: true
     grafana:
       enabled: false
+      forceDeployDatasource: true
+    crds:
+      enabled: true
+    prometheus-operator-crds:
+      enabled: true
     victoria-metrics-operator:
+      enabled: true
+      crd:
+        create: true
+        cleanup:
+          enabled: true
+      operator:
+        disable_prometheus_converter: false
+        enable_converter_ownership: true
+    defaultDashboards:
+      enabled: true
+      grafanaOperator:
+        enabled: true
+        spec:
+          instanceSelector:
+            matchLabels:
+              dashboards: grafana
+          allowCrossNamespaceImport: true
+    defaultDatasources:
+      grafanaOperator:
+        enabled: true
+        annotations: {}
+        spec:
+          instanceSelector:
+            matchLabels:
+              dashboards: grafana
+          allowCrossNamespaceImport: true
+      victoriametrics:
+        # -- Create per replica prometheus compatible datasource
+        perReplica: false
+        # -- List of prometheus compatible datasource configurations.
+        # VM `url` will be added to each of them in templates.
+        datasources:
+          - name: VictoriaMetrics
+            type: prometheus
+            access: proxy
+            isDefault: true
+          - name: VictoriaMetrics (DS)
+            isDefault: false
+            access: proxy
+            type: victoriametrics-metrics-datasource
+    defaultRules:
+      create: false
+    vmsingle:
+      enabled: true
+    alertmanager:
+      enabled: true
+    vmalert:
+      enabled: true
+    vmagent:
+      enabled: true
+    prometheus-node-exporter:
       enabled: false
-      cleanup:
-        enabled: false
+    kube-state-metrics:
+      enabled: false
+    kubelet:
+      enabled: false
+      cadvisor: false
+      probes: false
+    kubeApiServer:
+      enabled: false
+    kubeControllerManager:
+      enabled: false
+    kubeDns:
+      enabled: false
+    coreDns:
+      enabled: false
+    kubeEtcd:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    kubeProxy:
+      enabled: false
