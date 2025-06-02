@@ -38,7 +38,7 @@ spec:
 
     grafana:
       enabled: false
-      # forceDeployDatasource: true
+      forceDeployDashboards: true
     crds:
       enabled: true
     prometheus-operator-crds:
@@ -52,38 +52,6 @@ spec:
       operator:
         disable_prometheus_converter: false
         enable_converter_ownership: true
-    defaultDashboards:
-      enabled: true
-      grafanaOperator:
-        enabled: true
-        spec:
-          instanceSelector:
-            matchLabels:
-              dashboards: grafana
-          allowCrossNamespaceImport: true
-    defaultDatasources:
-      grafanaOperator:
-        enabled: true
-        annotations: {}
-        spec:
-          instanceSelector:
-            matchLabels:
-              dashboards: grafana
-          allowCrossNamespaceImport: true
-      victoriametrics:
-        # -- Create per replica prometheus compatible datasource
-        perReplica: false
-        # -- List of prometheus compatible datasource configurations.
-        # VM `url` will be added to each of them in templates.
-        datasources:
-          - name: VictoriaMetrics
-            type: prometheus
-            access: proxy
-            isDefault: true
-          - name: VictoriaMetrics (DS)
-            isDefault: false
-            access: proxy
-            type: victoriametrics-metrics-datasource
     defaultRules:
       create: false
     vmsingle:
