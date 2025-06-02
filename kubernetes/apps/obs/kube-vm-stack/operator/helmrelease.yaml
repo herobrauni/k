@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: kube-vm-stack
+  name: victoria-metrics-operator
 spec:
   interval: 5m
   layerSelector:
