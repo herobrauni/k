@@ -6,6 +6,6 @@ namespace: obs
 components:
   - ../../components/common
 resources:
-  - ./victoriametrics/ks.yaml
+  # - ./victoriametrics/ks.yaml
   - ./grafana/ks.yaml
-  # - ./kube-vm-stack/ks.yaml
+  - ./kube-vm-stack/ks.yaml
