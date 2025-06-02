@@ -38,7 +38,7 @@ spec:
 
     grafana:
       enabled: false
-      forceDeployDatasource: true
+      # forceDeployDatasource: true
     crds:
       enabled: true
     prometheus-operator-crds:
