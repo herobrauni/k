@@ -30,8 +30,10 @@ spec:
               - secretRef:
                   name: muse-secret
             image:
-              repository: ghcr.io/museofficial/muse
-              tag: latest@sha256:c666e6a2da22678e6fdd6dedae78c19e5029d22cc34e6379d98aa6e23ba09d2c
+              repository: dovah/muse
+              tag: latest@sha256:cc3349c39179397717352d32935237d44d3616648cf6fa7cd1e9dfed3aa1b645
+              # repository: ghcr.io/museofficial/muse
+              # tag: latest@sha256:c666e6a2da22678e6fdd6dedae78c19e5029d22cc34e6379d98aa6e23ba09d2c
             env:
               TZ: Europe/Berlin
     #         securityContext: &securityContext
