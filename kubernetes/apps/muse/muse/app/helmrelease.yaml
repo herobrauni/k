@@ -34,17 +34,17 @@ spec:
               tag: latest@sha256:c79e1471a5106d913b2206cf60deec8546dd486b594893f9e065840f53c8eb8b
             env:
               TZ: Europe/Berlin
-            securityContext: &securityContext
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
-    persistence:
-      data:
-        existingClaim: muse
+    #         securityContext: &securityContext
+    #           allowPrivilegeEscalation: false
+    #           readOnlyRootFilesystem: false
+    #           capabilities: { drop: ["ALL"] }
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 1000
+    #     runAsGroup: 1000
+    #     fsGroup: 1000
+    #     fsGroupChangePolicy: OnRootMismatch
+    # persistence:
+    #   data:
+    #     existingClaim: muse
