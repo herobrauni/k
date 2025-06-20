@@ -60,12 +60,10 @@ spec:
       enabled: true
       spec:
         storage:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: ceph-block
-              resources:
-                requests:
-                  storage: 20Gi
+          storageClassName: ceph-block
+          resources:
+            requests:
+              storage: 20Gi
         retentionPeriod: "14d"
         resources:
           requests:
@@ -93,12 +91,10 @@ spec:
       enabled: true
       spec:
         storage:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: ceph-block
-              resources:
-                requests:
-                  storage: 1Gi
+          storageClassName: ceph-block
+          resources:
+            requests:
+              storage: 1Gi
         externalURL: https://alertmanager.480p.com
       ingress:
         enabled: true
