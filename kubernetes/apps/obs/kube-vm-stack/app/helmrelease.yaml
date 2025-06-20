@@ -120,14 +120,14 @@ spec:
       enabled: true
       spec:
         datasource:
-          url: "http://vmsingle-vmstack:8429"
+          url: "http://vmsingle-kube-vm-stack-vmstack:8429"
         notifier:
-          url: "http://vmalertmanager-vmstack:9093"
+          url: "http://vmalertmanager-kube-vm-stack-vmstack:9093"
     vmagent:
       enabled: true
       spec:
         remoteWrite:
-          - url: "http://vmsingle-vmstack:8429/api/v1/write"
+          - url: "http://vmsingle-kube-vm-stack-vmstack:8429/api/v1/write"
     prometheus-node-exporter:
       enabled: true
       fullnameOverride: node-exporter
