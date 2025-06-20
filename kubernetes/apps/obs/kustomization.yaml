@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: obs
 components:
   - ../../components/common
-resources:
-  # - ./victoriametrics/ks.yaml
-  - ./grafana/ks.yaml
-  - ./kube-vm-stack/ks.yaml
+# resources:
+#   # - ./victoriametrics/ks.yaml
+#   - ./grafana/ks.yaml
+#   - ./kube-vm-stack/ks.yaml
