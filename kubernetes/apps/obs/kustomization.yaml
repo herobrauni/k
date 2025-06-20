@@ -8,4 +8,4 @@ components:
 resources:
   #   # - ./victoriametrics/ks.yaml
   - ./grafana/ks.yaml
-#   - ./kube-vm-stack/ks.yaml
+  - ./kube-vm-stack/ks.yaml
