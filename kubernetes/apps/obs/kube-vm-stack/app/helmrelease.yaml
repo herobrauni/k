@@ -60,7 +60,8 @@ spec:
       enabled: true
       spec:
         storage:
-          storageClassName: ceph-block
+          accessModes:
+            - ReadWriteOnce
           resources:
             requests:
               storage: 20Gi
@@ -90,11 +91,11 @@ spec:
     alertmanager:
       enabled: true
       spec:
-        storage:
-          storageClassName: ceph-block
-          resources:
-            requests:
-              storage: 1Gi
+        # storage:
+        #   storageClassName: ceph-block
+        #   resources:
+        #     requests:
+        #       storage: 1Gi
         externalURL: https://alertmanager.480p.com
       ingress:
         enabled: true
