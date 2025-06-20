@@ -20,7 +20,7 @@ spec:
   chart:
     spec:
       chart: csi-rclone
-      version: 0.4.2
+      version: 0.4.1
       sourceRef:
         kind: HelmRepository
         name: renku
@@ -32,9 +32,3 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  values:
-    rclone:
-      image:
-        repository: csi-rclone
-        tag: latest@sha256:6344c9e720470e29d3ee47c194f8e33c25e3a87377facc95b52e0b0204b14e30
-      imagePullPolicy: IfNotPresent
