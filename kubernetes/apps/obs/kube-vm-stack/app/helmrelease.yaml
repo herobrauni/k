@@ -27,11 +27,11 @@ spec:
     name: kube-vm-stack
 
   install:
-    timeout: 15m
+    timeout: 5m
     remediation:
       retries: -1
   upgrade:
-    timeout: 15m
+    timeout: 5m
     cleanupOnFail: true
     remediation:
       retries: 3
