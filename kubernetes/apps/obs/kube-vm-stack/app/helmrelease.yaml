@@ -56,33 +56,122 @@ spec:
       create: false
     vmsingle:
       enabled: true
+      spec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ceph-block
+              resources:
+                requests:
+                  storage: 25Gi
+        retentionPeriod: "14d"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            memory: 2000Mi
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+        hosts:
+          - "victoriametrics.480p.com"
+        paths:
+          - /
+        pathType: Prefix
+        tls:
+          - secretName: "victoriametrics-tls"
+            hosts:
+              - "victoriametrics.480p.com"
     alertmanager:
       enabled: true
+      spec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ceph-block
+              resources:
+                requests:
+                  storage: 1Gi
+        externalURL: https://alertmanager.480p.com
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+        hosts:
+          - "alertmanager.480p.com"
+        paths:
+          - /
+        pathType: Prefix
+        tls:
+          - secretName: "alertmanager-tls"
+            hosts:
+              - "alertmanager.480p.com"
     vmalert:
       enabled: true
+      spec:
+        datasource:
+          url: "http://vmsingle-vmstack:8429"
+        notifier:
+          url: "http://vmalertmanager-vmstack:9093"
     vmagent:
       enabled: true
+      spec:
+        remoteWrite:
+          - url: "http://vmsingle-vmstack:8429/api/v1/write"
     prometheus-node-exporter:
-      enabled: false
+      enabled: true
+      fullnameOverride: node-exporter
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels: ["__meta_kubernetes_pod_node_name"]
+              targetLabel: kubernetes_node
     kube-state-metrics:
-      enabled: false
+      enabled: true
+      fullnameOverride: kube-state-metrics
+      metricLabelsAllowlist:
+        - pods=[*]
+        - deployments=[*]
+        - persistentvolumeclaims=[*]
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels: ["__meta_kubernetes_pod_node_name"]
+              targetLabel: kubernetes_node
     kubelet:
-      enabled: false
-      cadvisor: false
-      probes: false
+      enabled: true
+      cadvisor: true
+      probes: true
     kubeApiServer:
-      enabled: false
+      enabled: true
     kubeControllerManager:
-      enabled: false
+      enabled: true
     kubeDns:
-      enabled: false
+      enabled: true
     coreDns:
-      enabled: false
+      enabled: true
     kubeEtcd:
+      enabled: true
       service:
         selector:
           component: kube-apiserver # etcd runs on control plane nodes
     kubeScheduler:
-      enabled: false
+      enabled: true
     kubeProxy:
-      enabled: false
+      enabled: true
