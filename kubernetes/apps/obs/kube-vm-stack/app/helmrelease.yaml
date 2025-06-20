@@ -27,9 +27,11 @@ spec:
     name: kube-vm-stack
 
   install:
+    timeout: 15m
     remediation:
       retries: -1
   upgrade:
+    timeout: 15m
     cleanupOnFail: true
     remediation:
       retries: 3
@@ -63,7 +65,7 @@ spec:
               storageClassName: ceph-block
               resources:
                 requests:
-                  storage: 25Gi
+                  storage: 20Gi
         retentionPeriod: "14d"
         resources:
           requests:
