@@ -27,7 +27,7 @@ spec:
           warp:
             image:
               repository: ghcr.io/mon-ius/docker-warp-socks
-              tag: latest@sha256:bfa8030550c7dbc07ceaa60cd93746ebb75fc27c2d84e826df601e2ad9fb5c77
+              tag: latest@sha256:1f5e0d1b6c461e0a359a03cb682230003f27fe88a1870d594549b481eb90381a
             resources:
               requests:
                 cpu: 100m
