@@ -7,7 +7,7 @@ spec:
     service:
       name: hubble-ui
       port:
-        number: 8081
+        number: 80
   ingressClassName: tailscale
   tls:
     - hosts:
