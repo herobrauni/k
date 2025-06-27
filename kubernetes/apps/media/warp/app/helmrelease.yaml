@@ -20,7 +20,6 @@ spec:
       retries: 3
   values:
     hostNetwork: true
-    controllers:
       warp:
         annotations:
           reloader.stakater.com/auto: "true"
@@ -36,6 +35,7 @@ spec:
               limits:
                 memory: 512Mi
     defaultPodOptions:
+      hostNetwork: true
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
