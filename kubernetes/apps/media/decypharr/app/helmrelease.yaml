@@ -71,23 +71,23 @@ spec:
               limits:
                 memory: 512Mi
 
-    # defaultPodOptions:
+    defaultPodOptions:
       # securityContext:
       #   runAsNonRoot: true
       #   runAsUser: 1000
       #   runAsGroup: 1000
       #   fsGroup: 1000
       #   fsGroupChangePolicy: OnRootMismatch
-      # affinity:
-      #   nodeAffinity:
-      #     # Target specific node "hostsailor1"
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #         - matchExpressions:
-      #             - key: kubernetes.io/hostname
-      #               operator: In
-      #               values:
-      #                 - hostsailor1
+      affinity:
+        nodeAffinity:
+          # Target specific node "hostsailor1"
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - hostsailor1
     service:
       app:
         controller: decypharr
