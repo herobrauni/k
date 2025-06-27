@@ -35,7 +35,7 @@ spec:
               limits:
                 memory: 512Mi
     defaultPodOptions:
-      hostNetwork: true
+      # hostNetwork: true
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
