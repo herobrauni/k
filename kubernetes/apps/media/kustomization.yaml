@@ -19,7 +19,7 @@ resources:
   - ./radarr/ks.yaml
   - ./radarr4k/ks.yaml
   - ./prowlarr/ks.yaml
-  - ./jellyseerr/ks.yaml
+  # - ./jellyseerr/ks.yaml
   - ./autosync/ks.yaml
   - ./profilarr/ks.yaml
   - ./huntarr/ks.yaml
