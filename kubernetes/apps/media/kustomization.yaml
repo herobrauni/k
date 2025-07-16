@@ -23,6 +23,8 @@ resources:
   - ./profilarr/ks.yaml
   - ./huntarr/ks.yaml
 
+  - ./seasonarr/ks.yaml
+
   # - ./debug-media/ks.yaml
   # - ./huntarr4k/ks.yaml
   # - ./recyclarr/ks.yaml

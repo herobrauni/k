@@ -1,0 +1,86 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app seasonarr
+spec:
+  interval: 1h
+  driftDetection:
+    mode: enabled
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      seasonarr:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/d3v1l1989/seasonarr
+              tag: latest@sha256:e33ceaf055a6c55cf50d8068c15933c6aaaf91e074229997a3ea4955d8a028ff
+            env:
+              TZ: Europe/Berlin
+              LOG_LEVEL: "info"
+              DATABASE_URL: sqlite:///./data/seasonarr.db
+              PORT: &port 8000
+              JWT_SECRET_KEY: change-this-to-a-secure-random-string
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 512Mi
+              limits:
+                memory: 1Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: seasonarr
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        enabled: true
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - hosts:
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
+    persistence:
+      data:
+        existingClaim: seasonarr
+        globalMounts:
+          - path: /app/data
+      tmp:
+        type: emptyDir
