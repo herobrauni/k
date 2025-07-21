@@ -36,7 +36,7 @@ spec:
           app:
             image:
               repository: cy01/blackhole
-              tag: beta@sha256:1ad6dee594b68d268d7e56eae93f73fa314e94985e2247d45b9fd0a78daa08ce
+              tag: beta@sha256:5bb2f9714a46a0649f08c7eb99aa9596fd16e4a1284d8beab90902a6541d5e40
             probes:
               liveness: &probes
                 enabled: true
