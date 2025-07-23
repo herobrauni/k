@@ -27,7 +27,7 @@ spec:
           app:
             image:
               repository: ghcr.io/d3v1l1989/seasonarr
-              tag: latest@sha256:24f425fb9070ad3e2a6531b27923f38aae3a33b59897a82b3d318b4f8f6490f1
+              tag: latest@sha256:75b7266a8de33724f486439a70e86eadbdcf26e95299d70bd6e37f684f07dbd4
             env:
               TZ: Europe/Berlin
               LOG_LEVEL: "info"
