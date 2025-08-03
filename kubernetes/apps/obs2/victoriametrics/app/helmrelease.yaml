@@ -24,7 +24,7 @@ spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: victoria-metrics-operator
+    name: victoria-metrics-k8s-stack
   install:
     remediation:
       retries: -1
