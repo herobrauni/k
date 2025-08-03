@@ -6,4 +6,4 @@ namespace: obs2
 components:
   - ../../components/common
 resources:
-  # - ./victoriametrics/ks.yaml
+  - ./victoriametrics/ks.yaml

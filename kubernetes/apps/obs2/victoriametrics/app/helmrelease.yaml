@@ -47,7 +47,6 @@ spec:
         replicationFactor: 2
         vmstorage:
           replicaCount: 2
-          storageDataPath: /vm-data
           extraArgs:
             dedup.minScrapeInterval: 10s
           storage:
@@ -59,11 +58,10 @@ spec:
                   - ReadWriteOnce
                 resources:
                   requests:
-                    storage: 25Gi
+                    storage: 10Gi
         vmselect:
           port: "8481"
           replicaCount: 2
-          cacheMountPath: /select-cache
           extraArgs:
             dedup.minScrapeInterval: 10s
           storage:
