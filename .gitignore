@@ -23,3 +23,4 @@ tmp/
 /clusterconfig
 db.snapshot
 *.md
+.claude
