@@ -147,11 +147,6 @@ spec:
               component: apiserver
               provider: kubernetes
 
-    kubeControllerManager: # this requires additional configuration; will be handled in the next post
-      enabled: false
-      service:
-        enabled: false
-
     kubeDns:
       enabled: false
       service:
@@ -162,15 +157,10 @@ spec:
       service:
         enabled: true
 
-    kubeEtcd: # this requires additional configuration; will be handled in the next post
-      enabled: false
+    kubeEtcd:
       service:
-        enabled: false
-
-    kubeScheduler: # this requires additional configuration; will be handled in the next post
-      enabled: false
-      service:
-        enabled: false
+        selector:
+          component: kube-apiserver # etcd runs on control plane nodes
 
     kubeProxy:
       # my cluster uses Cilium in kube-proxy replacement mode, so I don't need this
