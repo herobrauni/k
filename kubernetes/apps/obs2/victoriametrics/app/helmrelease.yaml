@@ -162,13 +162,13 @@ spec:
       enabled: true
       service:
         enabled: true
-        port: 2379
-        targetPort: 2379
+        port: 2381
+        targetPort: 2381
         selector:
           component: kube-controller-manager # instead of using hardcoded IP endpoints,
-          # this is a trick borrowed from from https://github.com/siderolabs/talos/discussions/7214#discussioncomment-10255876 
+          # this is a trick borrowed from from https://github.com/siderolabs/talos/discussions/7214#discussioncomment-10255876
           # which only works if/because etcd is deployed on the same nodes where the rest
-          # of the api server (notably kube-controller-manager) are deployed. Adjust if that's 
+          # of the api server (notably kube-controller-manager) are deployed. Adjust if that's
           # not how your cluster is set up.
       # vmScrape here is synonymous with serviceMonitor in kube-prometheus
       vmScrape:
@@ -182,7 +182,7 @@ spec:
               tlsConfig: # caFile, certFile, and keyFile from Neil's post
                 ca:
                   secret: # can reference the secret directly instead of needing
-                          # to add it somewhere else
+                    # to add it somewhere else
                     name: etcd-secrets
                     key: ca.crt
                 cert:
