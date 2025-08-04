@@ -159,39 +159,9 @@ spec:
         enabled: true
 
     kubeEtcd:
-      enabled: true
       service:
-        enabled: true
-        port: 2379
-        targetPort: 2379
         selector:
-          component: kube-controller-manager # instead of using hardcoded IP endpoints,
-          # this is a trick borrowed from from https://github.com/siderolabs/talos/discussions/7214#discussioncomment-10255876
-          # which only works if/because etcd is deployed on the same nodes where the rest
-          # of the api server (notably kube-controller-manager) are deployed. Adjust if that's
-          # not how your cluster is set up.
-      # vmScrape here is synonymous with serviceMonitor in kube-prometheus
-      vmScrape:
-        spec:
-          jobLabel: jobLabel
-          namespaceSelector:
-            matchNames: [kube-system]
-          endpoints:
-            - port: http-metrics
-              scheme: https
-              tlsConfig: # caFile, certFile, and keyFile from Neil's post
-                ca:
-                  secret: # can reference the secret directly instead of needing
-                    # to add it somewhere else
-                    name: etcd-secrets
-                    key: ca.crt
-                cert:
-                  secret:
-                    name: etcd-secrets
-                    key: server.crt
-                keySecret:
-                  name: etcd-secrets
-                  key: server.key
+          component: kube-apiserver # etcd runs on control plane nodes
 
     kubeProxy:
       # my cluster uses Cilium in kube-proxy replacement mode, so I don't need this
