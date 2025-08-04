@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: victoria-metrics-k8s-stack
+  name: vm-k8s-stack
 spec:
   interval: 5m
   layerSelector:
@@ -17,14 +17,14 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: victoria-metrics-k8s-stack
+  name: vm-k8s-stack
 spec:
   driftDetection:
     mode: enabled
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: victoria-metrics-k8s-stack
+    name: vm-k8s-stack
   install:
     remediation:
       retries: -1
