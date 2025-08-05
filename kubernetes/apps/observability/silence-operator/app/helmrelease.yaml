@@ -34,7 +34,7 @@ spec:
     alertmanagerAddress: http://kube-prometheus-stack-alertmanager:9093
     image:
       registry: quay.io
-      tag: 0.18.0-09bcd2cb56db07f27f0d6d0af4409515aa527f2f
+      tag: "0.18.0-09bcd2cb56db07f27f0d6d0af4409515aa527f2f"
     networkPolicy:
       enabled: false
     nodeAffinity:
