@@ -58,7 +58,6 @@ portSelector:
     - 2379-2381
   protocol: tcp
 ingress:
-  - subnet: "100.64.0.0/10"
   - subnet: "100.99.99.0/24"
   - subnet: "10.42.0.0/16"
 ---

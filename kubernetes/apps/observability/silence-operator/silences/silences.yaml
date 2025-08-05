@@ -28,6 +28,18 @@ spec:
 apiVersion: observability.giantswarm.io/v1alpha2
 kind: Silence
 metadata:
+  name: ceph-pg-imbalance
+spec:
+  matchers:
+    - name: alertname
+      value: CephPGImbalance
+    - name: job
+      value: rook-ceph-exporter
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/observability.giantswarm.io/silence_v1alpha2.json
+apiVersion: observability.giantswarm.io/v1alpha2
+kind: Silence
+metadata:
   name: keda-hpa-maxed-out
 spec:
   matchers:
