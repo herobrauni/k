@@ -85,15 +85,33 @@ spec:
       app:
         endpoints:
           - port: http
-    route:
+    ingress:
       app:
-        hostnames:
-          - "{{ .Release.Name }}.480p.com"
-          - status.480p.com
-        parentRefs:
-          - name: external
-            namespace: kube-system
-            sectionName: https
+        enabled: true
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: 80
+          - host: &statusHost "status.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: 80
+        tls:
+          - hosts:
+              - *host
+              - *statusHost
+            secretName: "{{ .Release.Name }}-tls"
     rbac:
       roles:
         gatus:

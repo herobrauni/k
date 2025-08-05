@@ -253,14 +253,25 @@ spec:
       - vonage-status-panel
     serviceMonitor:
       enabled: true
-    route:
+    ingress:
       main:
         enabled: true
-        hostnames: ["{{ .Release.Name }}.480p.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: main
+                  port: 80
+        tls:
+          - hosts:
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
     persistence:
       enabled: false
     testFramework:
