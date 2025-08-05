@@ -39,6 +39,5 @@ spec:
     image:
       repository: ghcr.io/home-operations/smartctl-exporter
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "0.14"
-      pullPolicy: IfNotPresent
-      pullSecrets: []
+      tag: 0.14
+      pullPolicy: Always
