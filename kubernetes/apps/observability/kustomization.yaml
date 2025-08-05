@@ -6,19 +6,18 @@ namespace: observability
 components:
   - ../../components/common
 resources:
-  # - ./alloy/ks.yaml
+  - ./alloy/ks.yaml
   # - ./blackbox-exporter/ks.yaml
   - ./gatus/ks.yaml
   - ./grafana/ks.yaml
   # - ./keda/ks.yaml
   # - ./kromgo/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
-  # - ./loki/ks.yaml
+  - ./loki/ks.yaml
   - ./silence-operator/ks.yaml
   - ./smartctl-exporter/ks.yaml
   # - ./snmp-exporter/ks.yaml
   # - ./spoodermon/ks.yaml
-  # - ./unpoller/ks.yaml
 patches:
   - target:
       kind: Namespace
