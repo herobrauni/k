@@ -65,17 +65,25 @@ spec:
             port: *port
           health:
             port: *healthPort
-    route:
+    ingress:
       app:
-        hostnames: ["{{ .Release.Name }}.480p.com"]
-        parentRefs:
-          - name: external
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
+        enabled: true
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - secretName: "{{ .Release.Name }}-tls"
+            hosts:
+              - *host
     persistence:
       config-file:
         type: configMap
