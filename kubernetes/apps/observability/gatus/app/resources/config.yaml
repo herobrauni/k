@@ -7,7 +7,7 @@ metrics: true
 ui:
   title: Status | Gatus
   header: Status
-  logo: https://avatars.githubusercontent.com/u/herobrauni
+  logo: https://avatars.githubusercontent.com/u/20051140
   link: https://github.com/herobrauni
   buttons:
     - name: Github
