@@ -197,7 +197,7 @@ spec:
           revision: 4
           datasource: Prometheus
         node-information:
-          # renovate: depName="ZFS"
+          # renovate: depName="Node Information"
           gnetId: 22403
           revision: 12
           datasource: Prometheus
