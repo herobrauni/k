@@ -254,24 +254,20 @@ spec:
     serviceMonitor:
       enabled: true
     ingress:
-      main:
-        enabled: true
-        className: traefik
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "480p.com"
-          cert-manager.io/cluster-issuer: letsencrypt-production
-        hosts:
-          - host: &host "{{ .Release.Name }}.480p.com"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: 80
-        tls:
-          - hosts:
-              - *host
-            secretName: "{{ .Release.Name }}-tls"
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "480p.com"
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+        - "{{ .Release.Name }}.480p.com"
+      paths:
+        - /
+      pathType: Prefix
+      tls:
+        - secretName: "{{ .Release.Name }}-tls"
+          hosts:
+            - "{{ .Release.Name }}.480p.com"
     persistence:
       enabled: false
     testFramework:
