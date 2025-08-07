@@ -41,15 +41,15 @@ spec:
               liveness: &probes
                 enabled: true
               readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: true
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-              runAsNonRoot: true
-              runAsUser: 1000
-              runAsGroup: 1000
-              fsGroup: 1000
-              fsGroupChangePolicy: OnRootMismatch
+            # securityContext:
+            #   allowPrivilegeEscalation: true
+            #   readOnlyRootFilesystem: true
+            #   capabilities: { drop: ["ALL"] }
+            #   runAsNonRoot: true
+            #   runAsUser: 1000
+            #   runAsGroup: 1000
+            #   fsGroup: 1000
+            #   fsGroupChangePolicy: OnRootMismatch
 
             # resources:
             #   requests:
