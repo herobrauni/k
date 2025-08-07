@@ -55,7 +55,7 @@ kind: NetworkRuleConfig
 name: etcd-ingress
 portSelector:
   ports:
-    - 2379-2380
+    - 2379-2381
   protocol: tcp
 ingress:
   - subnet: "100.99.99.0/24"

@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: silence-operator
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.18.0
+  url: oci://ghcr.io/home-operations/charts-mirror/silence-operator
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: silence-operator
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: silence-operator
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    alertmanagerAddress: http://kube-prometheus-stack-alertmanager:9093
+    image:
+      registry: quay.io
+      tag: "0.18.0-09bcd2cb56db07f27f0d6d0af4409515aa527f2f"
+    networkPolicy:
+      enabled: false
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values: ["amd64"]

@@ -1,0 +1,28 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: observability
+components:
+  - ../../components/common
+resources:
+  - ./alloy/ks.yaml
+  - ./gatus/ks.yaml
+  - ./grafana/ks.yaml
+  # - ./keda/ks.yaml
+  - ./kromgo/ks.yaml
+  - ./kube-prometheus-stack/ks.yaml
+  - ./loki/ks.yaml
+  - ./silence-operator/ks.yaml
+  - ./smartctl-exporter/ks.yaml
+  # - ./spoodermon/ks.yaml
+patches:
+  - target:
+      kind: Namespace
+    patch: |-
+      - op: add
+        path: /metadata/labels
+        value:
+          pod-security.kubernetes.io/audit: privileged
+          pod-security.kubernetes.io/enforce: privileged
+          pod-security.kubernetes.io/warn: privileged
