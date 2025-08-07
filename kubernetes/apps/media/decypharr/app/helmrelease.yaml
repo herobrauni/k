@@ -42,7 +42,7 @@ spec:
                 enabled: true
               readiness: *probes
             securityContext:
-              allowPrivilegeEscalation: false
+              allowPrivilegeEscalation: true
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
               runAsNonRoot: true
