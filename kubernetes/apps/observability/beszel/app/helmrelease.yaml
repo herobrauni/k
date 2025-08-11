@@ -27,7 +27,7 @@ spec:
         containers:
           app:
             image:
-              repository: henrygd/beszel-agent
+              repository: ghcr.io/henrygd/beszel-agent
               tag: latest@sha256:ea3873f8e0b8ed7bc35e1f8db7b2b5352ba2f273eb05a9298099da173f76259b
             envFrom:
               - secretRef:
