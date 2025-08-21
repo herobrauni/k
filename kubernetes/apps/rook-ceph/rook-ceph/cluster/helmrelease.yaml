@@ -59,8 +59,6 @@ spec:
       crashCollector:
         disable: true
       csi:
-        readAffinity:
-          enabled: true
       dashboard:
         enabled: true
         urlPrefix: /
