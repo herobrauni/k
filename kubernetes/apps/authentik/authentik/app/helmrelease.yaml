@@ -45,7 +45,7 @@ spec:
       redis:
         host: dragonfly.dragonfly.svc.cluster.local
         port: 6379
-        db: 1
+        db: 0
       postgresql:
         host: authentik-postgres-v17-rw.authentik.svc.cluster.local
       primary:
