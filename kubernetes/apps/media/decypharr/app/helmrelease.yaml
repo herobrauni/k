@@ -72,8 +72,8 @@ spec:
                 memory: 512Mi
           watcher:
             image:
-              repository: bitnami/kubectl:1.33.4
-              tag: latest
+              repository: bitnami/kubectl
+              tag: "1.33.4"
             command:
               - sh
               - -c
