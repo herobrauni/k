@@ -29,16 +29,6 @@ jobs:
           repository: SwissDataScienceCenter/csi-rclone
           path: src-repo
 
-      - name: Set current date as env variable
-        run: echo "DATETAG=$(date +'%Y%m%d')" >> $GITHUB_ENV
-
-    #   - name: Clone source repository
-    #     run: |
-    #       git clone https://github.com/SwissDataScienceCenter/csi-rclone.git src-repo
-    #       cd src-repo
-    #       echo "Cloned repository contents:"
-    #       ls -la
-
       - name: Set up Docker
         uses: docker/setup-docker-action@v4
         with:
