@@ -36,15 +36,14 @@ spec:
           app:
             image:
               repository: santiagosayshey/profilarr
-              # tag: beta@sha256:cb90b0d0417a4eff5c98c1bbcf71b2382661d7c959b96b69953daf3d46cba8b6
-              tag: v1.1.2@sha256:da7883be74c1b69ac1735ce4238b1a77e12117e94c64355704bf27bac0aa34de
+              tag: beta@sha256:cb90b0d0417a4eff5c98c1bbcf71b2382661d7c959b96b69953daf3d46cba8b6
             env:
               TZ: Europe/Berlin
               LOG_LEVEL: "info"
               PORT: &port 6868
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               capabilities: { drop: ["ALL"] }
               runAsNonRoot: true
               runAsUser: 1000
