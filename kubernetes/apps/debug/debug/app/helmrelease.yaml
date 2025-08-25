@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: nicolaka/netshoot
-              tag: v0.14
+              tag: v0.14@f786ed24c22a110c5049406af38debc8a6c94a5c
 
             command: ["sleep"]
             args: ["infinity"]
