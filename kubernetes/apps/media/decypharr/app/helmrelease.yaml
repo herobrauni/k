@@ -81,7 +81,6 @@ spec:
                 kubectl get pods -n media
 
     defaultPodOptions:
-      shareProcessNamespace: true
       # securityContext:
       #   runAsNonRoot: true
       #   runAsUser: 1000
