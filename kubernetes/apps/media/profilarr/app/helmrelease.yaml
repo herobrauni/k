@@ -41,15 +41,6 @@ spec:
               TZ: Europe/Berlin
               LOG_LEVEL: "info"
               PORT: &port 6868
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
-              runAsNonRoot: true
-              runAsUser: 1000
-              runAsGroup: 1000
-              fsGroup: 1000
-              fsGroupChangePolicy: OnRootMismatch
             resources:
               requests:
                 cpu: 10m
