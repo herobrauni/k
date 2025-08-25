@@ -23,6 +23,15 @@ spec:
       profilarr:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          config-init:
+            image:
+              repository: busybox
+              tag: latest
+            command:
+              - sh
+              - -c
+              - mkdir -p /home/appuser && chown -R 1000:1000 /home/appuser
         containers:
           app:
             image:
