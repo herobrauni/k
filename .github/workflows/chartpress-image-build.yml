@@ -52,7 +52,7 @@ jobs:
         run: |
           cd src-repo
           echo "Running chartpress to build and push images..."
-          chartpress --push --builder docker-buildx --platform linux/amd64 --platform linux/arm64
+          chartpress --builder docker-buildx --platform linux/amd64 --platform linux/arm64
         env:
           # Ensure images are pushed to the correct registry
           DOCKER_REGISTRY: ghcr.io/${{ github.repository_owner }}
