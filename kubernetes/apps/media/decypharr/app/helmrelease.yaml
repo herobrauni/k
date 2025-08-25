@@ -70,8 +70,51 @@ spec:
               #   memory: 512Mi
               limits:
                 memory: 512Mi
+          watcher:
+            image:
+              repository: busybox
+              tag: latest
+            command:
+              - sh
+              - -c
+              - |
+                #!/bin/sh
+                set -euo pipefail
+
+                PID_FILE="/tmp/app.pid"
+                FIRST_RUN=true
+
+                while true; do
+                  # Find the PID of the 'app' container's main process.
+                  # This is a bit of a hack, but it should work for most cases.
+                  # We're looking for the process that is not ourself and not the 'sleep' process.
+                  CURRENT_PID=$(pgrep -f '[b]lackhole' || true)
+
+                  if [ -z "$CURRENT_PID" ]; then
+                    echo "App process not found. Waiting..."
+                    sleep 10
+                    continue
+                  fi
+
+                  if [ "$FIRST_RUN" = "true" ]; then
+                    echo "First run. Storing PID $CURRENT_PID"
+                    echo "$CURRENT_PID" > "$PID_FILE"
+                    FIRST_RUN=false
+                  else
+                    PREVIOUS_PID=$(cat "$PID_FILE")
+                    if [ "$CURRENT_PID" != "$PREVIOUS_PID" ]; then
+                      echo "App container restarted. New PID: $CURRENT_PID, Previous PID: $PREVIOUS_PID"
+                      # Do something here, for example, touch a file.
+                      touch /tmp/restarted
+                      echo "$CURRENT_PID" > "$PID_FILE"
+                    fi
+                  fi
+
+                  sleep 60
+                done
 
     defaultPodOptions:
+      shareProcessNamespace: true
       # securityContext:
       #   runAsNonRoot: true
       #   runAsUser: 1000
