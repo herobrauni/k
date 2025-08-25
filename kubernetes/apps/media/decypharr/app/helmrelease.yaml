@@ -88,7 +88,7 @@ spec:
                   # Find the PID of the 'app' container's main process.
                   # This is a bit of a hack, but it should work for most cases.
                   # We're looking for the process that is not ourself and not the 'sleep' process.
-                  CURRENT_PID=$(pgrep -f '[b]lackhole' || true)
+                  CURRENT_PID=$(pgrep -f 'decypharr' || true)
 
                   if [ -z "$CURRENT_PID" ]; then
                     echo "App process not found. Waiting..."
