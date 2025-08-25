@@ -1,0 +1,89 @@
+---
+name: Build csi-rclone Image
+on:
+  workflow_dispatch:
+
+env:
+  DEFAULT_TAG: "latest"
+  IMAGE_DESC: "csi-rclone"
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}" # do not edit
+
+
+jobs:
+  build_push:
+    name: Build and push image
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: csi-rclone
+
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      # These stage versions are pinned by https://github.com/renovatebot/renovate
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v4
+        with:
+          repository: SwissDataScienceCenter/csi-rclone
+          path: src-repo
+
+      - name: Set current date as env variable
+        run: echo "DATETAG=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
+    #   - name: Clone source repository
+    #     run: |
+    #       git clone https://github.com/SwissDataScienceCenter/csi-rclone.git src-repo
+    #       cd src-repo
+    #       echo "Cloned repository contents:"
+    #       ls -la
+
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4
+        with:
+          daemon-config: |
+            {
+              "debug": true,
+              "features": {
+                "containerd-snapshotter": true
+              }
+            }
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+
+
+      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
+      # https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@d0603cd0a7dd490be678164909f65c7737470a7f # v6
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}
+
+      # These `if` statements are so that pull requests for your custom images do not make it publish any packages under your name without you knowing
+      # They also check if the runner is on the default branch so that things like the merge queue (if you enable it), are going to work
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@184bdaa0721073962dff0199f1fb9940f07167d1 # v3
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lowercase Image
+        id: image_case
+        uses: ASzc/change-string-case-action@d0603cd0a7dd490be678164909f65c7737470a7f # v6
+        with:
+          string: ${{ env.IMAGE_NAME }}
+
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src-repo
+          platforms: linux/amd64 ,linux/arm64
+          tags: ghcr.io/herobrauni/csi-rclone:latest
+          push: true
