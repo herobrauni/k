@@ -109,6 +109,12 @@ spec:
               limits:
                 memory: 512Mi
     persistence:
+      scripts:
+        type: configMap
+        name: "monitor-script"
+        defaultMode: 0775
+        globalMounts:
+          - readOnly: true
       symlinks:
         existingClaim: symlinks
         globalMounts:
