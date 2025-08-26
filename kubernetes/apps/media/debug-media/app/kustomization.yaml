@@ -5,3 +5,6 @@ kind: Kustomization
 namespace: media
 resources:
   - ./helmrelease.yaml
+  - ./serviceaccount.yaml
+  - ./role.yaml
+  - ./rolebinding.yaml

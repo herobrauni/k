@@ -19,19 +19,25 @@ spec:
     remediation:
       retries: 3
   values:
+    serviceAccount:
+      debug-media:
+        forceRename: debug-media
+        annotations: {}
     controllers:
       debug-media:
         type: deployment
         annotations:
           reloader.stakater.com/auto: "true"
+        serviceAccount:
+          identifier: debug-media
         containers:
           app:
             image:
-              repository: alpine
-              tag: latest@sha256:4bcff63911fcb4448bd4fdacec207030997caf25e9bea4045fa6c8c44de311d1
+              repository: bitnami/kubectl
+              tag: latest
 
-            command: ["sleep"]
-            args: ["infinity"]
+            command: ["/bin/bash"]
+            args: ["-c", "sleep infinity"]
             # securityContext:
             #   allowPrivilegeEscalation: false
             #   readOnlyRootFilesystem: true
