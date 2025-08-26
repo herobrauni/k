@@ -8,3 +8,11 @@ resources:
   - ./serviceaccount.yaml
   - ./role.yaml
   - ./rolebinding.yaml
+configMapGenerator:
+  - name: monitor-scripts
+    files:
+      - monitor-decypharr.sh=./resources/monitor-decypharr.sh
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
