@@ -8,6 +8,7 @@ resources:
   - ./serviceaccount.yaml
   - ./role.yaml
   - ./rolebinding.yaml
+  - ./cronjob-monitor-decypharr.yaml
 configMapGenerator:
   - name: monitor-scripts
     files:
