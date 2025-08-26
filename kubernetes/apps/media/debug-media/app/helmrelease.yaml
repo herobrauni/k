@@ -109,13 +109,6 @@ spec:
               limits:
                 memory: 512Mi
     persistence:
-      monitor-script:
-        enabled: true
-        type: configMap
-        name: debug-media-monitor-script
-        globalMounts:
-          - path: /scripts
-            readOnly: true
       symlinks:
         existingClaim: symlinks
         globalMounts:
