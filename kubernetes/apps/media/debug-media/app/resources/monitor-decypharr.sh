@@ -59,9 +59,7 @@ fi
 
 # Get decypharr last restart time (if any)
 DECY_LAST_RESTART_TIME=$(kubectl get pod $POD_NAME -n $NAMESPACE -o jsonpath='{.status.containerStatuses[0].lastState.terminated.finishedAt}' 2>/dev/null)
-DECY_RESTART_COUNT=$(kubectl get pod $POD_NAME -n $NAMESPACE -o jsonpath='{.status.containerStatuses[0].restartCount}' 2>/dev/null || echo 0)
 
-echo "Decypharr restart count: ${DECY_RESTART_COUNT}"
 if [ -z "$DECY_LAST_RESTART_TIME" ] || [ "$DECY_LAST_RESTART_TIME" == "null" ]; then
     echo "No recent restart detected for $APP_NAME pod"
     exit 0
