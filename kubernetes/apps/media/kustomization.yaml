@@ -25,7 +25,7 @@ resources:
 
   - ./seasonarr/ks.yaml
 
-  - ./debug-media/ks.yaml
+  - ./decypharr-restarter/ks.yaml
   # - ./huntarr4k/ks.yaml
   # - ./recyclarr/ks.yaml
   # - ./rdtclient/ks.yaml

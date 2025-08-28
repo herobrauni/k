@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app debug-media
+  name: &app decypharr-restarter
 spec:
   driftDetection:
     mode: enabled
@@ -20,16 +20,16 @@ spec:
       retries: 3
   values:
     serviceAccount:
-      debug-media:
-        forceRename: debug-media
+      decypharr-restarter:
+        forceRename: decypharr-restarter
         annotations: {}
     controllers:
-      debug-media:
+      decypharr-restarter:
         type: deployment
         annotations:
           reloader.stakater.com/auto: "true"
         serviceAccount:
-          identifier: debug-media
+          identifier: decypharr-restarter
         containers:
           app:
             image:
