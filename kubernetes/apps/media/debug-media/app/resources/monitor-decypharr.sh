@@ -1,17 +1,20 @@
 #!/bin/bash
 
-# Script to continuously monitor decypharr and plex pods
-# Checks pod uptimes and restarts plex if it's been running longer than decypharr
+# Script to continuously monitor decypharr and media pods
+# Compares uptime of each media deployment to decypharr and restarts those with higher uptime
+# Monitors: plex, sonarr, sonarr4k, radarr, radarr4k
 # Runs in a continuous loop with configurable check intervals
 # Usage: ./monitor-decypharr.sh (runs continuously, use Ctrl+C to stop)
 
 NAMESPACE="media"
 APP_NAME="decypharr"
-OTHER_APP="plex"
 TIME_THRESHOLD_MINUTES=5
 CHECK_INTERVAL_SECONDS=60
+# Deployments to monitor and potentially restart
+MONITOR_DEPLOYMENTS=("plex" "sonarr" "sonarr4k" "radarr" "radarr4k")
 
-echo "Starting continuous monitoring of $APP_NAME and $OTHER_APP pods..."
+echo "Starting continuous monitoring of $APP_NAME and media deployments..."
+echo "Monitoring deployments: ${MONITOR_DEPLOYMENTS[*]}"
 echo "Check interval: $CHECK_INTERVAL_SECONDS seconds"
 echo "Press Ctrl+C to stop monitoring"
 echo
@@ -30,86 +33,89 @@ to_epoch() {
   date -u -d "$1" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$1" +%s 2>/dev/null
 }
 
-# Get the pod name for decypharr
-POD_NAME=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=$APP_NAME -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+# Helper: get uptime in minutes for a deployment
+get_deployment_uptime() {
+  local deployment_name=$1
+  local pod_name=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=$deployment_name -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
 
-if [ -z "$POD_NAME" ]; then
-    echo "Error: Could not find pod for $APP_NAME in namespace $NAMESPACE"
+  if [ -z "$pod_name" ]; then
+    echo "Error: Could not find pod for $deployment_name in namespace $NAMESPACE" >&2
+    return 1
+  fi
+
+  local start_time=$(kubectl get pod $pod_name -n $NAMESPACE -o jsonpath='{.status.startTime}' 2>/dev/null)
+
+  if [ -z "$start_time" ] || [ "$start_time" == "null" ]; then
+    echo "Error: Could not get start time for pod $pod_name" >&2
+    return 1
+  fi
+
+  local start_time_seconds=$(to_epoch "$start_time")
+
+  if [ -z "$start_time_seconds" ]; then
+    echo "Error: Could not parse start time for $deployment_name" >&2
+    return 1
+  fi
+
+  local uptime_seconds=$((CURRENT_TIME - start_time_seconds))
+  local uptime_minutes=$((uptime_seconds / 60))
+
+  echo "$uptime_minutes"
+  return 0
+}
+
+# Get decypharr uptime first
+echo "Getting $APP_NAME uptime..."
+DECYPHARR_UPTIME=$(get_deployment_uptime "$APP_NAME")
+
+if [ $? -ne 0 ]; then
+    echo "Error: Could not get $APP_NAME uptime"
     iteration_error=true
-fi
-
-echo "Found pod: $POD_NAME"
-
-# Get pod start time
-START_TIME=$(kubectl get pod $POD_NAME -n $NAMESPACE -o jsonpath='{.status.startTime}' 2>/dev/null)
-
-if [ -z "$START_TIME" ] || [ "$START_TIME" == "null" ]; then
-    echo "Error: Could not get start time for pod $POD_NAME"
-    iteration_error=true
-fi
-
-echo "Pod start time: $START_TIME"
-
-CURRENT_TIME=$(date -u +%s)
-START_TIME_SECONDS=$(to_epoch "$START_TIME")
-
-if [ -z "$START_TIME_SECONDS" ]; then
-    echo "Error: Could not parse start time"
-    iteration_error=true
-fi
-
-# Calculate pod uptime
-UPTIME_SECONDS=$((CURRENT_TIME - START_TIME_SECONDS))
-UPTIME_MINUTES=$((UPTIME_SECONDS / 60))
-
-echo "Pod uptime: $UPTIME_MINUTES minutes"
-
-# Get the pod name for plex
-PLEX_POD_NAME=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=$OTHER_APP -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
-
-if [ -z "$PLEX_POD_NAME" ]; then
-    echo "Error: Could not find pod for $OTHER_APP in namespace $NAMESPACE"
-    iteration_error=true
-fi
-
-echo "Found plex pod: $PLEX_POD_NAME"
-
-# Get plex pod start time
-PLEX_START_TIME=$(kubectl get pod $PLEX_POD_NAME -n $NAMESPACE -o jsonpath='{.status.startTime}' 2>/dev/null)
-
-if [ -z "$PLEX_START_TIME" ] || [ "$PLEX_START_TIME" == "null" ]; then
-    echo "Error: Could not get start time for plex pod $PLEX_POD_NAME"
-    iteration_error=true
-fi
-
-echo "Plex pod start time: $PLEX_START_TIME"
-
-PLEX_START_TIME_SECONDS=$(to_epoch "$PLEX_START_TIME")
-
-if [ -z "$PLEX_START_TIME_SECONDS" ]; then
-    echo "Error: Could not parse plex start time"
-    iteration_error=true
-fi
-
-# Calculate plex pod uptime
-PLEX_UPTIME_SECONDS=$((CURRENT_TIME - PLEX_START_TIME_SECONDS))
-PLEX_UPTIME_MINUTES=$((PLEX_UPTIME_SECONDS / 60))
-
-echo "Plex pod uptime: $PLEX_UPTIME_MINUTES minutes"
-
-# Compare uptimes and restart plex if it's been running longer than decypharr
-if [ $PLEX_UPTIME_MINUTES -gt $UPTIME_MINUTES ]; then
-    echo "Plex has been running longer than decypharr ($PLEX_UPTIME_MINUTES > $UPTIME_MINUTES minutes)"
-    echo "Restarting plex pod..."
-    kubectl delete pod $PLEX_POD_NAME -n $NAMESPACE
-    if [ $? -eq 0 ]; then
-        echo "Successfully initiated plex pod restart"
-    else
-        echo "Error: Failed to restart plex pod"
-        iteration_error=true
-    fi
 else
-    echo "Plex uptime ($PLEX_UPTIME_MINUTES minutes) is not longer than decypharr ($UPTIME_MINUTES minutes) - no restart needed"
+    echo "$APP_NAME uptime: $DECYPHARR_UPTIME minutes"
+fi
+
+# Check each deployment and restart those with higher uptime than decypharr
+deployments_to_restart=()
+
+for deployment in "${MONITOR_DEPLOYMENTS[@]}"; do
+    echo "Checking $deployment uptime..."
+
+    deployment_uptime=$(get_deployment_uptime "$deployment")
+
+    if [ $? -ne 0 ]; then
+        echo "Error: Could not get $deployment uptime"
+        iteration_error=true
+        continue
+    fi
+
+    echo "$deployment uptime: $deployment_uptime minutes"
+
+    # Compare uptime with decypharr
+    if [ $deployment_uptime -gt $DECYPHARR_UPTIME ]; then
+        echo "$deployment has been running longer than $APP_NAME ($deployment_uptime > $DECYPHARR_UPTIME minutes)"
+        deployments_to_restart+=("$deployment")
+    else
+        echo "$deployment uptime ($deployment_uptime minutes) is not longer than $APP_NAME ($DECYPHARR_UPTIME minutes)"
+    fi
+done
+
+# Restart deployments that need it
+if [ ${#deployments_to_restart[@]} -gt 0 ]; then
+    echo "Restarting deployments with higher uptime: ${deployments_to_restart[*]}"
+
+    for deployment in "${deployments_to_restart[@]}"; do
+        echo "Restarting $deployment deployment..."
+        kubectl rollout restart deployment/$deployment -n $NAMESPACE
+        if [ $? -eq 0 ]; then
+            echo "Successfully initiated $deployment deployment restart"
+        else
+            echo "Error: Failed to restart $deployment deployment"
+            iteration_error=true
+        fi
+    done
+else
+    echo "No deployments need restarting - all have lower or equal uptime compared to $APP_NAME"
 fi
 
     # Log iteration result
