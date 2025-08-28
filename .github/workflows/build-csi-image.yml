@@ -2,6 +2,8 @@
 name: Build csi-rclone Image
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * 6'
 
 env:
   DEFAULT_TAG: "latest"
