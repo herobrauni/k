@@ -36,7 +36,7 @@ spec:
               repository: bitnami/kubectl
               tag: latest
             command: ["/bin/bash"]
-            args: ["-c", "sleep infinity"]
+            args: ["-c", "/scripts/monitor-decypharr.sh"]
             # securityContext:
             #   allowPrivilegeEscalation: false
             #   readOnlyRootFilesystem: true

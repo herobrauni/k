@@ -1,16 +1,29 @@
 #!/bin/bash
 
-# Script to check if decypharr pod has restarted in the last 5 minutes
-# Also checks how long the pod has been running
-# If decypharr restarted recently, compare with plex restarts and restart plex if needed
-# Usage: ./monitor-decypharr.sh
+# Script to continuously monitor decypharr and plex pods
+# Checks pod uptimes and restarts plex if it's been running longer than decypharr
+# Runs in a continuous loop with configurable check intervals
+# Usage: ./monitor-decypharr.sh (runs continuously, use Ctrl+C to stop)
 
 NAMESPACE="media"
 APP_NAME="decypharr"
 OTHER_APP="plex"
 TIME_THRESHOLD_MINUTES=5
+CHECK_INTERVAL_SECONDS=60
 
-echo "Checking if $APP_NAME pod has restarted in the last $TIME_THRESHOLD_MINUTES minutes..."
+echo "Starting continuous monitoring of $APP_NAME and $OTHER_APP pods..."
+echo "Check interval: $CHECK_INTERVAL_SECONDS seconds"
+echo "Press Ctrl+C to stop monitoring"
+echo
+
+# Main monitoring loop
+while true; do
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - Checking pod statuses..."
+
+    # Reset error flag for this iteration
+    iteration_error=false
+
+    echo "Checking if $APP_NAME pod has restarted in the last $TIME_THRESHOLD_MINUTES minutes..."
 
 # Helper: parse RFC3339 time to epoch seconds (GNU date or BSD date fallback)
 to_epoch() {
@@ -22,7 +35,7 @@ POD_NAME=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=$APP_NAME -o
 
 if [ -z "$POD_NAME" ]; then
     echo "Error: Could not find pod for $APP_NAME in namespace $NAMESPACE"
-    exit 1
+    iteration_error=true
 fi
 
 echo "Found pod: $POD_NAME"
@@ -32,7 +45,7 @@ START_TIME=$(kubectl get pod $POD_NAME -n $NAMESPACE -o jsonpath='{.status.start
 
 if [ -z "$START_TIME" ] || [ "$START_TIME" == "null" ]; then
     echo "Error: Could not get start time for pod $POD_NAME"
-    exit 1
+    iteration_error=true
 fi
 
 echo "Pod start time: $START_TIME"
@@ -42,7 +55,7 @@ START_TIME_SECONDS=$(to_epoch "$START_TIME")
 
 if [ -z "$START_TIME_SECONDS" ]; then
     echo "Error: Could not parse start time"
-    exit 1
+    iteration_error=true
 fi
 
 # Calculate pod uptime
@@ -51,88 +64,62 @@ UPTIME_MINUTES=$((UPTIME_SECONDS / 60))
 
 echo "Pod uptime: $UPTIME_MINUTES minutes"
 
-# If pod started recently, just report and exit 0 per your preference
-if [ $UPTIME_MINUTES -lt $TIME_THRESHOLD_MINUTES ]; then
-    echo "Pod started recently (within last $TIME_THRESHOLD_MINUTES minutes)"
-    exit 0
+# Get the pod name for plex
+PLEX_POD_NAME=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=$OTHER_APP -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+
+if [ -z "$PLEX_POD_NAME" ]; then
+    echo "Error: Could not find pod for $OTHER_APP in namespace $NAMESPACE"
+    iteration_error=true
 fi
 
-# Get decypharr last restart time (if any)
-DECY_LAST_RESTART_TIME=$(kubectl get pod $POD_NAME -n $NAMESPACE -o jsonpath='{.status.containerStatuses[0].lastState.terminated.finishedAt}' 2>/dev/null)
+echo "Found plex pod: $PLEX_POD_NAME"
 
-if [ -z "$DECY_LAST_RESTART_TIME" ] || [ "$DECY_LAST_RESTART_TIME" == "null" ]; then
-    echo "No recent restart detected for $APP_NAME pod"
-    exit 0
+# Get plex pod start time
+PLEX_START_TIME=$(kubectl get pod $PLEX_POD_NAME -n $NAMESPACE -o jsonpath='{.status.startTime}' 2>/dev/null)
+
+if [ -z "$PLEX_START_TIME" ] || [ "$PLEX_START_TIME" == "null" ]; then
+    echo "Error: Could not get start time for plex pod $PLEX_POD_NAME"
+    iteration_error=true
 fi
 
-echo "Decypharr last restart time: $DECY_LAST_RESTART_TIME"
+echo "Plex pod start time: $PLEX_START_TIME"
 
-DECY_LAST_RESTART_SECONDS=$(to_epoch "$DECY_LAST_RESTART_TIME")
-if [ -z "$DECY_LAST_RESTART_SECONDS" ]; then
-    echo "Error: Could not parse decypharr last restart time"
-    exit 1
+PLEX_START_TIME_SECONDS=$(to_epoch "$PLEX_START_TIME")
+
+if [ -z "$PLEX_START_TIME_SECONDS" ]; then
+    echo "Error: Could not parse plex start time"
+    iteration_error=true
 fi
 
-TIME_DIFF_SECONDS=$((CURRENT_TIME - DECY_LAST_RESTART_SECONDS))
-TIME_DIFF_MINUTES=$((TIME_DIFF_SECONDS / 60))
+# Calculate plex pod uptime
+PLEX_UPTIME_SECONDS=$((CURRENT_TIME - PLEX_START_TIME_SECONDS))
+PLEX_UPTIME_MINUTES=$((PLEX_UPTIME_SECONDS / 60))
 
-echo "Time since decypharr last restart: $TIME_DIFF_MINUTES minutes"
+echo "Plex pod uptime: $PLEX_UPTIME_MINUTES minutes"
 
-# If decypharr restarted within threshold, check plex
-if [ $TIME_DIFF_MINUTES -le $TIME_THRESHOLD_MINUTES ]; then
-    echo "Decypharr restarted within the last $TIME_THRESHOLD_MINUTES minutes — checking $OTHER_APP restarts..."
-
-    # Find plex pods
-    PLEX_PODS=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=$OTHER_APP -o jsonpath='{.items[*].metadata.name}' 2>/dev/null)
-    if [ -z "$PLEX_PODS" ]; then
-        echo "Warning: No pods found for $OTHER_APP in namespace $NAMESPACE. Skipping restart."
-        exit 0
-    fi
-
-    # For each plex pod, compute the most recent restart time (or startTime if never restarted)
-    MAX_PLEX_RESTART_SECONDS=0
-    for p in $PLEX_PODS; do
-        plex_last=$(kubectl get pod $p -n $NAMESPACE -o jsonpath='{.status.containerStatuses[0].lastState.terminated.finishedAt}' 2>/dev/null)
-        if [ -z "$plex_last" ] || [ "$plex_last" == "null" ]; then
-            # fall back to pod startTime
-            plex_last=$(kubectl get pod $p -n $NAMESPACE -o jsonpath='{.status.startTime}' 2>/dev/null)
-        fi
-
-        if [ -z "$plex_last" ] || [ "$plex_last" == "null" ]; then
-            # no usable timestamp, skip
-            echo "Pod $p: no restart or start time available"
-            continue
-        fi
-
-        plex_seconds=$(to_epoch "$plex_last")
-        if [ -z "$plex_seconds" ]; then
-            echo "Warning: could not parse time for plex pod $p ($plex_last)"
-            continue
-        fi
-
-        if [ "$plex_seconds" -gt "$MAX_PLEX_RESTART_SECONDS" ]; then
-            MAX_PLEX_RESTART_SECONDS=$plex_seconds
-        fi
-    done
-
-    if [ "$MAX_PLEX_RESTART_SECONDS" -eq 0 ]; then
-        echo "No plex timestamps found; assuming plex has not restarted since decypharr. Triggering rollout restart of deployment/$OTHER_APP."
-        kubectl rollout restart deployment/$OTHER_APP -n $NAMESPACE && echo "Triggered rollout restart for $OTHER_APP" || echo "Failed to trigger rollout restart for $OTHER_APP"
-        exit 0
-    fi
-
-    echo "Most recent plex restart/start time (epoch): $MAX_PLEX_RESTART_SECONDS"
-    echo "Decypharr last restart time (epoch): $DECY_LAST_RESTART_SECONDS"
-
-    if [ "$MAX_PLEX_RESTART_SECONDS" -gt "$DECY_LAST_RESTART_SECONDS" ]; then
-        echo "Plex has been restarted after decypharr; no action needed."
-        exit 0
+# Compare uptimes and restart plex if it's been running longer than decypharr
+if [ $PLEX_UPTIME_MINUTES -gt $UPTIME_MINUTES ]; then
+    echo "Plex has been running longer than decypharr ($PLEX_UPTIME_MINUTES > $UPTIME_MINUTES minutes)"
+    echo "Restarting plex pod..."
+    kubectl delete pod $PLEX_POD_NAME -n $NAMESPACE
+    if [ $? -eq 0 ]; then
+        echo "Successfully initiated plex pod restart"
     else
-        echo "Plex has NOT been restarted after decypharr. Triggering rollout restart of deployment/$OTHER_APP..."
-        kubectl rollout restart deployment/$OTHER_APP -n $NAMESPACE && echo "Triggered rollout restart for $OTHER_APP" || echo "Failed to trigger rollout restart for $OTHER_APP"
-        exit 0
+        echo "Error: Failed to restart plex pod"
+        iteration_error=true
     fi
 else
-    echo "Decypharr did not restart within the last $TIME_THRESHOLD_MINUTES minutes. No action."
-    exit 0
+    echo "Plex uptime ($PLEX_UPTIME_MINUTES minutes) is not longer than decypharr ($UPTIME_MINUTES minutes) - no restart needed"
 fi
+
+    # Log iteration result
+    if [ "$iteration_error" = true ]; then
+        echo "Warning: Errors occurred during this check cycle, but monitoring will continue"
+    else
+        echo "Check cycle completed successfully"
+    fi
+
+    echo "Waiting $CHECK_INTERVAL_SECONDS seconds before next check..."
+    echo
+    sleep $CHECK_INTERVAL_SECONDS
+done
