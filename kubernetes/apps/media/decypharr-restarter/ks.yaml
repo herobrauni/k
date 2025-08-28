@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app debug-media
+  name: &app decypharr-restarter
   namespace: &namespace media
 spec:
   commonMetadata:
@@ -15,7 +15,7 @@ spec:
       name: *app
       namespace: *namespace
   interval: 1h
-  path: ./kubernetes/apps/media/debug-media/app
+  path: ./kubernetes/apps/media/decypharr-restarter/app
   prune: true
   retryInterval: 2m
   sourceRef:
