@@ -36,6 +36,7 @@ to_epoch() {
 # Helper: get uptime in minutes for a deployment
 get_deployment_uptime() {
   local deployment_name=$1
+  local current_time=$(date -u +%s)
   local pod_name=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=$deployment_name -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
 
   if [ -z "$pod_name" ]; then
@@ -57,7 +58,7 @@ get_deployment_uptime() {
     return 1
   fi
 
-  local uptime_seconds=$((CURRENT_TIME - start_time_seconds))
+  local uptime_seconds=$((current_time - start_time_seconds))
   local uptime_minutes=$((uptime_seconds / 60))
 
   echo "$uptime_minutes"
