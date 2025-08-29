@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: rancher/kubectl
-              tag: latest
+              tag: "v1.33.4"
             command: ["/bin/bash"]
             args: ["-c", "/scripts/monitor-decypharr.sh"]
             # securityContext:
