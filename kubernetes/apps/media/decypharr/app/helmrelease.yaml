@@ -70,15 +70,6 @@ spec:
               #   memory: 512Mi
               limits:
                 memory: 512Mi
-          # watcher:
-          #   image:
-          #     repository: bitnami/kubectl
-          #     tag: "1.33.4"
-          #   command:
-          #     - sh
-          #     - -c
-          #     - |
-          #       kubectl get pods -n media
 
     defaultPodOptions:
       # securityContext:
