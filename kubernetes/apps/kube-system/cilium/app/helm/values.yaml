@@ -62,7 +62,7 @@ extraInitContainers:
       allowPrivilegeEscalation: false
       capabilities:
         drop: [ALL]
-      runAsNonRoot: true
+      runAsNonRoot: false
       readOnlyRootFilesystem: true
       seccompProfile:
         type: RuntimeDefault
