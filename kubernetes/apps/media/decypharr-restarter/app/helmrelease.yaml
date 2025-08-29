@@ -33,8 +33,8 @@ spec:
         containers:
           app:
             image:
-              repository: rancher/kubectl
-              tag: v1.33.4@sha256:5c0d769f262a320aef3a37e74188ebd5376e8acf2db85421a9cc138df1fcb6fb
+              repository: alpine/k8s
+              tag: 1.33.4@sha256:b0523f0a244ddc4c8e055aa335c040d3d78b3ead5528f4544395f7f9f69c7b68
             command: ["/bin/bash"]
             args: ["-c", "/scripts/monitor-decypharr.sh"]
             # securityContext:
