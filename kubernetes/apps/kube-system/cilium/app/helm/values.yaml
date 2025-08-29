@@ -85,8 +85,7 @@ extraInitContainers:
       - mountPath: /mnt/share-pod-cidr
         name: share-pod-cidr
   - name: set-tailscale-advertise-routes
-    image: tailscale/tailscale
-    tag: latest@sha256:9e2bfdd9e2ce724df53f976d06a4a9933aa730dc655ace42798f4c73735d1cac
+    image: tailscale/tailscale:latest@sha256:9e2bfdd9e2ce724df53f976d06a4a9933aa730dc655ace42798f4c73735d1cac
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
