@@ -57,7 +57,8 @@ k8sServiceHost: localhost
 k8sServicePort: 7445
 extraInitContainers:
   - name: get-node-pod-cidr
-    image: bitnami/kubectl:latest
+    image: alpine/k8s
+    tag: 1.33.4@sha256:b0523f0a244ddc4c8e055aa335c040d3d78b3ead5528f4544395f7f9f69c7b68
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
@@ -85,7 +86,8 @@ extraInitContainers:
       - mountPath: /mnt/share-pod-cidr
         name: share-pod-cidr
   - name: set-tailscale-advertise-routes
-    image: tailscale/tailscale:latest
+    image: tailscale/tailscale
+    tag: latest@sha256:9e2bfdd9e2ce724df53f976d06a4a9933aa730dc655ace42798f4c73735d1cac
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
