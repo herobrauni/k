@@ -28,9 +28,14 @@ while true; do
 
     echo "Checking if $APP_NAME pod has restarted in the last $TIME_THRESHOLD_MINUTES minutes..."
 
-# Helper: parse RFC3339 time to epoch seconds (GNU date or BSD date fallback)
+# Helper: parse RFC3339 time to epoch seconds (BusyBox/Alpine compatible)
 to_epoch() {
-  date -u -d "$1" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$1" +%s 2>/dev/null
+  # Try BusyBox date format first (Alpine Linux)
+  date -u -D "%Y-%m-%dT%H:%M:%SZ" -d "$1" +%s 2>/dev/null ||
+  # Fallback to GNU date format
+  date -u -d "$1" +%s 2>/dev/null ||
+  # Final fallback to BSD date format
+  date -j -f "%Y-%m-%dT%H:%M:%SZ" "$1" +%s 2>/dev/null
 }
 
 # Helper: get uptime in minutes for a deployment
