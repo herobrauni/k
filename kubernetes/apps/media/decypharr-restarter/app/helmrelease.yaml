@@ -33,7 +33,7 @@ spec:
         containers:
           app:
             image:
-              repository: bitnami/kubectl
+              repository: registry.k8s.io/kubectl
               tag: latest
             command: ["/bin/bash"]
             args: ["-c", "/scripts/monitor-decypharr.sh"]
