@@ -33,7 +33,7 @@ spec:
         containers:
           app:
             image:
-              repository: registry.k8s.io/kubectl
+              repository: rancher/kubectl
               tag: latest
             command: ["/bin/bash"]
             args: ["-c", "/scripts/monitor-decypharr.sh"]
