@@ -56,12 +56,12 @@ spec:
         type: filesystem
       schemaConfig:
         configs:
-          store: tsdb
-          object_store: filesystem
-          schema: v13
-          index:
-            prefix: loki_index_
-            period: 24h
+          - store: tsdb
+            object_store: filesystem
+            schema: v13
+            index:
+              prefix: loki_index_
+              period: 24h
       structuredConfig:
         ruler:
           enable_api: true
