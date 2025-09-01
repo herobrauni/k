@@ -56,13 +56,12 @@ spec:
         type: filesystem
       schemaConfig:
         configs:
-          - from: "2024-04-01" # quote
-            store: tsdb
-            object_store: filesystem
-            schema: v13
-            index:
-              prefix: loki_index_
-              period: 24h
+          store: tsdb
+          object_store: filesystem
+          schema: v13
+          index:
+            prefix: loki_index_
+            period: 24h
       structuredConfig:
         ruler:
           enable_api: true
@@ -78,7 +77,7 @@ spec:
       persistence:
         enabled: true
         storageClass: ceph-block
-        size: 50Gi
+        size: 5Gi
     gateway:
       replicas: 0
     backend:
