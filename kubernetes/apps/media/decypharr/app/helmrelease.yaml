@@ -81,9 +81,10 @@ spec:
       affinity:
         nodeAffinity:
           # Target specific node "hostsailor1"
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
