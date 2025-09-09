@@ -50,7 +50,7 @@ spec:
     extraArgs:
       - --cloudflare-dns-records-per-page=1000
       - --cloudflare-proxied
-      - --traefik-disable-legacy
+      # - --traefik-disable-legacy
     triggerLoopOnEvent: true
     policy: sync
     sources: ["crd", "service", "ingress"]
