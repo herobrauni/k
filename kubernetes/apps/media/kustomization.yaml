@@ -13,6 +13,7 @@ resources:
   - ./warp/ks.yaml
   - ./plex/ks.yaml
   - ./tautulli/ks.yaml
+  - ./jellyfin/ks.yaml
   - ./sonarr/ks.yaml
   - ./sonarr4k/ks.yaml
   - ./radarr/ks.yaml
