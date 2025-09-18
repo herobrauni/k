@@ -11,7 +11,7 @@ APP_NAME="decypharr"
 TIME_THRESHOLD_MINUTES=5
 CHECK_INTERVAL_SECONDS=60
 # Deployments to monitor and potentially restart
-MONITOR_DEPLOYMENTS=("plex" "sonarr" "sonarr4k" "radarr" "radarr4k")
+MONITOR_DEPLOYMENTS=("plex" "jellyfin" "sonarr" "sonarr4k" "radarr" "radarr4k")
 
 echo "Starting continuous monitoring of $APP_NAME and media deployments..."
 echo "Monitoring deployments: ${MONITOR_DEPLOYMENTS[*]}"
