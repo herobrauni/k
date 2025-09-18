@@ -67,14 +67,25 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [44]
       affinity:
-        podAffinity:
+        # podAffinity:
+        #   preferredDuringSchedulingIgnoredDuringExecution:
+        #     - weight: 1
+        #       podAffinityTerm:
+        #         labelSelector:
+        #           matchLabels:
+        #             app.kubernetes.io/name: decypharr
+        #         topologyKey: kubernetes.io/hostname
+        nodeAffinity:
+          # Target specific node "hostsailor1"
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 1
-              podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app.kubernetes.io/name: decypharr
-                topologyKey: kubernetes.io/hostname
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      # - hostsailor1
+                      - oracle5
     service:
       app:
         ports:
