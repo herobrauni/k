@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: henrygd/beszel-agent
-              tag: latest@sha256:eb33fcf2a49f3694d0088dcd23a34e2d5ad3c3d575d97aca6a1d3394faada51a
+              tag: latest@sha256:f26072f3c1b5a3dd40c0faddb7ba54f78869f78b8518227d67cb3354eaf5a242
             envFrom:
               - secretRef:
                   name: beszel-agent-secret
