@@ -41,7 +41,7 @@ spec:
                   name: muse-secret
             image:
               repository: ghcr.io/museofficial/muse
-              tag: latest
+              tag: pr-1284@sha256:67ef91ffc6a808feaec05bd7a1de8808cd5f100b588dcf1b522c704dcdcb9ba4
               # repository: ghcr.io/museofficial/muse
               # tag: latest@sha256:c666e6a2da22678e6fdd6dedae78c19e5029d22cc34e6379d98aa6e23ba09d2c
             env:
