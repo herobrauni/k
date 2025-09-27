@@ -37,12 +37,12 @@ spec:
       rclone:
         image:
           repository: ghcr.io/herobrauni/csi-rclone
-          tag: latest@sha256:c1cb72d3866f484d52000b8cdd9d20f7ad2f36fe78887c6e81f080eefc1769ce
+          tag: latest@sha256:93edcf398b0866e641b183a8b341cd06942c1a24bb075ec9dec8caf5c9d5f9d7
         imagePullPolicy: IfNotPresent
 
     csiNodepluginRclone:
       rclone:
         image:
           repository: ghcr.io/herobrauni/csi-rclone
-          tag: latest@sha256:c1cb72d3866f484d52000b8cdd9d20f7ad2f36fe78887c6e81f080eefc1769ce
+          tag: latest@sha256:93edcf398b0866e641b183a8b341cd06942c1a24bb075ec9dec8caf5c9d5f9d7
         imagePullPolicy: IfNotPresent
