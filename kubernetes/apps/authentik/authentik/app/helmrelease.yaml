@@ -72,4 +72,4 @@ spec:
         tls:
           - hosts:
               - "auth.480p.com"
-            secretName: "auth-tls"
+            secretName: "authentik-outpost-tls"
