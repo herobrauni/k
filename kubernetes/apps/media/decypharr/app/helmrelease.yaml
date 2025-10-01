@@ -89,7 +89,7 @@ spec:
                     operator: In
                     values:
                       - hostsailor1
-                      - oracle5
+                      # - oracle5
     service:
       app:
         controller: decypharr
