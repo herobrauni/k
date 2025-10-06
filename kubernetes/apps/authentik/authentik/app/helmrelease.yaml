@@ -73,3 +73,15 @@ spec:
           - hosts:
               - "auth.480p.com"
             secretName: "authentik-outpost-tls"
+    worker:
+      replicas: 2
+      resources:
+        requests:
+          cpu: 50m
+          memory: 256Mi
+        limits:
+          memory: 512Mi
+      readinessProbe:
+        enabled: false
+      livenessProbe:
+        enabled: true
