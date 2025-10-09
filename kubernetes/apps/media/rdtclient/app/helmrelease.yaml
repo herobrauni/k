@@ -27,7 +27,7 @@ spec:
           app:
             image:
               repository: rogerfar/rdtclient
-              tag: 2.0.117
+              tag: 2.0.118
             env:
               TZ: "Europe/Berlin"
               PUID: 911
