@@ -10,7 +10,7 @@ spec:
     mode: enabled
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: beszel-agent
   install:
     remediation:
       retries: -1
