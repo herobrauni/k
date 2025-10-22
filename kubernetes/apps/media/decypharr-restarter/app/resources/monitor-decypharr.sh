@@ -15,9 +15,9 @@ CHECK_INTERVAL_SECONDS=60
 # File to monitor
 MONITOR_FILE="/aio/remote/realdebrid/version.txt"
 # Deployments to monitor and potentially restart
-MONITOR_DEPLOYMENTS=("plex" "jellyfin" "sonarr" "sonarr4k" "radarr" "radarr4k")
+MONITOR_DEPLOYMENTS=("plex" "sonarr" "sonarr4k" "radarr" "radarr4k")
 # All deployments to restart when monitor file is missing
-ALL_DEPLOYMENTS=("decypharr" "plex" "jellyfin" "sonarr" "sonarr4k" "radarr" "radarr4k")
+ALL_DEPLOYMENTS=("decypharr" "plex" "sonarr" "sonarr4k" "radarr" "radarr4k")
 
 echo "Starting continuous monitoring of $APP_NAME and media deployments..."
 echo "Monitoring deployments: ${MONITOR_DEPLOYMENTS[*]}"
