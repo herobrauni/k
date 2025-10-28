@@ -30,10 +30,12 @@ spec:
               tag: latest@sha256:c1a4af24d4850774a3909f56505281a715d888980cef0d801175e668d5804769
             env:
               TZ: Europe/Berlin
-              SYMLINK_DIR: /aio/symlinks
+              SYMLINK_DIR: /aio/symlinks/plex_hd,/aio/symlinks/plex_4k
               TORRENTS_DIR: /aio/remote/realdebrid/__all__
               DELETE_BEHAVIOR: files
               SCAN_INTERVAL: 0
+              DRY_RUN: true
+              RUN_ON_STARTUP: false
             probes:
               liveness: &probes
                 enabled: true
@@ -52,21 +54,10 @@ spec:
                 spec:
                   failureThreshold: 30
                   periodSeconds: 10
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 100m
                 memory: 256Mi
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         controller: alfred
