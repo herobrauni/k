@@ -24,6 +24,7 @@ resources:
   - ./autosync/ks.yaml
   - ./profilarr/ks.yaml
   - ./huntarr/ks.yaml
+  - ./debug-python/ks.yaml
 
   - ./seasonarr/ks.yaml
 

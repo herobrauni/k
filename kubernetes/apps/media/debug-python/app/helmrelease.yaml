@@ -1,0 +1,55 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app debug-python
+spec:
+  interval: 1h
+  driftDetection:
+    mode: enabled
+  chartRef:
+    kind: OCIRepository
+    name: debug-python
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      debug-python:
+        containers:
+          app:
+            image:
+              repository: python
+              tag: 3.12-slim
+            command:
+              - sleep
+              - infinity
+            env:
+              TZ: Europe/Berlin
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+              limits:
+                cpu: 500m
+                memory: 512Mi
+    service:
+      app:
+        enabled: false
+    ingress:
+      app:
+        enabled: false
+    persistence:
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /config
+      scripts:
+        type: emptyDir
+        globalMounts:
+          - path: /scripts
