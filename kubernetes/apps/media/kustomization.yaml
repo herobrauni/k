@@ -21,11 +21,11 @@ resources:
   - ./radarr4k/ks.yaml
   - ./prowlarr/ks.yaml
   - ./jellyseerr/ks.yaml
-  - ./autosync/ks.yaml
+  # - ./autosync/ks.yaml
   - ./profilarr/ks.yaml
-  - ./huntarr/ks.yaml
+  # - ./huntarr/ks.yaml
 
-  - ./seasonarr/ks.yaml
+  # - ./seasonarr/ks.yaml
 
   - ./decypharr-restarter/ks.yaml
   - ./decypharr-sync-helper/ks.yaml
