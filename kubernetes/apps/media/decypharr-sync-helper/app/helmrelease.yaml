@@ -37,6 +37,7 @@ spec:
               QB_SYNC_CROSS_DEVICE_FALLBACK: "error"
               QB_SYNC_DELETE_TORRENT: "true"
               QB_SYNC_DELETE_FILES: "false"
+              QB_SYNC_PRESERVE_SUBFOLDER: "true"
     persistence:
       symlinks:
         existingClaim: symlinks
