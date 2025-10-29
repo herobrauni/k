@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app decypharr-sync-helper
+spec:
+  interval: 1h
+  driftDetection:
+    mode: enabled
+  chartRef:
+    kind: OCIRepository
+    name: decypharr-sync-helper
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      decypharr-sync-helper:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/herobrauni/decypharr-sync-helper
+              tag: latest
+            env:
+              TZ: Europe/Berlin
+              QB_SYNC_BASE_URL: "http://decypharr.media.svc.cluster.local:8282"
+              QB_SYNC_CATEGORY: "other"
+              QB_SYNC_DEST_PATH: "/aio/symlinks/other"
+              QB_SYNC_POLL_INTERVAL: "60s"
+              QB_SYNC_OPERATION: "hardlink"
+              QB_SYNC_CROSS_DEVICE_FALLBACK: "error"
+              QB_SYNC_DELETE_TORRENT: "true"
+              QB_SYNC_DELETE_FILES: "false"
+    persistence:
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /config
+      data:
+        type: emptyDir
+        globalMounts:
+          - path: /data
+      symlinks:
+        existingClaim: symlinks
+        globalMounts:
+          - path: /aio/symlinks
+      rclone:
+        existingClaim: pvc-rclone
+        globalMounts:
+          - path: /aio/remote/realdebrid
+            readOnly: true
