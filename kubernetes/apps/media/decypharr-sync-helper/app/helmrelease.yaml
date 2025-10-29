@@ -46,6 +46,8 @@ spec:
                     name: decypharr-sync-helper-secret
                     key: QB_SYNC_PLEX_TOKEN
               QB_SYNC_NOTIFICATION_ENABLED: "true"
+              QB_SYNC_NOTIFICATION_ON_SUCCESS: "true"
+              QB_SYNC_NOTIFICATION_ON_ERROR: "true"
               QB_SYNC_SHOUTRRR_URLS:
                 valueFrom:
                   secretKeyRef:
