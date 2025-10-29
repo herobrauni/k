@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/herobrauni/decypharr-sync-helper
-              tag: latest@sha256:a1c51424e294e722fbd4f5b9d2fc7466f8759b1f1845feb1cdf0a5a364c57005
+              tag: latest@sha256:ce7a62fecfe76b41d67b67ede3d9ebeb0c273d0c3b00d1ed5dec3d4cea194967
               pullPolicy: Always
             env:
               TZ: Europe/Berlin
@@ -38,6 +38,13 @@ spec:
               QB_SYNC_DELETE_TORRENT: "true"
               QB_SYNC_DELETE_FILES: "false"
               QB_SYNC_PRESERVE_SUBFOLDER: "true"
+              QB_SYNC_PLEX_ENABLED: "true"
+              QB_SYNC_PLEX_URL: "http://plex.media.svc.cluster.local:32400"
+              QB_SYNC_PLEX_TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    name: decypharr-sync-helper-secret
+                    key: QB_SYNC_PLEX_TOKEN
     persistence:
       symlinks:
         existingClaim: symlinks
