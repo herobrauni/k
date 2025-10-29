@@ -38,14 +38,6 @@ spec:
               QB_SYNC_DELETE_TORRENT: "true"
               QB_SYNC_DELETE_FILES: "false"
     persistence:
-      config:
-        type: emptyDir
-        globalMounts:
-          - path: /config
-      data:
-        type: emptyDir
-        globalMounts:
-          - path: /data
       symlinks:
         existingClaim: symlinks
         globalMounts:
