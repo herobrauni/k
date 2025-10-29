@@ -28,7 +28,7 @@ resources:
   - ./seasonarr/ks.yaml
 
   - ./decypharr-restarter/ks.yaml
-  # - ./decypharr-sync-helper/ks.yaml
+  - ./decypharr-sync-helper/ks.yaml
   # - ./debug-python/ks.yaml
   # - ./huntarr4k/ks.yaml
   # - ./recyclarr/ks.yaml
