@@ -26,6 +26,7 @@ spec:
             image:
               repository: ghcr.io/herobrauni/decypharr-sync-helper
               tag: latest
+              pullPolicy: Always
             env:
               TZ: Europe/Berlin
               QB_SYNC_BASE_URL: "http://decypharr.media.svc.cluster.local:8282"
