@@ -136,7 +136,6 @@ spec:
         existingClaim: pvc-rclone
         globalMounts:
           - path: /aio/remote/realdebrid
-            readOnly: true
       logs:
         type: emptyDir
         globalMounts:
