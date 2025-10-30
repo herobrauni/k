@@ -1,0 +1,14 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: dest-sample
+spec:
+  trigger:
+    schedule: "30 * * * *"
+  restic:
+    ### Standard volume options
+    # ReplicationDestinationVolumeOptions
+
+    ### Restic-specific options
+    repository: # Secret name containing repository info (string)
