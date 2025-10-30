@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/herobrauni/decypharr-sync-helper
-              tag: latest@sha256:aeef3959e25f09b87b4317af704b3c37dec21093485d8d7edeb3e924b003d8e9
+              tag: latest@sha256:fe4892a067d02f1eefbb4d9bb4133162dad675e928ef435ed3b59502a52902c1
               pullPolicy: Always
             env:
               TZ: Europe/Berlin
