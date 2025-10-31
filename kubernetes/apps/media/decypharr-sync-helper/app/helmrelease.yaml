@@ -27,6 +27,7 @@ spec:
               repository: ghcr.io/herobrauni/decypharr-sync-helper
               tag: latest@sha256:fe4892a067d02f1eefbb4d9bb4133162dad675e928ef435ed3b59502a52902c1
               pullPolicy: Always
+
             env:
               TZ: Europe/Berlin
               QB_SYNC_BASE_URL: "http://decypharr.media.svc.cluster.local:8282"
@@ -64,6 +65,17 @@ spec:
                   secretKeyRef:
                     name: decypharr-sync-helper-secret
                     key: TELEGRAM_ALLOWED_USERS
+
+    defaultPodOptions:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
     persistence:
       symlinks:
         existingClaim: symlinks
