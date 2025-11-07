@@ -32,17 +32,17 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  values:
-    csiControllerRclone:
-      rclone:
-        image:
-          repository: ghcr.io/herobrauni/csi-rclone
-          tag: latest@sha256:c06c124ce540c73efc767e974b78330d7edffc523d9a4343e3669e007d2ba121
-        imagePullPolicy: IfNotPresent
+  # values:
+  #   csiControllerRclone:
+  #     rclone:
+  #       image:
+  #         repository: ghcr.io/herobrauni/csi-rclone
+  #         tag: latest@sha256:c06c124ce540c73efc767e974b78330d7edffc523d9a4343e3669e007d2ba121
+  #       imagePullPolicy: IfNotPresent
 
-    csiNodepluginRclone:
-      rclone:
-        image:
-          repository: ghcr.io/herobrauni/csi-rclone
-          tag: latest@sha256:c06c124ce540c73efc767e974b78330d7edffc523d9a4343e3669e007d2ba121
-        imagePullPolicy: IfNotPresent
+  #   csiNodepluginRclone:
+  #     rclone:
+  #       image:
+  #         repository: ghcr.io/herobrauni/csi-rclone
+  #         tag: latest@sha256:c06c124ce540c73efc767e974b78330d7edffc523d9a4343e3669e007d2ba121
+  #       imagePullPolicy: IfNotPresent
