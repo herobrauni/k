@@ -1,24 +1,30 @@
+# ---
+# # yaml-language-server: $schema=https://json.schemastore.org/kustomization
+# apiVersion: kustomize.config.k8s.io/v1beta1
+# kind: Kustomization
+# namespace: system-upgrade
+# components:
+#   - ../../components/common
+# resources:
+#   - ./system-upgrade-controller/ks.yaml
+# configMapGenerator:
+#   - name: versions
+#     env: ./versions.env
+# configurations:
+#   - ./kustomizeconfig.yaml
+# patches:
+#   - target:
+#       kind: Namespace
+#     patch: |-
+#       - op: add
+#         path: /metadata/labels
+#         value:
+#           pod-security.kubernetes.io/audit: privileged
+#           pod-security.kubernetes.io/enforce: privileged
+#           pod-security.kubernetes.io/warn: privileged
 ---
-# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: system-upgrade
-components:
-  - ../../components/common
 resources:
-  - ./system-upgrade-controller/ks.yaml
-configMapGenerator:
-  - name: versions
-    env: ./versions.env
-configurations:
-  - ./kustomizeconfig.yaml
-patches:
-  - target:
-      kind: Namespace
-    patch: |-
-      - op: add
-        path: /metadata/labels
-        value:
-          pod-security.kubernetes.io/audit: privileged
-          pod-security.kubernetes.io/enforce: privileged
-          pod-security.kubernetes.io/warn: privileged
+  - ./tuppr/ks.yaml
