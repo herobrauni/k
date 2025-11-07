@@ -23,8 +23,11 @@
 #           pod-security.kubernetes.io/enforce: privileged
 #           pod-security.kubernetes.io/warn: privileged
 ---
-# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: rook-ceph
+components:
+  - ../../components/common
 resources:
   - ./tuppr/ks.yaml
