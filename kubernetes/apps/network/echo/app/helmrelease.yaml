@@ -72,7 +72,7 @@ spec:
     # route:
     #   app:
     #     annotations:
-    #       traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+    #       traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
     #     hostnames: ["{{ .Release.Name }}.480p.com"]
     #     parentRefs:
     #       - name: external
@@ -89,7 +89,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "480p.com"
           cert-manager.io/cluster-issuer: letsencrypt-production
-          # traefik.ingress.kubernetes.io/router.middlewares: network-authentik@kubernetescrd
+          # traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
 
         hosts:
           - host: &host "{{ .Release.Name }}.480p.com"
