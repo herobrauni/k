@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: radarr4k
+  name: tinyauth
 spec:
   interval: 15m
   layerSelector:
