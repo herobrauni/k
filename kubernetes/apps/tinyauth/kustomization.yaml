@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: tinyauth
 components:
   - ../../components/common
-resources:
-  - ./tinyauth/ks.yaml
+# resources:
+#   - ./tinyauth/ks.yaml
