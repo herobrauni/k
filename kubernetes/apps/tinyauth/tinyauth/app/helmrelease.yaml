@@ -1,13 +1,23 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app tinyauth
 spec:
   interval: 1h
+  driftDetection:
+    mode: enabled
   chartRef:
     kind: OCIRepository
     name: tinyauth
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
   values:
     controllers:
       tinyauth:
@@ -55,10 +65,9 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
-
     service:
       app:
-        controller: sonarr
+        controller: tinyauth
         ports:
           http:
             port: *port
@@ -83,10 +92,5 @@ spec:
               - *host
             secretName: "{{ .Release.Name }}-tls"
     persistence:
-      tmpfs:
-        type: emptyDir
-        advancedMounts:
-          tinyauth:
-            app:
-              - path: /data
-                subPath: data
+      data:
+        existingClaim: tinyauth
