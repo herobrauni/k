@@ -234,8 +234,10 @@ controlPlane:
           advertisedSubnets:
             - 100.64.0.0/10
     - |-
-      - op: remove
-        path: /machine/nodeLabels/node.kubernetes.io~1exclude-from-external-load-balancers
+      machine:
+        nodeLabels:
+          node.kubernetes.io/exclude-from-external-load-balancers:
+            $$patch: delete
     - |-
       cluster:
         etcd:
