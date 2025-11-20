@@ -69,37 +69,37 @@ spec:
         serviceName: echo
         endpoints:
           - port: http
-    # route:
-    #   app:
-    #     annotations:
-    #       traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
-    #     hostnames: ["{{ .Release.Name }}.480p.com"]
-    #     parentRefs:
-    #       - name: external
-    #         namespace: kube-system
-    #         sectionName: https
-    #     rules:
-    #       - backendRefs:
-    #           - identifier: app
-    #             port: *port
-    ingress:
+    route:
       app:
-        enabled: true
-        className: traefik
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "480p.com"
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          # traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
+        # annotations:
+        #   traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
+        hostnames: ["{{ .Release.Name }}.480p.com"]
+        parentRefs:
+          - name: envoy-external
+            namespace: network
+        #     sectionName: https
+        # rules:
+        #   - backendRefs:
+        #       - identifier: app
+        #         port: *port
+    # ingress:
+    #   app:
+    #     enabled: true
+    #     className: traefik
+    #     annotations:
+    #       external-dns.alpha.kubernetes.io/target: "480p.com"
+    #       cert-manager.io/cluster-issuer: letsencrypt-production
+    #       # traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
 
-        hosts:
-          - host: &host "{{ .Release.Name }}.480p.com"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: *port
-        tls:
-          - hosts:
-              - *host
-            secretName: "{{ .Release.Name }}-tls"
+    #     hosts:
+    #       - host: &host "{{ .Release.Name }}.480p.com"
+    #         paths:
+    #           - path: /
+    #             pathType: Prefix
+    #             service:
+    #               identifier: app
+    #               port: *port
+    #     tls:
+    #       - hosts:
+    #           - *host
+    #         secretName: "{{ .Release.Name }}-tls"
