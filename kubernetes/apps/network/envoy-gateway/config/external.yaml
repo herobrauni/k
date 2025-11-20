@@ -6,7 +6,6 @@ metadata:
   name: envoy-external
   annotations:
     external-dns.alpha.kubernetes.io/target: &hostname external.480p.com
-serviceType: ClusterIP
 spec:
   gatewayClassName: envoy
   infrastructure:
