@@ -90,7 +90,7 @@ extraInitContainers:
         name: share-pod-cidr
   - name: set-tailscale-advertise-routes
     # image: mirror.gcr.io/tailscale/tailscale:latest@sha256:360e10ad95ad03950f66df03e0dab66287f9f89076ee4012d50bc6adceafcdf3
-    image: tailscale/tailscale:latest@sha256:8eb8b450a85856807e8a216c4697333e15f8701cb6d344bed851bf6aa6a9605c
+    image: tailscale/tailscale:latest@sha256:4dacf554cf34e84c15fb816aa68fb3428993c3d27feeafb86a9b3eb94248c40f
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
