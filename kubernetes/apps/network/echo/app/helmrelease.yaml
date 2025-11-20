@@ -82,24 +82,24 @@ spec:
         #   - backendRefs:
         #       - identifier: app
         #         port: *port
-    # ingress:
-    #   app:
-    #     enabled: true
-    #     className: traefik
-    #     annotations:
-    #       external-dns.alpha.kubernetes.io/target: "480p.com"
-    #       cert-manager.io/cluster-issuer: letsencrypt-production
-    #       # traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
+    ingress:
+      app:
+        enabled: true
+        className: traefik
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "480p.com"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          # traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
 
-    #     hosts:
-    #       - host: &host "{{ .Release.Name }}.480p.com"
-    #         paths:
-    #           - path: /
-    #             pathType: Prefix
-    #             service:
-    #               identifier: app
-    #               port: *port
-    #     tls:
-    #       - hosts:
-    #           - *host
-    #         secretName: "{{ .Release.Name }}-tls"
+        hosts:
+          - host: &host "{{ .Release.Name }}.480p.com"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: *port
+        tls:
+          - hosts:
+              - *host
+            secretName: "{{ .Release.Name }}-tls"
