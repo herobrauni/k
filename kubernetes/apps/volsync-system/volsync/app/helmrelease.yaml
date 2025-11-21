@@ -37,7 +37,7 @@ spec:
       repository: quay.io/backube/volsync
       # pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
-      tag: 0.13.1
+      tag: 0.14.0
     rclone:
       repository: quay.io/backube/volsync
       # Overrides the image tag whose default is the chart appVersion.
