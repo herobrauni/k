@@ -2,7 +2,9 @@
 clusterName: k2
 endpoint: https://k2-talos.480p.com:6443
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.12.0-beta.0
+talosVersion: v1.11.5
+# renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+kubernetesVersion: v1.34.2
 
 allowSchedulingOnMasters: true
 allowSchedulingOnControlPlanes: true
