@@ -1,6 +1,8 @@
 ---
 clusterName: k2
 endpoint: https://k2-talos.480p.com:6443
+# renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+talosVersion: v1.12.0-beta.0
 
 allowSchedulingOnMasters: true
 allowSchedulingOnControlPlanes: true
@@ -16,7 +18,7 @@ cniConfig:
 domain: cluster.local
 nodes:
   - hostname: gc1
-    controlPlane: true
+    controlPlane: false
     ipAddress: 92.118.190.11
     installDiskSelector:
       size: <= 300GB
@@ -96,7 +98,7 @@ nodes:
       - terabit2
 
   - hostname: oracle5
-    controlPlane: false
+    controlPlane: true
     ipAddress: 158.101.165.67
     installDiskSelector:
       size: <= 300GB
@@ -143,22 +145,6 @@ nodes:
     certSANs:
       - hostsailor1.brill-bebop.ts.net
       - hostsailor1
-
-  - hostname: kuroit4
-    controlPlane: false
-    ipAddress: 45.67.85.118
-    installDiskSelector:
-      size: <= 300GB
-    networkInterfaces:
-      - interface: ens3
-        addresses:
-          - 45.67.85.118/24
-        dhcp: false
-        routes:
-          - gateway: 45.67.85.1
-    certSANs:
-      - kuroit4.brill-bebop.ts.net
-      - kuroit4
 
 patches:
   - |-
