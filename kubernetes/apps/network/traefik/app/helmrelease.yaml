@@ -63,7 +63,7 @@ spec:
             to: websecure
             scheme: https
             permanent: true
-        advertisedPort: 80
+       # advertisedPort: 80
       websecure:
         tls:
           enabled: true
@@ -73,7 +73,7 @@ spec:
           #   - main: "480p.com"
           #     sans:
           #       - "*.480p.com"
-        advertisedPort: 443
+        #advertisedPort: 443
 
     service:
       enabled: true
