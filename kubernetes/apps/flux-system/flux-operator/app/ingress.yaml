@@ -19,7 +19,7 @@ spec:
               service:
                 name: flux-operator
                 port:
-                  number: 9080
+                  name: http-web
   tls:
     - hosts:
         - *host
