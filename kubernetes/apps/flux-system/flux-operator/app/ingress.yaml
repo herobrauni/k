@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flux-dash
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "480p.com"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.middlewares: network-tinyauth@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: &host "flux-dash.480p.com"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: flux-operator
+                port:
+                  number: 9080
+  tls:
+    - hosts:
+        - *host
+      secretName: flux-dash-tls
