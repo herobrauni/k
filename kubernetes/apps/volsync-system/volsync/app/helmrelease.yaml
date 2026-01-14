@@ -41,15 +41,15 @@ spec:
     rclone:
       repository: quay.io/backube/volsync
       # Overrides the image tag whose default is the chart appVersion.
-      tag: 0.13.1
+      tag: 0.14.0
     restic:
       repository: quay.io/backube/volsync
       # Overrides the image tag whose default is the chart appVersion.
-      tag: 0.13.1
+      tag: 0.14.0
     rsync:
       repository: quay.io/backube/volsync
       # Overrides the image tag whose default is the chart appVersion.
-      tag: 0.13.1
+      tag: 0.14.0
     manageCRDs: true
     replicaCount: 2
     metrics:
