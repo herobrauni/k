@@ -7,7 +7,7 @@ metadata:
 spec:
   sourcePVC: "${APP}"
   trigger:
-    schedule: "0 6 * * *"
+    schedule: "0 * * * *"
   restic:
     unlock: "7"
     copyMethod: "${VOLSYNC_COPYMETHOD:=Snapshot}"
