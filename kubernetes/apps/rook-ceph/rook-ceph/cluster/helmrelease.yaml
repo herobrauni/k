@@ -39,11 +39,11 @@ spec:
       createPrometheusRules: true
     toolbox:
       enabled: true
+    cephImage:
+      # repository: quay.io/ceph/ceph
+      # tag: v19.2.3@sha256:af0c5903e901e329adabe219dfc8d0c3efc1f05102a753902f33ee16c26b6cee
+      imagePullPolicy: IfNotPresent
     cephClusterSpec:
-      cephImage:
-        repository: quay.io/ceph/ceph
-        tag: v19.2.3@sha256:af0c5903e901e329adabe219dfc8d0c3efc1f05102a753902f33ee16c26b6cee
-        imagePullPolicy: IfNotPresent
       resources:
         osd:
           requests:
