@@ -58,22 +58,24 @@ spec:
           default: true
       # Entrypoints
       web:
-        redirections:
-          entryPoint:
-            to: websecure
-            scheme: https
-            permanent: true
-       # advertisedPort: 80
+        http:
+          redirections:
+            entryPoint:
+              to: websecure
+              scheme: https
+              permanent: true
+        # advertisedPort: 80
       websecure:
-        tls:
-          enabled: true
-          options: "default"
-          # certResolver: letsencrypt-production
-          # domains:
-          #   - main: "480p.com"
-          #     sans:
-          #       - "*.480p.com"
-        #advertisedPort: 443
+        http:
+          tls:
+            enabled: true
+            options: "default"
+            # certResolver: letsencrypt-production
+            # domains:
+            #   - main: "480p.com"
+            #     sans:
+            #       - "*.480p.com"
+          #advertisedPort: 443
 
     service:
       enabled: true
