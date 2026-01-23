@@ -14,14 +14,17 @@ TIME_THRESHOLD_MINUTES=5
 CHECK_INTERVAL_SECONDS=60
 # File to monitor
 MONITOR_FILE="/aio/remote/realdebrid/version.txt"
+# Directory to check for mount accessibility
+MONITOR_DIR="/aio/symlinks"
 # Deployments to monitor and potentially restart
 MONITOR_DEPLOYMENTS=("plex" "sonarr" "sonarr4k" "radarr" "radarr4k" "decypharr-sync-helper")
-# All deployments to restart when monitor file is missing
+# All deployments to restart when monitor file is missing or directory is inaccessible
 ALL_DEPLOYMENTS=("decypharr" "plex" "sonarr" "sonarr4k" "radarr" "radarr4k" "decypharr-sync-helper")
 
 echo "Starting continuous monitoring of $APP_NAME and media deployments..."
 echo "Monitoring deployments: ${MONITOR_DEPLOYMENTS[*]}"
 echo "Monitoring file: $MONITOR_FILE"
+echo "Monitoring directory: $MONITOR_DIR"
 echo "Check interval: $CHECK_INTERVAL_SECONDS seconds"
 echo "Press Ctrl+C to stop monitoring"
 echo
@@ -32,6 +35,54 @@ while true; do
 
     # Reset error flag for this iteration
     iteration_error=false
+
+    # Check if monitor directory is accessible
+    echo "Checking if monitor directory $MONITOR_DIR is accessible..."
+    if ! ls "$MONITOR_DIR" >/dev/null 2>&1; then
+        echo "WARNING: Monitor directory $MONITOR_DIR is not accessible! (Stale file handle or mount issue)"
+        echo "Restarting all deployments including $APP_NAME..."
+
+        # Restart all deployments
+        for deployment in "${ALL_DEPLOYMENTS[@]}"; do
+            echo "Restarting $deployment deployment..."
+            kubectl rollout restart deployment/$deployment -n $NAMESPACE
+            if [ $? -eq 0 ]; then
+                echo "Successfully initiated $deployment deployment restart"
+            else
+                echo "Error: Failed to restart $deployment deployment"
+                iteration_error=true
+            fi
+        done
+
+        # Restart decypharr-restarter itself
+        echo "Attempting to restart decypharr-restarter..."
+        # Get the current pod name
+        RESTARTER_POD=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=decypharr-restarter -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+        if [ ! -z "$RESTARTER_POD" ]; then
+            echo "Deleting restarter pod $RESTARTER_POD to trigger restart..."
+            kubectl delete pod $RESTARTER_POD -n $NAMESPACE
+            if [ $? -eq 0 ]; then
+                echo "Successfully initiated decypharr-restarter restart"
+                echo "Note: This script will terminate, but the pod should restart automatically"
+                # Exit the script since the pod will be restarted
+                exit 0
+            else
+                echo "Error: Failed to restart decypharr-restarter"
+                iteration_error=true
+            fi
+        else
+            echo "Error: Could not find decypharr-restarter pod"
+            iteration_error=true
+        fi
+
+        # Wait before next check
+        echo "Waiting $CHECK_INTERVAL_SECONDS seconds before next check..."
+        echo
+        sleep $CHECK_INTERVAL_SECONDS
+        continue
+    else
+        echo "Monitor directory $MONITOR_DIR is accessible"
+    fi
 
     # Check if monitor file exists
     echo "Checking if monitor file $MONITOR_FILE exists..."
