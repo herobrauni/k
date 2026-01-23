@@ -50,7 +50,7 @@ spec:
       kubernetesIngress:
         enabled: true
         allowExternalNameServices: true
-        allowCrossNamespace: true
+        # allowCrossNamespace: true
         ingressClass: traefik
     ports:
       traefik:
@@ -92,8 +92,9 @@ spec:
       - "--serverstransport.insecureskipverify=true"
       # - "--metrics.prometheus=true"
       # - "--metrics.prometheus.entryPoint=metrics"
-    prometheus:
-      entryPoint: metrics
+    metrics:
+      prometheus:
+        entryPoint: metrics
 
     global:
       checkNewVersion: false
