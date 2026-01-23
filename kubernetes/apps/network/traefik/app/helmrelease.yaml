@@ -84,10 +84,17 @@ spec:
         external-dns.alpha.kubernetes.io/hostname: "480p.com"
         cert-manager.io/cluster-issuer: letsencrypt-production
 
-    globalArguments:
-      - "--global.checknewversion=false"
-      - "--global.sendanonymoususage=false"
+    # globalArguments:
+    #   - "--global.checknewversion=false"
+    #   - "--global.sendanonymoususage=false"
+    additionalArguments:
       - "--api.insecure=true"
       - "--serverstransport.insecureskipverify=true"
-      - "--metrics.prometheus=true"
-      - "--metrics.prometheus.entryPoint=metrics"
+      # - "--metrics.prometheus=true"
+      # - "--metrics.prometheus.entryPoint=metrics"
+    prometheus:
+      entryPoint: metrics
+
+    global:
+      checkNewVersion: false
+      sendAnonymousUsage: false
