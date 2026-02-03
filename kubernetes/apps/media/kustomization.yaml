@@ -11,7 +11,7 @@ resources:
   - ./csi-rclone-secret.sops.yaml
   - ./pvc-rclone.yaml
   - ./decypharr/ks.yaml
-  - ./warp/ks.yaml
+  # - ./warp/ks.yaml
   - ./plex/ks.yaml
   - ./tautulli/ks.yaml
   # - ./jellyfin/ks.yaml
