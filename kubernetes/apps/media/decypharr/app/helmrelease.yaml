@@ -36,7 +36,7 @@ spec:
           app:
             image:
               repository: ghcr.io/sirrobot01/decypharr
-              tag: beta@sha256:ad30f4920f61a5df9e84129564ba56ac64d190bbb24262ea3b6e71133fb7b191
+              tag: beta@sha256:ee2ee35da46e71390893d60c7f4306cc2ccd63eb20f8cabc2cd4f8e611ebfc09
             probes:
               liveness: &probes
                 enabled: true
