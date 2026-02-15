@@ -29,5 +29,5 @@ kind: Kustomization
 namespace: system-upgrade
 components:
   - ../../components/common
-resources:
-  - ./tuppr/ks.yaml
+# resources:
+#   - ./tuppr/ks.yaml
