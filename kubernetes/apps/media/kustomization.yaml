@@ -7,31 +7,31 @@ components:
   - ../../components/common
 resources:
   - ./symlinks/ks.yaml
-  - ./alfred/ks.yaml
+  # - ./alfred/ks.yaml
   - ./csi-rclone-secret.sops.yaml
   - ./pvc-rclone.yaml
-  - ./decypharr/ks.yaml
+  # - ./decypharr/ks.yaml
   # - ./warp/ks.yaml
-  - ./plex/ks.yaml
-  - ./tautulli/ks.yaml
+  # - ./plex/ks.yaml
+  # - ./tautulli/ks.yaml
   # - ./jellyfin/ks.yaml
-  - ./sonarr/ks.yaml
-  - ./sonarr4k/ks.yaml
-  - ./radarr/ks.yaml
-  - ./radarr4k/ks.yaml
-  - ./prowlarr/ks.yaml
-  - ./jellyseerr/ks.yaml
+  # - ./sonarr/ks.yaml
+  # - ./sonarr4k/ks.yaml
+  # - ./radarr/ks.yaml
+  # - ./radarr4k/ks.yaml
+  # - ./prowlarr/ks.yaml
+  # - ./jellyseerr/ks.yaml
   # - ./autosync/ks.yaml
-  - ./profilarr/ks.yaml
+  # - ./profilarr/ks.yaml
 
 #  - ./huntarr/ks.yaml
 
-  # - ./seasonarr/ks.yaml
+# - ./seasonarr/ks.yaml
 
-  - ./decypharr-restarter/ks.yaml
-  - ./decypharr-sync-helper/ks.yaml
-  # - ./debug-python/ks.yaml
-  # - ./huntarr4k/ks.yaml
-  # - ./recyclarr/ks.yaml
-  # - ./rdtclient/ks.yaml
-  #   - ./bazarr/ks.yaml
+# - ./decypharr-restarter/ks.yaml
+# - ./decypharr-sync-helper/ks.yaml
+# - ./debug-python/ks.yaml
+# - ./huntarr4k/ks.yaml
+# - ./recyclarr/ks.yaml
+# - ./rdtclient/ks.yaml
+#   - ./bazarr/ks.yaml
