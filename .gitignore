@@ -22,5 +22,6 @@ Thumbs.db
 tmp/
 /clusterconfig
 db.snapshot
+etcd-backup*.db
 *.md
 .claude/

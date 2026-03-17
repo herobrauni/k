@@ -5,9 +5,9 @@ kind: Kustomization
 namespace: observability
 # components:
 #   - ../../components/common
-# resources:
-#   # - ./alloy/ks.yaml
-#   - ./beszel/ks.yaml
+resources:
+  #   # - ./alloy/ks.yaml
+  - ./beszel/ks.yaml
 #   - ./gatus/ks.yaml
 #   - ./grafana/ks.yaml
 #   # - ./keda/ks.yaml
