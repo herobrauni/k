@@ -3,20 +3,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: observability
-components:
-  - ../../components/common
-resources:
-  # - ./alloy/ks.yaml
-  - ./beszel/ks.yaml
-  - ./gatus/ks.yaml
-  - ./grafana/ks.yaml
-  # - ./keda/ks.yaml
-  - ./kromgo/ks.yaml
-  - ./kube-prometheus-stack/ks.yaml
-  # - ./loki/ks.yaml
-  - ./silence-operator/ks.yaml
-  - ./smartctl-exporter/ks.yaml
-  # - ./spoodermon/ks.yaml
+# components:
+#   - ../../components/common
+# resources:
+#   # - ./alloy/ks.yaml
+#   - ./beszel/ks.yaml
+#   - ./gatus/ks.yaml
+#   - ./grafana/ks.yaml
+#   # - ./keda/ks.yaml
+#   - ./kromgo/ks.yaml
+#   - ./kube-prometheus-stack/ks.yaml
+#   # - ./loki/ks.yaml
+#   - ./silence-operator/ks.yaml
+#   - ./smartctl-exporter/ks.yaml
+#   # - ./spoodermon/ks.yaml
 patches:
   - target:
       kind: Namespace
